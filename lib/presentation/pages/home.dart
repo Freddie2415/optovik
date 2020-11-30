@@ -22,13 +22,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.widgets_outlined),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return CategoriesPage();
-                  },
-                ),
-              );
+              Navigator.of(context).push(CategoriesPage.route());
             },
           )
         ],
@@ -73,11 +67,7 @@ class HomePage extends StatelessWidget {
               title: Text('Каталог и поиск'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CategoriesPage(),
-                    ));
+                Navigator.push(context, CategoriesPage.route());
               },
             ),
             ListTile(

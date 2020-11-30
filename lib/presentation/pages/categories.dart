@@ -1,78 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
+import 'package:optovik/domain/model/category.dart';
+import 'package:optovik/internal/dependencies/categories_module.dart';
 import 'package:optovik/presentation/pages/products.dart';
 import 'package:optovik/presentation/pages/search.dart';
+import 'package:optovik/presentation/widgets/error_widget.dart';
+import 'package:optovik/presentation/widgets/loading_widget.dart';
 
 class CategoriesPage extends StatefulWidget {
+  final List<Category> categories;
+
+  const CategoriesPage({Key key, this.categories}) : super(key: key);
+
   @override
   _CategoriesPageState createState() => _CategoriesPageState();
+
+  static Route<MaterialPageRoute> route() {
+    return MaterialPageRoute(
+      builder: (context) => BlocBuilder(
+        cubit: CategoriesModule.categoriesBloc(),
+        builder: _builder,
+      ),
+    );
+  }
+
+  static Widget _builder(BuildContext context, state) {
+    if (state is CategoriesLoading || state is CategoriesInitial) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Категории'),
+        ),
+        body: LoadingWidget(),
+      );
+    }
+
+    if (state is CategoriesError) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Категории'),
+        ),
+        body: FailureWidget(message: state.message,onBtnPressed: (){
+          CategoriesModule.categoriesBloc().add(LoadCategories());
+        }),
+      );
+    }
+
+    final categories = (state as CategoriesReady).categories ?? [];
+
+    return CategoriesPage(categories: categories);
+  }
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  Category showAll = null;
-  List<Category> list = [
-    Category(
-      id: 1,
-      title: "Новый год 2021",
-      children: [
-        Category(id: 8, title: "Банкетное меню"),
-        Category(id: 9, title: "Новогоднее настроение"),
-        Category(id: 10, title: "Подарки на новый год"),
-        Category(id: 11, title: "Накрываем на стол"),
-      ],
-      isMain: true,
-    ),
-    Category(
-      id: 2,
-      title: "Идеи для подарков",
-      children: [
-        Category(id: 12, title: "Подарочные корзины и наборы"),
-        Category(id: 13, title: "Подарки для детей"),
-        Category(id: 14, title: "Букеты и цветочные композиции"),
-        Category(id: 15, title: "Подарочные карты"),
-      ],
-      isMain: true,
-    ),
-    Category(
-      id: 3,
-      title: "Средства защиты",
-      children: [
-        Category(id: 16, title: "Маски защитные, перчатки"),
-        Category(id: 17, title: "Антисептики и гели"),
-        Category(id: 18, title: "Мыло для рук"),
-        Category(id: 19, title: "Дезинфицирующие средства"),
-      ],
-      isMain: true,
-    ),
-    Category(
-      id: 4,
-      title: "Фермерские продукты",
-      children: [
-        Category(id: 20, title: "Молоко. Сыры. Яйцо"),
-        Category(id: 21, title: "Овощи, фрукты"),
-        Category(id: 22, title: "Мясо, птица,рыба"),
-        Category(id: 23, title: "Кондитерские изделия"),
-      ],
-      isMain: true,
-    ),
-    Category(
-      id: 5,
-      title: "Овощи, Фрукты",
-      children: [
-        Category(id: 24, title: "Банкетное меню"),
-        Category(id: 25, title: "Новогоднее настроение"),
-        Category(id: 26, title: "Подарки на новый год"),
-        Category(id: 27, title: "Накрываем на стол"),
-      ],
-      isMain: true,
-    ),
-  ];
+  Category showAll;
 
   List<Category> items = [];
 
   @override
   void initState() {
     super.initState();
-    items = list;
+    items = widget.categories;
   }
 
   @override
@@ -82,16 +70,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
         title: Text("Каталог товаров"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            if (showAll == null) {
-              Navigator.pop(context);
-            } else {
-              setState(() {
-                items = list;
-                showAll = null;
-              });
-            }
-          },
+          onPressed: onPressBack,
         ),
         actions: [
           IconButton(
@@ -112,7 +91,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           bool parent = showAll != null && showAll == item;
           return ListTile(
             title: Text(
-              "${item.title}",
+              "${item.name}",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight:
@@ -123,7 +102,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               if (item.children.isEmpty || parent) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProductsPage(
-                    title: "${item.title}",
+                    title: "${item.name}",
                   ),
                 ));
               } else {
@@ -151,14 +130,15 @@ class _CategoriesPageState extends State<CategoriesPage> {
       ),
     );
   }
-}
 
-class Category {
-  final id;
-  final String title;
-  final bool isMain;
-  final List<Category> children;
-
-  const Category(
-      {this.id, this.title, this.children = const [], this.isMain = false});
+  void onPressBack() {
+    if (showAll == null) {
+      Navigator.pop(context);
+    } else {
+      setState(() {
+        items = widget.categories;
+        showAll = null;
+      });
+    }
+  }
 }
