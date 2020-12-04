@@ -103,6 +103,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProductsPage(
                     title: "${item.name}",
+                    categoryId: item.id,
                   ),
                 ));
               } else {

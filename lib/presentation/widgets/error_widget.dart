@@ -22,7 +22,7 @@ class FailureWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "${message}",
+                "$message",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
