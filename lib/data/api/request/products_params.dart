@@ -5,26 +5,24 @@ class ProductsParams {
   final limit;
   final page;
   final categoryId;
+  final String ordering;
 
   ProductsParams({
     @required this.limit,
     @required this.page,
     this.categoryId,
+    this.ordering,
   });
 
   toRequestParams() {
+    Map<String, String> params = Map<String, String>();
+    params.addAll({'ordering': ordering});
+    params.addAll({'format': format});
+    params.addAll({'limit': '$limit'});
+    params.addAll({'page': '$page'});
     if (categoryId != null) {
-      return {
-        'format': format,
-        'limit': '$limit',
-        'page': '$page',
-        'cat_one': '$categoryId',
-      };
+      params.addAll({'cat_one': '$categoryId'});
     }
-    return {
-      'format': format,
-      'limit': '$limit',
-      'page': '$page',
-    };
+    return params;
   }
 }

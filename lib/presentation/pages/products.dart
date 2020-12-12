@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/products/products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/domain/model/sort_type.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/pages/filter.dart';
 import 'package:optovik/presentation/pages/search.dart';
@@ -97,7 +98,10 @@ class _ProductsPageState extends State<ProductsPage> {
                 ),
                 Expanded(
                   child: SortPopupButton(
-                    onSelect: (sortType) {},
+                    onSelect: (SortType sortType) {
+                      _productsBloc
+                          .add(ProductsFetched(sort: Sort(sortType: sortType)));
+                    },
                   ),
                 ),
               ],
@@ -126,10 +130,10 @@ class _ProductsPageState extends State<ProductsPage> {
     final List<ProductWidget> list = products
         .map((e) => ProductWidget(
               id: e.id.toString(),
-              image:
-                  'https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1',
+              image: '${e.image}',
               name: e.title,
-              price: e.showPrice.toInt().toString(),
+              price: '',
+              unit: '',
             ))
         .toList();
 
@@ -155,7 +159,7 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   Widget _builder(BuildContext context, state) {
-    if (state is ProductsInitial) {
+    if (state is ProductsInitial || state is ProductsLoading) {
       return LoadingWidget();
     }
     if (state is ProductsSuccess) {

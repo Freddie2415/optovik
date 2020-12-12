@@ -7,4 +7,13 @@ abstract class ProductsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ProductsFetched extends ProductsEvent {}
+class ProductsFetched extends ProductsEvent {
+  final Sort sort;
+
+  ProductsFetched({this.sort});
+
+  @override
+  List<Object> get props => [];
+
+  get ordering => sort.toString();
+}

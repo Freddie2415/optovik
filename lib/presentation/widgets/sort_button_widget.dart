@@ -15,99 +15,20 @@ class SortPopupButton extends StatefulWidget {
 class _SortPopupButtonState extends State<SortPopupButton> {
   SortType sortValue = SortType.default_sort;
   final Function(SortType sortType) onSelect;
-
+  String currentSortText = 'По популярности';
   _SortPopupButtonState(this.onSelect);
 
   @override
   Widget build(BuildContext context) {
-/*    if (Platform.isAndroid)
-      return PopupMenuButton(
-        tooltip: "Сортировка",
-        onSelected: onSelected,
-        itemBuilder: (context) {
-          final List<PopupMenuEntry> sort = [
-            PopupMenuItem<SortType>(
-              value: SortType.default_sort,
-              child: ListTile(
-                title: Text("По умолчанию"),
-                dense: true,
-                trailing: _trailing(SortType.default_sort),
-                contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-              ),
-            ),
-            PopupMenuItem<SortType>(
-              value: SortType.name_asc,
-              child: ListTile(
-                title: Text("По алвавиту"),
-                dense: true,
-                trailing: _trailing(SortType.name_asc),
-                contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-              ),
-            ),
-            PopupMenuItem<SortType>(
-              value: SortType.name_desc,
-
-              child: ListTile(
-                title: Text("Сначала недогорие"),
-                dense: true,
-                trailing: _trailing(SortType.name_desc),
-                contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-              ),
-            ),
-            PopupMenuItem<SortType>(
-              value: SortType.price_desc,
-              child: ListTile(
-                title: Text("Сначала дорогие"),
-                dense: true,
-                trailing: _trailing(SortType.price_desc),
-                contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-              ),
-            ),
-            PopupMenuItem<SortType>(
-              value: SortType.price_asc,
-              child: ListTile(
-                title: Text("По новизне"),
-                dense: true,
-                trailing: _trailing(SortType.price_asc),
-                contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-              ),
-            ),
-          ];
-          return sort;
-        },
-        // icon: Icon(Icons.sort),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "По популярности",
-              style: TextStyle(
-                fontSize: 13,
-              ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(
-              Icons.sort,
-              color: Colors.grey,
-              size: 20,
-            ),
-          ],
-        ),
-        offset: Offset(500.0, 100.0),
-      );*/
-
-    return PopupMenuButton(
+    return PopupMenuButton<SortType>(
       tooltip: "Сортировка",
       onSelected: onSelected,
       itemBuilder: (context) {
-        final List<PopupMenuEntry> sort = [
+        final List<PopupMenuEntry<SortType>> sort = [
           PopupMenuItem<SortType>(
             value: SortType.default_sort,
             child: ListTile(
-              title: Text("По умолчанию"),
+              title: Text("По популярности"),
               dense: true,
               trailing: _trailing(SortType.default_sort),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -116,7 +37,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
           PopupMenuItem<SortType>(
             value: SortType.name_asc,
             child: ListTile(
-              title: Text("По алвавиту"),
+              title: Text("По алфавиту (A-Я)"),
               dense: true,
               trailing: _trailing(SortType.name_asc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -126,27 +47,9 @@ class _SortPopupButtonState extends State<SortPopupButton> {
             value: SortType.name_desc,
 
             child: ListTile(
-              title: Text("Сначала недогорие"),
+              title: Text("По алфавиту (Я-А)"),
               dense: true,
               trailing: _trailing(SortType.name_desc),
-              contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-            ),
-          ),
-          PopupMenuItem<SortType>(
-            value: SortType.price_desc,
-            child: ListTile(
-              title: Text("Сначала дорогие"),
-              dense: true,
-              trailing: _trailing(SortType.price_desc),
-              contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-            ),
-          ),
-          PopupMenuItem<SortType>(
-            value: SortType.price_asc,
-            child: ListTile(
-              title: Text("По новизне"),
-              dense: true,
-              trailing: _trailing(SortType.price_asc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
             ),
           ),
@@ -159,7 +62,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "По популярности",
+            "$currentSortText",
             style: TextStyle(
               fontSize: 13,
             ),
@@ -197,12 +100,12 @@ class _SortPopupButtonState extends State<SortPopupButton> {
         : Icon(Icons.radio_button_unchecked);
   }
 
-  _textStyleBySort(SortType sortType) {
+/*  _textStyleBySort(SortType sortType) {
     return TextStyle(
         color: sortType == sortValue ? Colors.black : Colors.black54);
-  }
+  }*/
 
-  Widget _cupertinoActionSheet() {
+  /*Widget _cupertinoActionSheet() {
     return CupertinoActionSheet(
       title: Text('Сортировать список товаров'),
       cancelButton: CupertinoActionSheetAction(
@@ -245,35 +148,24 @@ class _SortPopupButtonState extends State<SortPopupButton> {
             style: _textStyleBySort(SortType.name_desc),
           ),
         ),
-        CupertinoActionSheetAction(
-          onPressed: () {
-            onSelected(SortType.price_asc);
-            Navigator.pop(context);
-          },
-          child: Container(
-            child: Text(
-              "Сначала дорогие",
-              style: _textStyleBySort(SortType.price_asc),
-            ),
-          ),
-        ),
-        CupertinoActionSheetAction(
-          onPressed: () {
-            onSelected(SortType.price_desc);
-            Navigator.pop(context);
-          },
-          child: Text(
-            "По новизне",
-            style: _textStyleBySort(SortType.price_desc),
-          ),
-        )
       ],
     );
-  }
+  }*/
 
-  void onSelected(value) {
+  void onSelected(SortType value) {
     setState(() {
       sortValue = value;
+      switch(value){
+        case SortType.default_sort:
+          currentSortText = 'По популярности';
+          break;
+        case SortType.name_asc:
+          currentSortText = 'По алфавиту (A-Я)';
+          break;
+        case SortType.name_desc:
+          currentSortText = 'По алфавиту (Я-А)';
+          break;
+      }
     });
     onSelect(sortValue);
   }
