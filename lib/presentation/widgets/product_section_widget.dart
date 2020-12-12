@@ -7,9 +7,11 @@ import 'product_widget.dart';
 class ProductSectionWidget extends StatelessWidget {
   final String title;
   final List<Product> products;
+  final categoryId;
+
 
   const ProductSectionWidget(
-      {Key key, @required this.title, @required this.products})
+      {Key key, @required this.title, @required this.products, this.categoryId})
       : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class ProductSectionWidget extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ProductsPage(
                       title: title,
+                      categoryId: categoryId,
                     ),
                   ));
             },
@@ -55,6 +58,7 @@ class ProductSectionWidget extends StatelessWidget {
                 child: Row(
                   children: products
                       .map((e) => ProductWidget(
+                            e,
                             id: e.id.toString(),
                             name: "${e.title}",
                             image: "${e.image}",

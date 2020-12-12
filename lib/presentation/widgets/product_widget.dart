@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/presentation/pages/product_detail.dart';
 
 import 'counter_btn.dart';
 
 class ProductWidget extends StatefulWidget {
+  final Product product;
   final String id;
   final String name;
   final String price;
@@ -13,7 +15,8 @@ class ProductWidget extends StatefulWidget {
   final String unit;
   final Color promoColor;
 
-  const ProductWidget({
+  const ProductWidget(
+    this.product, {
     Key key,
     this.id,
     this.name,
@@ -172,17 +175,7 @@ class _ProductWidgetState extends State<ProductWidget>
   }
 
   void onClick() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ProductDetailPage(
-            name: 'Пельмени по традиционному рецепту "Просто Азбука", 500г',
-            images: [
-              "https://im0-tub-com.yandex.net/i?id=be5a88e7c7b717731a2a35870350fc9a&n=13",
-              "https://sc01.alicdn.com/kf/UTB80qC0h3nJXKJkSaelq6xUzXXaC/2120403/UTB80qC0h3nJXKJkSaelq6xUzXXaC.jpg",
-              "https://sc02.alicdn.com/kf/ULB8uhWDMSnEXKJk43Ubq6zLppXaq/Fresh-Oranges-for-sale.jpg",
-            ],
-          ),
-        ));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => ProductDetailPage(widget.product)));
   }
 }

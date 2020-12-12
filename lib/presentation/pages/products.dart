@@ -128,10 +128,10 @@ class _ProductsPageState extends State<ProductsPage> {
 
   _productsBody(List<Product> products, bool hasReachedMax) {
     final List<ProductWidget> list = products
-        .map((e) => ProductWidget(
-              id: e.id.toString(),
-              image: '${e.image}',
-              name: e.title,
+        .map((product) => ProductWidget(product,
+              id: product.id.toString(),
+              image: '${product.image}',
+              name: product.title,
               price: '',
               unit: '',
             ))

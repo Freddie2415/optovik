@@ -1,27 +1,25 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/other_products/other_products_bloc.dart';
+import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/widgets/counter_btn.dart';
 import 'package:optovik/presentation/widgets/my_separator.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  final String name;
-  final List<String> images;
+  final Product product;
 
-  const ProductDetailPage({Key key, this.name, this.images}) : super(key: key);
+  const ProductDetailPage(this.product, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final categoryId =
+        product.categories.isNotEmpty ? product.categories.last : null;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("О товаре"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar: AppBar(title: Text("О товаре")),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -30,7 +28,7 @@ class ProductDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "$name",
+                "${this.product.title}",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -38,9 +36,7 @@ class ProductDetailPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                child: ProductImages(
-                  images: images,
-                ),
+                child: ProductImages(images: this.product.images),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,33 +47,33 @@ class ProductDetailPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                            text: "52 500",
-                            children: [
-                              TextSpan(
-                                  text: " сум", style: TextStyle(fontSize: 12))
-                            ],
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                                decoration: TextDecoration.lineThrough,
-                                decorationColor: Colors.red),
-                          ),
-                        ),
-                        RichText(
-                          text: TextSpan(
-                              text: "49 800",
-                              children: [
-                                TextSpan(
-                                    text: " сум",
-                                    style: TextStyle(fontSize: 12))
-                              ],
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black)),
-                        ),
+                        // RichText(
+                        //   text: TextSpan(
+                        //     text: "52 500",
+                        //     children: [
+                        //       TextSpan(
+                        //           text: " сум", style: TextStyle(fontSize: 12))
+                        //     ],
+                        //     style: TextStyle(
+                        //         color: Colors.grey,
+                        //         fontSize: 12,
+                        //         decoration: TextDecoration.lineThrough,
+                        //         decorationColor: Colors.red),
+                        //   ),
+                        // ),
+                        // RichText(
+                        //   text: TextSpan(
+                        //       text: "49 800",
+                        //       children: [
+                        //         TextSpan(
+                        //             text: " сум",
+                        //             style: TextStyle(fontSize: 12))
+                        //       ],
+                        //       style:
+                        //           TextStyle(fontSize: 16, color: Colors.black)),
+                        // ),
                         Text(
-                          "1 шт (500 г)",
+                          "${product.unit}",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 12,
@@ -94,11 +90,24 @@ class ProductDetailPage extends StatelessWidget {
                 ],
               ),
               Divider(),
-              DescriptionText(),
+              DescriptionText(product.description),
               Divider(),
               InfoSection(),
               Divider(),
-              ProductSectionWidget(title: "Рядом на полке", products: [],),
+              BlocBuilder(
+                cubit: ProductsModule.otherProductsBloc()
+                  ..add(FetchOtherProducts(categoryId, product.id)),
+                builder: (context, state) {
+                  if (state is OtherProductsFetched) {
+                    return ProductSectionWidget(
+                      title: "Рядом на полке",
+                      products: state.products,
+                      categoryId: categoryId,
+                    );
+                  }
+                  return Container(width: 0, height: 0);
+                },
+              )
             ],
           ),
         ),
@@ -219,6 +228,10 @@ class _ProductImagesState extends State<ProductImages> {
 }
 
 class DescriptionText extends StatefulWidget {
+  final String text;
+
+  const DescriptionText(this.text, {Key key}) : super(key: key);
+
   @override
   _DescriptionTextState createState() => _DescriptionTextState();
 }
@@ -228,6 +241,9 @@ class _DescriptionTextState extends State<DescriptionText> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.text == null || widget.text.isEmpty) {
+      return Container(width: 0.0, height: 0.0);
+    }
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +259,7 @@ class _DescriptionTextState extends State<DescriptionText> {
             height: 10,
           ),
           Text(
-            'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или "невозможных" слов.',
+            '${widget.text}',
             style: TextStyle(
               color: Colors.black,
             ),

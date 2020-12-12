@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:optovik/domain/model/category.dart';
 
 class Product extends Equatable {
   final int id;
@@ -23,6 +24,7 @@ class Product extends Equatable {
   final int manufacturer;
   final List<String> images;
   final String unit;
+  final List<Category> categories;
 
   const Product({
     @required this.id,
@@ -46,6 +48,7 @@ class Product extends Equatable {
     @required this.manufacturer,
     @required this.images,
     @required this.unit,
+    @required this.categories
   });
 
   String get image => images.isEmpty ? null : images[0];
