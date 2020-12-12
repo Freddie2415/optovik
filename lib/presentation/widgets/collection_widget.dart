@@ -11,7 +11,7 @@ class CollectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.zero,
-      onPressed: (){
+      onPressed: () {
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -19,13 +19,19 @@ class CollectionWidget extends StatelessWidget {
             ));
       },
       child: Container(
-        margin: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width * 0.5 - 20,
+        margin: EdgeInsets.only(
+          top: 10.0,
+          bottom: 10.0,
+          left: 5.0,
+          right: 5,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
             Radius.circular(5),
           ),
-          border: Border.all(color: Colors.grey,width: 0.5),
+          border: Border.all(color: Colors.grey, width: 0.5),
         ),
         child: Column(
           children: [
@@ -57,11 +63,17 @@ class CollectionWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Center(
-                child: Text(
-                  "$name",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    "$name",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),

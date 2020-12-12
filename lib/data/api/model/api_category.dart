@@ -10,7 +10,7 @@ class ApiCategory {
     this.name,
     this.priority,
     this.icon,
-    this.children,
+    this.children = const [],
   });
 
   static ApiCategory fromApi(Map<String, dynamic> map) {
@@ -24,6 +24,16 @@ class ApiCategory {
       icon: map['icon'],
       children: fromArrayApi(map['children']),
     );
+  }
+
+  static List<ApiCategory> fromApiHome(List items) {
+    return items
+        .map((e) => ApiCategory(
+              id: e['id'],
+              icon: e['icon'],
+              name: e['i18n']['name_ru'],
+            ))
+        .toList();
   }
 
   static List<ApiCategory> fromArrayApi(List items) {

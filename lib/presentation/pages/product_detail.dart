@@ -98,7 +98,7 @@ class ProductDetailPage extends StatelessWidget {
               Divider(),
               InfoSection(),
               Divider(),
-              ProductSectionWidget(title: "Рядом на полке"),
+              ProductSectionWidget(title: "Рядом на полке", products: [],),
             ],
           ),
         ),

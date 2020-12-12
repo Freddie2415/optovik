@@ -25,6 +25,8 @@ class ProductMapper {
             count: e.count,
             article: e.article,
             title: e.title,
+            images: e.photos,
+            unit: '' // TODO: Unit!!!!
           ),
         )
         .toList();

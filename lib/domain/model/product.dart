@@ -21,6 +21,8 @@ class Product extends Equatable {
   final String lastPriceUpdate;
   final int count;
   final int manufacturer;
+  final List<String> images;
+  final String unit;
 
   const Product({
     @required this.id,
@@ -42,7 +44,11 @@ class Product extends Equatable {
     @required this.lastPriceUpdate,
     @required this.count,
     @required this.manufacturer,
+    @required this.images,
+    @required this.unit,
   });
+
+  String get image => images.isEmpty ? null : images[0];
 
   @override
   List<Object> get props => [

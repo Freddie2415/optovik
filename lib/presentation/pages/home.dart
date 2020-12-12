@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
+import 'package:optovik/internal/dependencies/home_module.dart';
 import 'package:optovik/presentation/pages/categories.dart';
 import 'package:optovik/presentation/pages/feedback.dart';
 import 'package:optovik/presentation/pages/info.dart';
@@ -106,7 +107,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
-        cubit: HomeBloc(),
+        cubit: HomeModule.homeBloc(),
         builder: (context, state) {
           if (state is HomeLoading) {
             return LoadingWidget();
@@ -119,14 +120,24 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   SliderWidget(
-                    banners: state.sliders,
+                    banners: state.banners,
                   ),
-                  ProductSectionWidget(title: "Спецпредложения"),
+                  ProductSectionWidget(
+                    title: "Спецпредложения",
+                    products: state.hotDeals,
+                  ),
                   CategorySectionWidget(
                     title: "Все коллекции",
+                    categories: state.categories,
                   ),
-                  ProductSectionWidget(title: "Вкусная цена"),
-                  ProductSectionWidget(title: "Новинка доставки"),
+                  ProductSectionWidget(
+                    title: "Вкусная цена",
+                    products: state.hotProducts,
+                  ),
+                  ProductSectionWidget(
+                    title: "Новинка доставки",
+                    products: state.lastProducts,
+                  ),
                 ],
               ),
             );

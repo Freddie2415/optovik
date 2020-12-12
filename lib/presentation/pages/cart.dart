@@ -140,6 +140,7 @@ class Cart extends StatelessWidget {
                 ),
                 ProductSectionWidget(
                   title: "Рекомендованные товары",
+                  products: [],
                 ),
                 TextButton(
                   onPressed: () {},

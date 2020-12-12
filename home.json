@@ -1,0 +1,1188 @@
+{
+  "sliders": [
+    {
+      "photo": "http://zender.uz/media/00221_B9QseEo.jpg"
+    },
+    {
+      "photo": "http://zender.uz/media/002_Y2wABBP.jpg"
+    },
+    {
+      "photo": "http://zender.uz/media/123123.jpg"
+    },
+    {
+      "photo": "http://zender.uz/media/003.jpg"
+    }
+  ],
+  "hot_deals": [
+    {
+      "id": 22064,
+      "created": "2020-12-05T20:10:10.006099+05:00",
+      "status": true,
+      "price": 578.2,
+      "show_price": 578.2,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "8770",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-30-kva-andeli-svc-d-1-faznyi-bypass-70-250v",
+      "count": 0,
+      "title_ru": "Стабилизатор 30 KVA (Andeli) SVC-D 1 Фазный (Bypass) 70-250V",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_30_KVA_Andeli_SVC-D_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_Bypass_70-250V_1_o6HGD36.jpg"
+      ]
+    },
+    {
+      "id": 22061,
+      "created": "2020-12-05T20:10:09.885869+05:00",
+      "status": true,
+      "price": 37.25,
+      "show_price": 37.25,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "1390",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-500-va-andeli-svc-d-1-faznyi-bypass",
+      "count": 0,
+      "title_ru": "Стабилизатор 500 VA (Andeli) SVC-D 1 Фазный (Bypass)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_500_VA_Andeli_SVC-D_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_Bypass_1.jpg"
+      ]
+    },
+    {
+      "id": 22069,
+      "created": "2020-12-05T20:10:10.082817+05:00",
+      "status": true,
+      "price": 63.7,
+      "show_price": 63.7,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13362",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-2-kva-andeli-sdw-svc-1-faznyi",
+      "count": 0,
+      "title_ru": "Стабилизатор 2 KVA (Andeli) SDW - SVC 1 Фазный",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_2_KVA_Andeli_SDW_-_SVC_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_1_WJTTa7u.jpg"
+      ]
+    },
+    {
+      "id": 22070,
+      "created": "2020-12-05T20:10:10.104757+05:00",
+      "status": true,
+      "price": 83.3,
+      "show_price": 83.3,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13363",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-3-kva-andeli-sdw-svc-1-faznyi",
+      "count": 0,
+      "title_ru": "Стабилизатор 3 KVA (Andeli) SDW - SVC 1 Фазный",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_3_KVA_Andeli_SDW_-_SVC_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_1_8cyHAkr.jpg"
+      ]
+    },
+    {
+      "id": 22071,
+      "created": "2020-12-05T20:10:10.122829+05:00",
+      "status": true,
+      "price": 137.2,
+      "show_price": 137.2,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13364",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-5-kva-andeli-svc-d-1-faznyi-bypass",
+      "count": 0,
+      "title_ru": "Стабилизатор 5 KVA (Andeli) SVC-D 1 Фазный (Bypass)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_5_KVA_Andeli_SVC-D_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_Bypass_1_BiDgkUF.jpg"
+      ]
+    },
+    {
+      "id": 22068,
+      "created": "2020-12-05T20:10:10.065733+05:00",
+      "status": true,
+      "price": 274.4,
+      "show_price": 274.4,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13365",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-15-kva-andeli-svc-d-1-faznyi-bypass-70-250v",
+      "count": 0,
+      "title_ru": "Стабилизатор 15 KVA (Andeli) SVC-D 1 Фазный (Bypass) 70-250V",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_15_KVA_Andeli_SVC-D_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_Bypass_70-250V_1_KbECvsE.jpg"
+      ]
+    },
+    {
+      "id": 22062,
+      "created": "2020-12-05T20:10:09.922898+05:00",
+      "status": true,
+      "price": 161.7,
+      "show_price": 161.7,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "1393",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-75-kva-andeli-svc-d-1-faznyi-bypass",
+      "count": 0,
+      "title_ru": "Стабилизатор 7.5 KVA (Andeli) SVC-D 1 Фазный (Bypass)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_7_WCYytOo.jpg"
+      ]
+    },
+    {
+      "id": 22063,
+      "created": "2020-12-05T20:10:09.967313+05:00",
+      "status": true,
+      "price": 235.2,
+      "show_price": 235.2,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "6402",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-15-kva-andeli-svc-d-1-faznyi-bypass",
+      "count": 0,
+      "title_ru": "Стабилизатор 15 KVA (Andeli) SVC-D 1 Фазный (Bypass)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_15_KVA_Andeli_SVC-D_1_%D0%A4%D0%B0%D0%B7%D0%BD%D1%8B%D0%B9_Bypass_1.jpg"
+      ]
+    },
+    {
+      "id": 22072,
+      "created": "2020-12-05T22:11:14.258459+05:00",
+      "status": true,
+      "price": 441.0,
+      "show_price": 441.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13302",
+      "is_hot": false,
+      "model": null,
+      "slug": "istochnik-besperebpit-2000-va-avt-rack-mount-online-ups-ea900prort",
+      "count": 0,
+      "title_ru": "Источник беспереб.пит. 2000 VA (AVT) RACK-MOUNT Online UPS (EA900Prort)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA_%D0%B1%D0%B5%D1%81%D0%BF%D0%B5%D1%80%D0%B5%D0%B1.%D0%BF%D0%B8%D1%82._2000_VA_AVT_RACK-MOUNT_Online_UPS_EA900Prort.jpg"
+      ]
+    },
+    {
+      "id": 1160,
+      "created": "2020-11-15T12:26:31.880364+05:00",
+      "status": true,
+      "price": 113.8,
+      "show_price": 113.8,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "4383",
+      "is_hot": false,
+      "model": null,
+      "slug": "stabilizator-akfa-pc-tvr5000va-servo-monitor",
+      "count": 0,
+      "title_ru": "Стабилизатор Akfa PC -TVR5000VA Servo Monitor",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": 48,
+      "cat_one": [
+        {
+          "id": 15,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 32,
+          "name_ru": "Защита от перепадов напряжения и нагрузок"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%A1%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80_Akfa_PC_-TVR5000VA_Servo_Monitor_1.jpg"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 4,
+      "i18n": {
+        "name_ru": "Компьютеры"
+      },
+      "icon": "http://zender.uz/media/1.jpg"
+    },
+    {
+      "id": 5,
+      "i18n": {
+        "name_ru": "Комплектующие"
+      },
+      "icon": "http://zender.uz/media/2.jpg"
+    },
+    {
+      "id": 52,
+      "i18n": {
+        "name_ru": "Бытовая техника"
+      },
+      "icon": "http://zender.uz/media/Бытовая-техника.jpg"
+    },
+    {
+      "id": 150,
+      "i18n": {
+        "name_ru": "Сетевое оборудование"
+      },
+      "icon": "http://zender.uz/media/Сетевое-оборудование.jpg"
+    },
+    {
+      "id": 155,
+      "i18n": {
+        "name_ru": "Система видеонаблюдения"
+      },
+      "icon": "http://zender.uz/media/Система-видеонаблюдения.jpg"
+    },
+    {
+      "id": 161,
+      "i18n": {
+        "name_ru": "Домофоны"
+      },
+      "icon": "http://zender.uz/media/Домофоны.jpg"
+    },
+    {
+      "id": 162,
+      "i18n": {
+        "name_ru": "Периферия"
+      },
+      "icon": "http://zender.uz/media/Переферия.jpg"
+    },
+    {
+      "id": 168,
+      "i18n": {
+        "name_ru": "Красота и здоровье"
+      },
+      "icon": "http://zender.uz/media/Красота-и-здоровье.jpg"
+    },
+    {
+      "id": 179,
+      "i18n": {
+        "name_ru": "Фотоаппараты"
+      },
+      "icon": "http://zender.uz/media//noimage.png"
+    },
+    {
+      "id": 48,
+      "i18n": {
+        "name_ru": "Мобильные телефоны"
+      },
+      "icon": "http://zender.uz/media//noimage.png"
+    },
+    {
+      "id": 49,
+      "i18n": {
+        "name_ru": "Планшеты"
+      },
+      "icon": "http://zender.uz/media//noimage.png"
+    },
+    {
+      "id": 50,
+      "i18n": {
+        "name_ru": "ТВ и домашний кинотеатр"
+      },
+      "icon": "http://zender.uz/media//noimage.png"
+    }
+  ],
+  "hot_products": [
+    {
+      "id": 4193,
+      "created": "2020-11-15T12:26:39.232557+05:00",
+      "status": true,
+      "price": 42.97,
+      "show_price": 42.97,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "24",
+      "in_stock": true,
+      "article": "12943",
+      "is_hot": true,
+      "model": null,
+      "slug": "naushniki-hyperx-stinger-core-pc-hx-hscsc2-bkww",
+      "count": 0,
+      "title_ru": "Наушники (HyperX) Stinger Core PC (HX-HSCSC2-BK/WW)",
+      "description_ru": "HyperX Cloud Stinger™ - это идеальная гарнитура для геймеров, которым нужно\nустройство с небольшим весом, превосходным качеством звучания и исключительным\nудобством пользования. Эта гарнитура имеет вес всего 275 г для исключительного\nудобства использования, а ее чашки с углом поворота 90 градусов позволяют\nнастроить гарнитуру для максимального комфорта. Направленные динамики (50 мм)\nпередают звук непосредственно в ухо и обеспечивают высокое качество звука. В\nэтой гарнитуре, созданной специально для максимального комфорта во время\nдолгих игр, используется фирменная высококачественная пена HyperX с памятью\nформы.\n\nБеспроводная Зарядка | нет  \n---|---  \nВремя работы аккумулятора | -  \nДальность беспроводной связи2: | -  \nДинамик | динамический (50 мм) с неодимовыми магнитами  \nТип | охватывающие, закрытого типа  \nТип соеденения | Двойной 3.5мм  \nТип аудио | Стерео  \nТип корпуса | Стальной слайдер  \nЧастотная характеристика: | 18 Гц - 23000 Гц  \nУровень звукового давления: | 102±3 дБ SPL/мВт при 1 кГц  \nУправление аудиосистемой | Встройная  \nКоэффициент нелинейных искажений | < 2%  \nМасса | 275 г  \nДлина и тип кабеля | Гарнитура (1,3 м) + Y-удлинитель (1,7 м)  \nМикрофон с шумоподовлением | Поворотный  \nЧастотная характеристика микрофона | 50 Гц~18000 Гц  \nГарантия  | 2 Года\n\n",
+      "short_ru": "HyperX Cloud Stinger™ – это идеальная гарнитура для геймеров, которым нужно устройство с небольшим весом, превосходным качеством звучания и исключительным удобством пользования.",
+      "keywords_ru": "",
+      "manufacturer": 79,
+      "cat_one": [
+        {
+          "id": 162,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 165,
+          "name_ru": "Наушники"
+        },
+        {
+          "id": 87,
+          "name_ru": "Наушники"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/HyperX_Cloud_Stinger_1.jpg",
+        "http://zender.uz/media/HyperX_Cloud_Stinger_2.jpg",
+        "http://zender.uz/media/HyperX_Cloud_Stinger_3.jpg",
+        "http://zender.uz/media/HyperX_Cloud_Stinger_4.jpg",
+        "http://zender.uz/media/HyperX_Cloud_Stinger_5.jpg"
+      ]
+    },
+    {
+      "id": 4195,
+      "created": "2020-11-15T12:26:33.585926+05:00",
+      "status": true,
+      "price": 62.11,
+      "show_price": 62.11,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "24",
+      "in_stock": true,
+      "article": "12946",
+      "is_hot": true,
+      "model": null,
+      "slug": "naushniki-cloud",
+      "count": 0,
+      "title_ru": "Наушники Cloud",
+      "description_ru": "Широкое семейство гарнитур Cloud предназначено для удовлетворения потребностей\nлюбых геймеров, не зависимо от их игровых систем, игрового стиля и привычек.\nЕсли вам нужна гарнитура с поддержкой виртуального объемного звука 7.1 для ПК\nили стереогарнитура для консоли, вы всегда сможете подобрать оптимальную\nгарнитуру Cloud. Все модели гарнитур Cloud позволяют играть на протяжении\nмногих часов с максимальным комфортом, благодаря знаменитой фирменной пене\nHyperX™ с памятью формы. Динамики 53 мм обеспечивают кристальную чистоту и\nточность звука, а закрытые чашки изолируют от шумов для полного погружения в\nигру. Долговечная алюминиевая рама разработана специально для активного\nиспользования гарнитуры каждый день. Благодаря съемному микрофону Cloud с\nфункцией шумоподавления, ваш голос будет всегда хорошо слышно.\n\nБеспроводная Зарядка | нет  \n---|---  \nВремя работы аккумулятора |  \nДальность беспроводной связи2: |  \nДинамик | динамический (53 мм) с неодимовыми магнитами  \nТип | охватывающие, закрытого типа  \nТип соеденения | Двойной 3.5мм  \nТип аудио | Стерео  \nТип корпуса | Алюминий  \nЧастотная характеристика: | 15 Гц - 25 000 Гц  \nУровень звукового давления: |  \nУправление аудиосистемой | На кабеле  \nКоэффициент нелинейных искажений | < 2%  \nМасса | 275 г  \nДлина и тип кабеля | Съемный кабель гарнитуры (1,3 м) + удлинительный кабель\nПК (2 м)  \nМикрофон с шумоподовлением | Отделяемый  \nЧастотная характеристика микрофона | 15 - 25000 Гц  \nГарантия  | 2 Года\n\n",
+      "short_ru": "Широкое семейство гарнитур Cloud предназначено для удовлетворения потребностей любых геймеров, не зависимо от их игровых систем, игрового стиля и привычек.",
+      "keywords_ru": "",
+      "manufacturer": 79,
+      "cat_one": [
+        {
+          "id": 162,
+          "name_ru": "Периферия"
+        },
+        {
+          "id": 165,
+          "name_ru": "Наушники"
+        },
+        {
+          "id": 87,
+          "name_ru": "Наушники"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9D%D0%B0%D1%83%D1%88%D0%BD%D0%B8%D0%BA%D0%B8_Cloud.jpg",
+        "http://zender.uz/media/%D0%9D%D0%B0%D1%83%D1%88%D0%BD%D0%B8%D0%BA%D0%B8_Cloud_2.jpg",
+        "http://zender.uz/media/%D0%9D%D0%B0%D1%83%D1%88%D0%BD%D0%B8%D0%BA%D0%B8_Cloud_3.jpg",
+        "http://zender.uz/media/%D0%9D%D0%B0%D1%83%D1%88%D0%BD%D0%B8%D0%BA%D0%B8_Cloud_4.jpg"
+      ]
+    },
+    {
+      "id": 22051,
+      "created": "2020-11-23T13:25:44.365623+05:00",
+      "status": true,
+      "price": 780.0,
+      "show_price": 780.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "12",
+      "in_stock": true,
+      "article": "10191",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-teplovoi-zaves-guard-2m",
+      "count": 0,
+      "title_ru": "Обогреватель Тепловой Завес GUARD 2м",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_%D0%A2%D0%B5%D0%BF%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9_%D0%97%D0%B0%D0%B2%D0%B5%D1%81_GUARD_2%D0%BC.jpg"
+      ]
+    },
+    {
+      "id": 22049,
+      "created": "2020-11-23T13:25:44.348358+05:00",
+      "status": true,
+      "price": 175.0,
+      "show_price": 175.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "12",
+      "in_stock": true,
+      "article": "6678",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-akog-4-original",
+      "count": 0,
+      "title_ru": "Обогреватель Аког-4 Оригинал",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_%D0%90%D0%BA%D0%BE%D0%B3-4_%D0%9E%D1%80%D0%B8%D0%B3%D0%B8%D0%BD%D0%B0%D0%BB.jpg"
+      ]
+    },
+    {
+      "id": 22045,
+      "created": "2020-11-23T13:25:44.305913+05:00",
+      "status": true,
+      "price": 78.0,
+      "show_price": 78.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "1",
+      "in_stock": true,
+      "article": "6303",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-vital-vtm57f-13-black",
+      "count": 0,
+      "title_ru": "Обогреватель Vital VTM57F-13 Black",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_Vital_VTM57F-13_Black.jpg"
+      ]
+    },
+    {
+      "id": 22043,
+      "created": "2020-11-23T13:25:44.289577+05:00",
+      "status": true,
+      "price": 15.0,
+      "show_price": 15.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "1",
+      "in_stock": true,
+      "article": "6523",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-volto-qh-2850-500w1000w1500w",
+      "count": 0,
+      "title_ru": "Обогреватель VOLTO QH 2850 (500W/1000W/1500W)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_VOLTO_QH_2850.jpg"
+      ]
+    },
+    {
+      "id": 22042,
+      "created": "2020-11-23T13:25:44.277594+05:00",
+      "status": true,
+      "price": 58.0,
+      "show_price": 58.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "12",
+      "in_stock": true,
+      "article": "5468",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-shivaki-1371",
+      "count": 0,
+      "title_ru": "Обогреватель Shivaki 1371",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": 44,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_Shivaki_1371.jpg"
+      ]
+    },
+    {
+      "id": 22044,
+      "created": "2020-11-23T13:25:44.300348+05:00",
+      "status": true,
+      "price": 11.0,
+      "show_price": 11.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "1",
+      "in_stock": true,
+      "article": "6524",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-volto-vi-2830-1200w2400w",
+      "count": 0,
+      "title_ru": "Обогреватель VOLTO VI 2830 (1200W/2400W)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_VOLTO_VI_2830_.jpg"
+      ]
+    },
+    {
+      "id": 22041,
+      "created": "2020-11-23T13:25:44.267680+05:00",
+      "status": true,
+      "price": 190.0,
+      "show_price": 190.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "12",
+      "in_stock": true,
+      "article": "10218",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-royal-hdu-5-oq-dimaxod",
+      "count": 0,
+      "title_ru": "Обогреватель Royal-HDU 5 (oq) + dimaxod",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_Royal-HDU_5_oq__dimaxod.jpg"
+      ]
+    },
+    {
+      "id": 22040,
+      "created": "2020-11-23T13:25:44.262153+05:00",
+      "status": true,
+      "price": 65.0,
+      "show_price": 65.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": "6",
+      "in_stock": true,
+      "article": "6214",
+      "is_hot": true,
+      "model": null,
+      "slug": "obogrevatel-obogrevatel-polaris-w-0920-2000w",
+      "count": 0,
+      "title_ru": "Обогреватель Polaris W 0920 (2000W)",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": 74,
+      "cat_one": [
+        {
+          "id": 52,
+          "name_ru": "Бытовая техника"
+        },
+        {
+          "id": 182,
+          "name_ru": "Обогреватели"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%9E%D0%B1%D0%BE%D0%B3%D1%80%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C_Polaris_W_0920.jpg"
+      ]
+    }
+  ],
+  "last_products": [
+    {
+      "id": 22107,
+      "created": "2020-12-07T11:24:42.811078+05:00",
+      "status": true,
+      "price": 775.0,
+      "show_price": 775.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13400",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-30708gb-ddr-vi-zotac-rtx-twin-edge-oc",
+      "count": 0,
+      "title_ru": "Видеокарта 3070/8Gb DDR VI (Zotac) RTX TWIN EDGE OC",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_OC_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_OC_2..jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_OC_3.jpg"
+      ]
+    },
+    {
+      "id": 22106,
+      "created": "2020-12-07T11:24:42.799365+05:00",
+      "status": true,
+      "price": 775.0,
+      "show_price": 775.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13399",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-30708gb-ddr-vi-zotac-rtx-twin-edge",
+      "count": 0,
+      "title_ru": "Видеокарта 3070/8Gb DDR VI (Zotac) RTX TWIN EDGE",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_2.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_3.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_1_JaBHRCZ.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_2_IakzAUt.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_30708Gb_DDR_VI_Zotac_RTX_TWIN_EDGE_3_hLmvKv9.jpg"
+      ]
+    },
+    {
+      "id": 22105,
+      "created": "2020-12-07T11:24:42.791593+05:00",
+      "status": true,
+      "price": 291.0,
+      "show_price": 291.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13278",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-inno-3d-6gb-geforce-gtx1660-super-twin-x2-rgb-oc-ddr5-128bit",
+      "count": 0,
+      "title_ru": "Видеокарта Inno 3D - 6GB GeForce GTX1660 Super Twin X2 RGB OC DDR5 128bit",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_Inno_3D_-_6GB_GeForce_GTX1660_Super_Twin_X2_RGB_OC_DDR5_128bit_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_Inno_3D_-_6GB_GeForce_GTX1660_Super_Twin_X2_RGB_OC_DDR5_128bit_2.jpg"
+      ]
+    },
+    {
+      "id": 22104,
+      "created": "2020-12-07T11:24:42.783745+05:00",
+      "status": true,
+      "price": 201.0,
+      "show_price": 201.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13277",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-1650-4gb-ddr-vi-msi-gtx-ventus-xs-ocv1",
+      "count": 0,
+      "title_ru": "Видеокарта 1650 /4Gb DDR VI (MSI) GTX Ventus XS OCV1",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_1650_4Gb_DDR_VI_MSI_GTX_Ventus_XS_OCV1_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_1650_4Gb_DDR_VI_MSI_GTX_Ventus_XS_OCV1_2.jpg"
+      ]
+    },
+    {
+      "id": 22103,
+      "created": "2020-12-07T11:24:42.775376+05:00",
+      "status": true,
+      "price": 52.0,
+      "show_price": 52.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13156",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-7304gb-ddr3-manli-gt",
+      "count": 0,
+      "title_ru": "Видеокарта 730/4Gb DDR3 (Manli) GT",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_7304Gb_DDR3_Manli_GT_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_7304Gb_DDR3_Manli_GT_2.jpg"
+      ]
+    },
+    {
+      "id": 22102,
+      "created": "2020-12-07T11:24:42.766508+05:00",
+      "status": true,
+      "price": 200.0,
+      "show_price": 200.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13015",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-1650-4gb-ddr-vi-zotac-gtx-amp-core",
+      "count": 0,
+      "title_ru": "Видеокарта 1650 /4Gb DDR VI (Zotac) GTX AMP Core",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_1650_4Gb_DDR_VI_Zotac_GTX_AMP_Core_1.jpg"
+      ]
+    },
+    {
+      "id": 22101,
+      "created": "2020-12-07T11:24:42.756738+05:00",
+      "status": true,
+      "price": 335.0,
+      "show_price": 335.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "13012",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-msi-6gb-geforce-gtx-1660-ti-ventus-xs-oc-6g-ddr6-192bit",
+      "count": 0,
+      "title_ru": "Видеокарта MSI - 6GB GeForce GTX 1660 TI Ventus XS OC 6G DDR6 192bit",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660_TI_Ventus_XS_OC_6G_DDR6_192bit_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660_TI_Ventus_XS_OC_6G_DDR6_192bit_2.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660_TI_Ventus_XS_OC_6G_DDR6_192bit_3.jpg"
+      ]
+    },
+    {
+      "id": 22100,
+      "created": "2020-12-07T11:24:42.746523+05:00",
+      "status": true,
+      "price": 331.0,
+      "show_price": 331.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "11899",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-msi-6gb-geforce-gtx-1660ti-ventus-xs-ddr6-192bit",
+      "count": 0,
+      "title_ru": "Видеокарта MSI - 6GB GeForce GTX 1660Ti Ventus XS DDR6 192bit",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660Ti_Ventus_XS_DDR6_192bit_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660Ti_Ventus_XS_DDR6_192bit_2.jpg"
+      ]
+    },
+    {
+      "id": 22099,
+      "created": "2020-12-07T11:24:42.726101+05:00",
+      "status": true,
+      "price": 291.0,
+      "show_price": 291.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "11898",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-msi-6gb-geforce-gtx-1660-super-ventus-xs-oc-6g-ddr6-128bit",
+      "count": 0,
+      "title_ru": "Видеокарта MSI - 6GB GeForce GTX 1660 Super Ventus XS OC 6G DDR6 128bit",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660_Super_Ventus_XS_OC_6G_DDR6_128bit_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_MSI_-_6GB_GeForce_GTX_1660_Super_Ventus_XS_OC_6G_DDR6_128bit_2.jpg"
+      ]
+    },
+    {
+      "id": 22098,
+      "created": "2020-12-07T11:24:42.708850+05:00",
+      "status": true,
+      "price": 341.0,
+      "show_price": 341.0,
+      "discount": 0.0,
+      "discount_type": "none",
+      "guaranty": null,
+      "in_stock": true,
+      "article": "11891",
+      "is_hot": false,
+      "model": null,
+      "slug": "videokarta-inno-3d-6gb-geforce-gtx1660ti-twin-x2-rgb-ddr6-192bit",
+      "count": 0,
+      "title_ru": "Видеокарта Inno 3D - 6GB GeForce GTX1660Ti Twin X2 RGB DDR6 192bit",
+      "description_ru": "",
+      "short_ru": "",
+      "keywords_ru": "",
+      "manufacturer": null,
+      "cat_one": [
+        {
+          "id": 5,
+          "name_ru": "Комплектующие"
+        },
+        {
+          "id": 56,
+          "name_ru": "Видеокарты"
+        }
+      ],
+      "package": "",
+      "photos": [
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_Inno_3D_-_6GB_GeForce_GTX1660Ti_Twin_X2_RGB_DDR6_192bit_1.jpg",
+        "http://zender.uz/media/%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%BA%D0%B0%D1%80%D1%82%D0%B0_Inno_3D_-_6GB_GeForce_GTX1660Ti_Twin_X2_RGB_DDR6_192bit_2.jpg"
+      ]
+    }
+  ]
+}

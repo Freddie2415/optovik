@@ -18,6 +18,7 @@ class ApiProduct {
   final String lastPriceUpdate;
   final int count;
   final int manufacturer;
+  final List<String>photos;
 
   const ApiProduct({
     this.id,
@@ -39,6 +40,7 @@ class ApiProduct {
     this.lastPriceUpdate,
     this.count,
     this.manufacturer,
+    this.photos,
   });
 
   static List<ApiProduct> fromApi(List items) {
@@ -46,9 +48,10 @@ class ApiProduct {
       return [];
     }
     return items.map((p) {
+      final photos = (p['photos'] as List).map((e) => e.toString()).toList();
       return ApiProduct(
         id: p['id'],
-        title: p['title'],
+        title: p['title_ru'],
         article: p['article'],
         count: p['count'],
         created: p['created'],
@@ -66,6 +69,7 @@ class ApiProduct {
         short: p['short'],
         showPrice: p['show_price'],
         status: p['status'],
+        photos: photos
       );
     }).toList();
   }

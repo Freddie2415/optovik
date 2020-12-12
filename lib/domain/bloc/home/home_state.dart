@@ -4,12 +4,10 @@ abstract class HomeState extends Equatable {
   const HomeState();
 }
 
-
-class HomeInitial extends HomeState{
+class HomeInitial extends HomeState {
   @override
   List<Object> get props => [];
 }
-
 
 class HomeLoading extends HomeState {
   @override
@@ -17,12 +15,22 @@ class HomeLoading extends HomeState {
 }
 
 class HomeReady extends HomeState {
-  final List<Banner> sliders;
+  final List<Banner> banners;
+  final List<Product> hotDeals;
+  final List<Product> hotProducts;
+  final List<Product> lastProducts;
+  final List<Category> categories;
 
-  const HomeReady({this.sliders}) : assert(sliders != null);
+  const HomeReady({
+    this.banners,
+    this.hotDeals,
+    this.hotProducts,
+    this.lastProducts,
+    this.categories,
+  }) : assert(banners != null);
 
   @override
-  List<Object> get props => [sliders];
+  List<Object> get props => [banners];
 }
 
 class HomeError extends HomeState {
