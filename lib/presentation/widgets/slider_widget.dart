@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/banner.dart' as models;
-import 'package:optovik/presentation/pages/collection_detail.dart';
 
 
 class SliderWidget extends StatefulWidget {
@@ -36,18 +35,9 @@ class _SliderWidgetState extends State<SliderWidget> {
             ),
             items: widget.list
                 .map(
-                  (item) => GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CollectionDetailPage(),
-                      ));
-                },
-                child: Container(
-                  child: FadeInImage.assetNetwork(placeholder: "assets/images/banner-placeholder.jpg", image: "$item"),
-                ),
-              ),
+                  (item) => Container(
+                    child: FadeInImage.assetNetwork(placeholder: "assets/images/banner-placeholder.jpg", image: "$item"),
+                  ),
             )
                 .toList(),
           ),

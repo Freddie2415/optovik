@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:optovik/presentation/pages/collection_detail.dart';
+import 'package:optovik/presentation/pages/products.dart';
 
 class CollectionWidget extends StatelessWidget {
   final String name;
   final String image;
+  final String categoryId;
 
-  const CollectionWidget({Key key, this.name, this.image}) : super(key: key);
+  const CollectionWidget({Key key, this.name, this.image, this.categoryId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +15,12 @@ class CollectionWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CollectionDetailPage(),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                ProductsPage(title: name, categoryId: categoryId),
+          ),
+        );
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.5 - 20,

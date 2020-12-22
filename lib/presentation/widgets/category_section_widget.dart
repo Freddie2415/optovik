@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/category.dart';
-import 'package:optovik/presentation/pages/collections.dart';
+import 'package:optovik/presentation/pages/categories.dart';
 
 import 'collection_widget.dart';
 
@@ -40,9 +40,7 @@ class CategorySectionWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => CollectionsPage(),
-                ),
+                CategoriesPage.route(),
               );
             },
           ),
@@ -54,9 +52,11 @@ class CategorySectionWidget extends StatelessWidget {
                 context,
                 index,
               ) {
+                final category = categories[index];
                 return CollectionWidget(
-                  name: categories[index].name,
-                  image: categories[index].icon,
+                  categoryId: category.id.toString(),
+                  name: category.name,
+                  image: category.icon,
                 );
               },
               itemCount: categories.length,

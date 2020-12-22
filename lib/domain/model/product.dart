@@ -25,6 +25,8 @@ class Product extends Equatable {
   final List<String> images;
   final String unit;
   final List<Category> categories;
+  final String promo = "";
+
 
   const Product({
     @required this.id,

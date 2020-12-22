@@ -65,7 +65,7 @@ class ProductSectionWidget extends StatelessWidget {
                             price: "",
                             oldPrice: "",
                             unit: "${e.unit}",
-                            promo: "Вкусная цена",
+                            promo: "${e.promo}",
                             promoColor: Colors.lightGreen,
                           ))
                       .toList(),
