@@ -29,7 +29,7 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesLoading || state is CategoriesInitial) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Категории'),
+          title: Text('Каталог товаров'),
         ),
         body: LoadingWidget(),
       );
@@ -38,11 +38,13 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesError) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Категории'),
+          title: Text('Каталог товаров'),
         ),
-        body: FailureWidget(message: state.message,onBtnPressed: (){
-          CategoriesModule.categoriesBloc().add(LoadCategories());
-        }),
+        body: FailureWidget(
+            message: state.message,
+            onBtnPressed: () {
+              CategoriesModule.categoriesBloc().add(LoadCategories());
+            }),
       );
     }
 
@@ -90,6 +92,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           var item = items[index];
           bool parent = showAll != null && showAll == item;
           return ListTile(
+            leading: (showAll == null || parent) ? Image.network(item.icon) : Icon(Icons.keyboard_arrow_right),
             title: Text(
               "${item.name}",
               style: TextStyle(
