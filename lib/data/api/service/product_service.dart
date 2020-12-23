@@ -26,6 +26,24 @@ class ProductService {
     final response = await _client.get(url, headers: _headers);
     print(url);
 
+    return _toProductResponse(response);
+  }
+
+  Future<ProductsResponse> search(String query) async {
+    final params = {"search": query};
+    final url = Uri.http(
+      _BASE_URL,
+      'api/v1/products',
+      params,
+    );
+
+    final response = await _client.get(url, headers: _headers);
+    print(url);
+
+    return _toProductResponse(response);
+  }
+
+  ProductsResponse _toProductResponse(http.Response response) {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 

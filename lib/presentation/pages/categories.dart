@@ -80,7 +80,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: Search(List.generate(10, (index) => "Text $index")),
+                delegate: Search(),
               );
             },
           )
@@ -92,7 +92,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
           var item = items[index];
           bool parent = showAll != null && showAll == item;
           return ListTile(
-            leading: (showAll == null || parent) ? Image.network(item.icon) : Icon(Icons.keyboard_arrow_right),
+            leading: (showAll == null || parent)
+                ? Image.network(item.icon)
+                : Icon(Icons.keyboard_arrow_right),
             title: Text(
               "${item.name}",
               style: TextStyle(
@@ -103,11 +105,11 @@ class _CategoriesPageState extends State<CategoriesPage> {
             ),
             onTap: () {
               if (item.children.isEmpty || parent) {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProductsPage(
-                    title: "${item.name}",
-                    categoryId: item.id,
-                  ),
+                Navigator.of(context).push(ProductsPage.route(
+                  title: "${item.name}",
+                  categoryId: item.id,
+                  query: null,
+                  isSearchPage: false
                 ));
               } else {
                 setState(() {

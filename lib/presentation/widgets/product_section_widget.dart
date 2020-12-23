@@ -9,7 +9,6 @@ class ProductSectionWidget extends StatelessWidget {
   final List<Product> products;
   final categoryId;
 
-
   const ProductSectionWidget(
       {Key key, @required this.title, @required this.products, this.categoryId})
       : super(key: key);
@@ -40,11 +39,9 @@ class ProductSectionWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductsPage(
-                      title: title,
-                      categoryId: categoryId,
-                    ),
+                  ProductsPage.route(
+                    title: title,
+                    categoryId: categoryId,
                   ));
             },
           ),

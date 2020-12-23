@@ -3,4 +3,8 @@ import 'package:optovik/data/api/response/products_response.dart';
 
 abstract class ProductRepository {
   Future<ProductsResponse> getProducts(ProductsParams params);
+
+  Future<List<String>> getSearchSuggestions();
+
+  Future<void> clearSearchSuggestions();
 }

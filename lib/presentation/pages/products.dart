@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:optovik/domain/bloc/products/products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/domain/model/sort_type.dart';
@@ -15,26 +16,120 @@ import 'package:optovik/presentation/widgets/sort_button_widget.dart';
 class ProductsPage extends StatefulWidget {
   final String title;
   final categoryId;
+  final String query;
+  final bool isSearchPage;
 
   ProductsPage({
     Key key,
     @required this.title,
     this.categoryId,
+    this.query,
+    this.isSearchPage = false,
   }) : super(key: key);
+
+  factory ProductsPage.search(String query) {
+    return ProductsPage(
+      title: query,
+      isSearchPage: true,
+      categoryId: null,
+      query: query,
+    );
+  }
 
   @override
   _ProductsPageState createState() => _ProductsPageState();
+
+  static Route<Object> route({
+    @required String title,
+    String query,
+    dynamic categoryId,
+    bool isSearchPage = false,
+  }) {
+    return MaterialPageRoute(
+      builder: (context) => ProductsPage(
+        title: title,
+        query: query,
+        categoryId: categoryId,
+        isSearchPage: isSearchPage,
+      ),
+    );
+  }
 }
 
 class _ProductsPageState extends State<ProductsPage> {
   final _scrollController = ScrollController();
   final num _scrollThreshold = 200.0;
   ProductsBloc _productsBloc;
+  Sort _sort = Sort();
+
+  get _appBar => widget.isSearchPage
+      ? null
+      : AppBar(
+          title: Text("${widget.title}"),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: Search(),
+                );
+              },
+            ),
+          ],
+          bottom: PreferredSize(
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              height: 40.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: FlatButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (context) => FilterPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.filter_list,
+                            color: Colors.grey,
+                            size: 20,
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            "Фильтры",
+                            style: TextStyle(fontSize: 13),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(child: SortPopupButton(onSelect: _onSelect)),
+                ],
+              ),
+            ),
+            preferredSize: Size.fromHeight(45.0),
+          ),
+        );
 
   @override
   void initState() {
     super.initState();
-    _productsBloc = ProductsModule.productsBloc(widget.categoryId);
+    _productsBloc = ProductsModule.productsBloc();
+    _productsBloc.add(ProductsFetched(
+      categoryId: widget.categoryId,
+      sort: _sort,
+      query: widget.query,
+    ));
     _scrollController.addListener(_onScroll);
   }
 
@@ -47,69 +142,7 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.title}"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: Search(List.generate(10, (index) => "Text $index")),
-              );
-            },
-          ),
-        ],
-        bottom: PreferredSize(
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            height: 40.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: FlatButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          fullscreenDialog: true,
-                          builder: (context) => FilterPage(),
-                        ),
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.filter_list,
-                          color: Colors.grey,
-                          size: 20,
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "Фильтры",
-                          style: TextStyle(fontSize: 13),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: SortPopupButton(
-                    onSelect: (SortType sortType) {
-                      _productsBloc
-                          .add(ProductsFetched(sort: Sort(sortType: sortType)));
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          preferredSize: Size.fromHeight(45.0),
-        ),
-      ),
+      appBar: _appBar,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -128,7 +161,8 @@ class _ProductsPageState extends State<ProductsPage> {
 
   _productsBody(List<Product> products, bool hasReachedMax) {
     final List<ProductWidget> list = products
-        .map((product) => ProductWidget(product,
+        .map((product) => ProductWidget(
+              product,
               id: product.id.toString(),
               image: '${product.image}',
               name: product.title,
@@ -165,7 +199,9 @@ class _ProductsPageState extends State<ProductsPage> {
     if (state is ProductsSuccess) {
       if (state.products.isEmpty) {
         return Center(
-          child: Text("No products"),
+          child: Text(widget.isSearchPage
+              ? "Товар не найден"
+              : "В этой категории нет товары"),
         );
       }
       return _productsBody(state.products, state.hasReachedMax);
@@ -174,7 +210,11 @@ class _ProductsPageState extends State<ProductsPage> {
       return FailureWidget(
         message: state.message,
         onBtnPressed: () {
-          _productsBloc.add(ProductsFetched());
+          _productsBloc.add(ProductsFetched(
+            categoryId: widget.categoryId,
+            sort: _sort,
+            query: widget.query,
+          ));
         },
       );
     }
@@ -188,8 +228,21 @@ class _ProductsPageState extends State<ProductsPage> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
     if (maxScroll - currentScroll <= _scrollThreshold) {
-      _productsBloc.add(ProductsFetched());
+      _productsBloc.add(ProductsFetched(
+        sort: _sort,
+        categoryId: widget.categoryId,
+        query: widget.query,
+      ));
     }
+  }
+
+  _onSelect(SortType sortType) {
+    _sort = Sort(sortType: sortType);
+    _productsBloc.add(ProductsFetched(
+      categoryId: widget.categoryId,
+      sort: _sort,
+      query: widget.query,
+    ));
   }
 }
 

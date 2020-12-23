@@ -5,6 +5,7 @@ import 'package:optovik/domain/repository/category_repository.dart';
 import 'package:optovik/domain/repository/home_repository.dart';
 import 'package:optovik/domain/repository/product_repository.dart';
 import 'package:optovik/internal/dependencies/api_module.dart';
+import 'package:optovik/internal/dependencies/storage_module.dart';
 
 class RepositoryModule {
   static CategoryRepository _categoryRepository;
@@ -24,6 +25,7 @@ class RepositoryModule {
     if (_productRepository == null) {
       _productRepository = new ProductDataRepository(
         ApiModule.apiUtil(),
+        StorageModule.storageUtil(),
       );
     }
     return _productRepository;

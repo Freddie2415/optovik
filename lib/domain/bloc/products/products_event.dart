@@ -9,8 +9,14 @@ abstract class ProductsEvent extends Equatable {
 
 class ProductsFetched extends ProductsEvent {
   final Sort sort;
+  final categoryId;
+  final String query;
 
-  ProductsFetched({this.sort});
+  ProductsFetched({
+    @required this.categoryId,
+    @required this.sort,
+    @required this.query,
+  });
 
   @override
   List<Object> get props => [];

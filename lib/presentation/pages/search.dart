@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:optovik/presentation/widgets/my_separator.dart';
+import 'package:optovik/domain/bloc/search_sugesstions/search_suggestions_bloc.dart';
+import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/products_module.dart';
+import 'package:optovik/presentation/pages/products.dart';
+import 'package:optovik/presentation/widgets/search_suggestion_widget.dart';
 
-class Search extends SearchDelegate {
-  String selectedResult;
-  final List<String> listExample;
-  List<String> recentList = ["Text 4", "Text 3"];
-
-  Search(this.listExample);
+class Search extends SearchDelegate<Product> {
+  final SearchSuggestionsBloc _searchSuggestionsBloc =
+      ProductsModule.searchSuggestionBloc();
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -40,81 +41,17 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(selectedResult),
-      ),
-    );
+    return ProductsPage.search(query);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestionList = [];
+    return SearchSuggestionsWidget(_searchSuggestionsBloc);
+  }
 
-    if (query.isEmpty && recentList.isNotEmpty) {
-      return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  "Недавние запросы",
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Очистить",
-                    style: TextStyle(color: Colors.red, fontSize: 12),
-                  ),
-                )
-              ],
-            ),
-            MySeparator(color: Colors.grey),
-            ListTile(
-              onTap: () {},
-              contentPadding: EdgeInsets.all(0),
-              title: Text(
-                "Мыло",
-                style: TextStyle(color: Colors.black87, fontSize: 14),
-              ),
-              dense: true,
-            ),
-            MySeparator(
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      );
-    }
-
-    query.isEmpty
-        ? suggestionList = recentList
-        : suggestionList.addAll(
-            listExample.where((element) => element.contains(query)),
-          );
-
-    return ListView.separated(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          dense: true,
-          title: Text(
-            suggestionList[index],
-            style: TextStyle(fontSize: 14),
-          ),
-          onTap: () {
-            selectedResult = suggestionList[index];
-            showResults(context);
-          },
-        );
-      },
-      separatorBuilder: (context, index) {
-        return MySeparator(color: Colors.grey);
-      },
-    );
+  @override
+  void close(BuildContext context, Product result) {
+    super.close(context, result);
+    _searchSuggestionsBloc.close();
   }
 }

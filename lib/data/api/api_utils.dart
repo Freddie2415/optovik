@@ -26,4 +26,8 @@ class ApiUtil {
   Future<HomeResponse> getHomeData() async{
     return await _homeService.get();
   }
+
+  Future<ProductsResponse> searchProducts(String query) async {
+    return await _productService.search(query);
+  }
 }

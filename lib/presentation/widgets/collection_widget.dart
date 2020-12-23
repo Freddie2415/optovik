@@ -16,10 +16,7 @@ class CollectionWidget extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) =>
-                ProductsPage(title: name, categoryId: categoryId),
-          ),
+          ProductsPage.route(title: name, categoryId: categoryId)
         );
       },
       child: Container(

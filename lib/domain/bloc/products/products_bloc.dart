@@ -14,15 +14,15 @@ part 'products_event.dart';
 part 'products_state.dart';
 
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
+  final ProductRepository productRepository;
+  final int _limit = 20;
   int nextPage = 1;
   String ordering = Sort().toString();
-  final int _limit = 20;
-  final categoryId;
 
-  ProductsBloc(this._productRepository, this.categoryId)
-      : super(ProductsInitial()) {
-    this.add(ProductsFetched(sort: Sort()));
-  }
+  ProductsBloc({
+    @required this.productRepository,
+  })  : assert(productRepository != null),
+        super(ProductsInitial());
 
   @override
   Stream<Transition<ProductsEvent, ProductsState>> transformEvents(
@@ -34,8 +34,6 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       transitionFn,
     );
   }
-
-  final ProductRepository _productRepository;
 
   @override
   Stream<ProductsState> mapEventToState(
@@ -55,7 +53,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
               currentState is ProductsFailure) {
             yield* _initialFetch(event);
           } else if (currentState is ProductsSuccess) {
-            yield* _pagination(currentState);
+            yield* _pagination(currentState, event.categoryId, event.query);
           }
         }
       } catch (e) {
@@ -77,11 +75,12 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     final params = ProductsParams(
       limit: _limit,
       page: nextPage,
-      categoryId: categoryId,
+      categoryId: event.categoryId,
       ordering: this.ordering,
+      search: event.query,
     );
 
-    final result = await _productRepository.getProducts(params);
+    final result = await productRepository.getProducts(params);
     final reachedMax = result.nextPage == null && result.nextUrl == null;
 
     yield ProductsSuccess(
@@ -90,15 +89,17 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     );
   }
 
-  Stream<ProductsState> _pagination(ProductsSuccess currentState) async* {
+  Stream<ProductsState> _pagination(
+      ProductsSuccess currentState, categoryId, search) async* {
     final params = ProductsParams(
       categoryId: categoryId,
       limit: _limit,
       page: ++nextPage,
       ordering: this.ordering,
+      search: search,
     );
 
-    final result = await _productRepository.getProducts(params);
+    final result = await productRepository.getProducts(params);
     final products = result.products;
     final reachedMax = result.nextPage == null && result.nextUrl == null;
 
