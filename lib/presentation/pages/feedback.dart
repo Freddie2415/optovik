@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/feedback/feedback_bloc.dart';
+import 'package:optovik/internal/dependencies/feedback_module.dart';
+import 'package:optovik/presentation/pages/feedback_form.dart';
+import 'package:optovik/presentation/widgets/error_widget.dart';
+import 'package:optovik/presentation/widgets/loading_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FeedBack extends StatelessWidget {
+  // ignore: close_sinks
+  final FeedbackBloc _feedbackBloc = FeedbackModule.feedbackBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Обратная связь"),
       ),
-      body: Column(
+      body: BlocBuilder<FeedbackBloc, FeedbackState>(
+        builder: _builder,
+        cubit: _feedbackBloc..add(FetchFeedback()),
+      ),
+    );
+  }
+
+  Widget _builder(BuildContext context, FeedbackState state) {
+    if (state is FeedbackSuccess) {
+      return Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -24,13 +43,15 @@ class FeedBack extends StatelessWidget {
               color: Colors.lightGreen,
             ),
             title: Text(
-              "+998 93 353 24 15",
+              "${state.phone}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.lightGreen,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              launch(state.tel);
+            },
           ),
           ListTile(
             leading: Icon(
@@ -44,10 +65,20 @@ class FeedBack extends StatelessWidget {
                 color: Colors.lightGreen,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, FeedbackFormPage.route());
+            },
           ),
         ],
-      ),
-    );
+      );
+    }
+    if (state is FeedbackFailure) {
+      return FailureWidget(
+        message: state.message,
+        onBtnPressed: () {},
+      );
+    }
+
+    return LoadingWidget();
   }
 }

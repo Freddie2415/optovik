@@ -1,5 +1,6 @@
 import 'package:optovik/data/api/api_utils.dart';
 import 'package:optovik/data/api/service/category_service.dart';
+import 'package:optovik/data/api/service/feedback_service.dart';
 import 'package:optovik/data/api/service/home_service.dart';
 import 'package:optovik/data/api/service/product_service.dart';
 
@@ -12,6 +13,7 @@ class ApiModule {
         CategoryService(),
         ProductService(),
         HomeService(),
+        FeedbackService(),
       );
     }
     return _apiUtil;
