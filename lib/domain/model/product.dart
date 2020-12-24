@@ -27,6 +27,7 @@ class Product extends Equatable {
   final List<Category> categories;
   final String promo = "";
 
+  final int qty;
 
   const Product({
     @required this.id,
@@ -50,7 +51,8 @@ class Product extends Equatable {
     @required this.manufacturer,
     @required this.images,
     @required this.unit,
-    @required this.categories
+    @required this.categories,
+    this.qty = 0,
   });
 
   String get image => images.isEmpty ? null : images[0];
@@ -77,4 +79,32 @@ class Product extends Equatable {
         count,
         manufacturer
       ];
+
+  Product copyWith({@required int qty}) {
+    return Product(
+      id: this.id,
+      created: this.created,
+      status: this.status,
+      title: this.title,
+      description: this.description,
+      price: this.price,
+      showPrice: this.showPrice,
+      discount: this.discount,
+      discountType: this.discountType,
+      guaranty: this.guaranty,
+      keywords: this.keywords,
+      inStock: this.inStock,
+      article: this.article,
+      isHost: this.isHost,
+      model: this.model,
+      short: this.short,
+      lastPriceUpdate: this.lastPriceUpdate,
+      count: this.count,
+      manufacturer: this.manufacturer,
+      images: this.images,
+      unit: this.unit,
+      categories: this.categories,
+      qty: qty,
+    );
+  }
 }

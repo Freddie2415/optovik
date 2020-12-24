@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/pages/product_detail.dart';
 
 import 'counter_btn.dart';
@@ -172,6 +174,7 @@ class _ProductWidgetState extends State<ProductWidget>
       _height = _visible ? 35 : 0;
       _visible = !_visible;
     });
+    CartModule.cartBloc().add(AddToCurrentOrder(widget.product));
   }
 
   void onClick() {
