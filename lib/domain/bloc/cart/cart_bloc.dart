@@ -66,6 +66,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       pendingOrder.clear();
     }
 
+    if (event is ChangeProductCount) {
+      int index = currentOrder.indexWhere((p) => p.id == event.id);
+      currentOrder[index] = currentOrder[index].copyWith(qty: event.qty);
+    }
+
+    currentOrder = currentOrder.toSet().toList();
+    pendingOrder = pendingOrder.toSet().toList();
+
     yield CartState(currentOrder, pendingOrder);
   }
 }

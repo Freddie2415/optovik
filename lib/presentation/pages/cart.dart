@@ -1,7 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
-import 'package:optovik/domain/bloc/products/products_bloc.dart';
+import 'dart:core';
 import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
@@ -52,7 +55,7 @@ class Cart extends StatelessWidget {
                               (Product e) => ProductCartWidget(
                                 id: e.id,
                                 title: "${e.title}",
-                                count: "${e.qty} шт",
+                                count: "${e.qty}",
                                 price: "",
                                 image: "${e.image}",
                                 isOrder: true,
@@ -114,7 +117,7 @@ class Cart extends StatelessWidget {
                           (e) => ProductCartWidget(
                             id: e.id,
                             title: "${e.title}",
-                            count: "${e.qty} шт",
+                            count: "${e.qty}",
                             price: "",
                             image: "${e.image}",
                             isOrder: false,
@@ -266,15 +269,15 @@ class ProductCartWidget extends StatelessWidget {
   final count;
   final bool isOrder;
 
-  const ProductCartWidget({
-    Key key,
-    this.id,
-    this.image,
-    this.title,
-    this.price,
-    this.count,
-    this.isOrder
-  }) : super(key: key);
+  const ProductCartWidget(
+      {Key key,
+      this.id,
+      this.image,
+      this.title,
+      this.price,
+      this.count,
+      this.isOrder})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -317,7 +320,7 @@ class ProductCartWidget extends StatelessWidget {
                               width: 15,
                             ),
                             Text(
-                              "$count",
+                              "$count шт",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 12,
@@ -335,7 +338,7 @@ class ProductCartWidget extends StatelessWidget {
                 ),
                 PopupMenuButton(
                   tooltip: "Действия",
-                  onSelected: _onSelected,
+                  onSelected: (value) => _onSelected(value, context),
                   itemBuilder: (context) {
                     final List<PopupMenuEntry<CartEvent>>
                         currentOrderMenuItems = [
@@ -406,7 +409,9 @@ class ProductCartWidget extends StatelessWidget {
                       ),
                     ];
 
-                    return isOrder ? currentOrderMenuItems : postponedOrderMenuItems;
+                    return isOrder
+                        ? currentOrderMenuItems
+                        : postponedOrderMenuItems;
                   },
                   icon: Icon(
                     Icons.more_vert,
@@ -422,10 +427,97 @@ class ProductCartWidget extends StatelessWidget {
     );
   }
 
-  void _onSelected(CartEvent value) async {
+  Future<void> _onSelected(CartEvent value, context) async {
     if (value is ChangeProductCount) {
-      // TODO show Dialog
+      int count = await _show(context);
+      print("COUNT: $count");
+      CartModule.cartBloc().add(value.copyWith(qty: count));
+    } else {
+      CartModule.cartBloc().add(value);
     }
-    CartModule.cartBloc().add(value);
+  }
+
+  Future<int> _show(context) async {
+    TextEditingController countController =
+        TextEditingController(text: "$count");
+
+    Widget dialog = CupertinoAlertDialog(
+      title: Text(
+        "Введите количество",
+        style: TextStyle(
+            fontSize: 16,
+            // color: kSecondaryColor,
+            fontWeight: FontWeight.bold),
+      ),
+      content: Card(
+        color: Colors.transparent,
+        elevation: 0.0,
+        child: TextField(
+          decoration: InputDecoration(
+            prefixText: "Кол-во: ",
+            prefixStyle: TextStyle(
+                fontWeight: FontWeight.bold),
+          ),
+          maxLines: 1,
+          maxLength: 7,
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          controller: countController,
+        ),
+      ),
+      actions: [
+        CupertinoDialogAction(
+          onPressed: () => Navigator.pop(context),
+          child: Text("ОТМЕНА"),
+          // textStyle: TextStyle(color: kSecondaryColor),
+        ),
+        CupertinoDialogAction(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("OK"),
+          isDefaultAction: true,
+        ),
+      ],
+    );
+
+    if (Platform.isAndroid) {
+      dialog = AlertDialog(
+        titleTextStyle: TextStyle(
+            fontSize: 16,
+            // color: kSecondaryColor,
+            fontWeight: FontWeight.bold),
+        title: Text("Введите количество"),
+        content: Container(
+          child: TextField(
+            decoration: InputDecoration(prefixText: "Кол-во: "),
+            maxLines: 1,
+            maxLength: 7,
+            autofocus: true,
+            keyboardType: TextInputType.number,
+            controller: countController,
+          ),
+        ),
+        actions: [
+          FlatButton(
+              onPressed: () => Navigator.pop(context), child: Text("ОТМЕНА")),
+          FlatButton(
+            onPressed: () {
+              int count = int.tryParse(countController.text) ?? this.count;
+              count = count.abs();
+              Navigator.pop(context);
+            },
+            child: Text("ОК"),
+          ),
+        ],
+      );
+    }
+
+    await showDialog(context: context, builder: (context) => dialog);
+
+    return int.parse(
+      countController.text,
+      onError: (source) => 1,
+    ).abs();
   }
 }

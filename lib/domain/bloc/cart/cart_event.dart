@@ -34,6 +34,9 @@ class ChangeProductCount extends CartEvent {
   ChangeProductCount copyWith({int qty}) {
     return ChangeProductCount(id, qty);
   }
+
+  @override
+  String toString() => 'id: $id qty: $qty';
 }
 
 class PostponeProduct extends CartEvent {
@@ -42,7 +45,7 @@ class PostponeProduct extends CartEvent {
   PostponeProduct(this.id);
 }
 
-class RemoveFromPostponed extends CartEvent{
+class RemoveFromPostponed extends CartEvent {
   final id;
 
   RemoveFromPostponed(this.id);
