@@ -53,6 +53,7 @@ class Cart extends StatelessWidget {
                         ...state.orders
                             .map(
                               (Product e) => ProductCartWidget(
+                                product: e,
                                 id: e.id,
                                 title: "${e.title}",
                                 count: "${e.qty}",
@@ -115,6 +116,7 @@ class Cart extends StatelessWidget {
                       children: [
                         ...state.postponed.map(
                           (e) => ProductCartWidget(
+                            product: e,
                             id: e.id,
                             title: "${e.title}",
                             count: "${e.qty}",
@@ -268,16 +270,18 @@ class ProductCartWidget extends StatelessWidget {
   final price;
   final count;
   final bool isOrder;
+  final Product product;
 
-  const ProductCartWidget(
-      {Key key,
-      this.id,
-      this.image,
-      this.title,
-      this.price,
-      this.count,
-      this.isOrder})
-      : super(key: key);
+  const ProductCartWidget({
+    Key key,
+    this.product,
+    this.id,
+    this.image,
+    this.title,
+    this.price,
+    this.count,
+    this.isOrder,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -343,7 +347,7 @@ class ProductCartWidget extends StatelessWidget {
                     final List<PopupMenuEntry<CartEvent>>
                         currentOrderMenuItems = [
                       PopupMenuItem<CartEvent>(
-                        value: PostponeProduct(id),
+                        value: PostponeProduct(product),
                         child: ListTile(
                           title: Text(
                             "Отложить",
@@ -355,7 +359,7 @@ class ProductCartWidget extends StatelessWidget {
                         ),
                       ),
                       PopupMenuItem<CartEvent>(
-                        value: RemoveFromCurrentOrder(id),
+                        value: RemoveFromCurrentOrder(product),
                         child: ListTile(
                           title: Text(
                             "Удалить",
@@ -367,7 +371,7 @@ class ProductCartWidget extends StatelessWidget {
                         ),
                       ),
                       PopupMenuItem<CartEvent>(
-                        value: ChangeProductCount(id),
+                        value: ChangeProductCount(product),
                         child: ListTile(
                           title: Text(
                             "Изменить",
@@ -382,7 +386,7 @@ class ProductCartWidget extends StatelessWidget {
                     final List<PopupMenuEntry<CartEvent>>
                         postponedOrderMenuItems = [
                       PopupMenuItem<CartEvent>(
-                        value: FromPostponeToCart(id),
+                        value: FromPostponeToCart(product),
                         child: ListTile(
                           title: Text(
                             "Добавить в корзину",
@@ -396,7 +400,7 @@ class ProductCartWidget extends StatelessWidget {
                         ),
                       ),
                       PopupMenuItem<CartEvent>(
-                        value: RemoveFromPostponed(id),
+                        value: RemoveFromPostponed(product),
                         child: ListTile(
                           title: Text(
                             "Удалить",
@@ -455,8 +459,7 @@ class ProductCartWidget extends StatelessWidget {
         child: TextField(
           decoration: InputDecoration(
             prefixText: "Кол-во: ",
-            prefixStyle: TextStyle(
-                fontWeight: FontWeight.bold),
+            prefixStyle: TextStyle(fontWeight: FontWeight.bold),
           ),
           maxLines: 1,
           maxLength: 7,

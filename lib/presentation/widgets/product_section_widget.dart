@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/presentation/pages/products.dart';
 
 import 'product_widget.dart';
@@ -54,15 +55,16 @@ class ProductSectionWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: products
-                      .map((e) => ProductWidget(
-                            e,
-                            id: e.id.toString(),
-                            name: "${e.title}",
-                            image: "${e.image}",
+                      .map((product) => ProductWidget(
+                            product,
+                            CounterModule.counterCubit(product),
+                            id: product.id.toString(),
+                            name: "${product.title}",
+                            image: "${product.image}",
                             price: "",
                             oldPrice: "",
-                            unit: "${e.unit}",
-                            promo: "${e.promo}",
+                            unit: "${product.unit}",
+                            promo: "${product.promo}",
                             promoColor: Colors.lightGreen,
                           ))
                       .toList(),

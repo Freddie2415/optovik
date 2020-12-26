@@ -1,36 +1,23 @@
 import 'package:flutter/material.dart';
 
-class CounterBtn extends StatefulWidget {
+class CounterBtn extends StatelessWidget {
   final double height;
+  final int counter;
   final Function onAdd;
   final Function onRemove;
-  final initialIterator;
 
-  CounterBtn(
-      {Key key,
-        this.height = 35,
-        this.onAdd,
-        this.onRemove,
-        this.initialIterator = 1})
-      : super(key: key);
-
-  @override
-  _CounterBtnState createState() => _CounterBtnState();
-}
-
-class _CounterBtnState extends State<CounterBtn> {
-  int iterator = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    iterator = widget.initialIterator;
-  }
+  CounterBtn({
+    Key key,
+    this.height = 35,
+    this.onAdd,
+    this.onRemove,
+    this.counter,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height,
+      height: height,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
@@ -51,15 +38,7 @@ class _CounterBtnState extends State<CounterBtn> {
                     Icons.remove,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      iterator--;
-                    });
-                    if(iterator <= 0){
-                      widget.onRemove();
-                      iterator = 1;
-                    }
-                  },
+                  onPressed: onRemove,
                   padding: EdgeInsets.zero,
                 ),
                 color: Colors.lightGreen,
@@ -73,7 +52,7 @@ class _CounterBtnState extends State<CounterBtn> {
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(
-                      text: "$iterator",
+                      text: "$counter",
                       style: TextStyle(
                         color: Colors.black87,
                         fontWeight: FontWeight.w500,
@@ -95,16 +74,12 @@ class _CounterBtnState extends State<CounterBtn> {
                     Icons.add,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    widget.onAdd();
-                    setState(() {
-                      iterator++;
-                    });
-                  },
+                  onPressed: onAdd,
                   padding: EdgeInsets.zero,
                 ),
                 color: Colors.lightGreen,
-                borderRadius: BorderRadius.horizontal(right: Radius.circular(5)),
+                borderRadius:
+                BorderRadius.horizontal(right: Radius.circular(5)),
               ),
             ),
           ],

@@ -107,4 +107,9 @@ class Product extends Equatable {
       qty: qty,
     );
   }
+
+  @override
+  String toString() {
+    return "{name => $title | qty => $qty}";
+  }
 }

@@ -7,54 +7,45 @@ abstract class CartEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AddToCurrentOrder extends CartEvent {
+class RemoveFromCurrentOrder extends CartEvent {
   final Product product;
 
-  const AddToCurrentOrder(this.product);
+  RemoveFromCurrentOrder(this.product);
 
   @override
   List<Object> get props => [product];
 }
 
-class RemoveFromCurrentOrder extends CartEvent {
-  final id;
-
-  RemoveFromCurrentOrder(this.id);
-
-  @override
-  List<Object> get props => [id];
-}
-
 class ChangeProductCount extends CartEvent {
-  final id;
+  final Product product;
   final int qty;
 
-  ChangeProductCount(this.id, [this.qty = 0]);
+  ChangeProductCount(this.product, [this.qty = 0]);
 
   ChangeProductCount copyWith({int qty}) {
-    return ChangeProductCount(id, qty);
+    return ChangeProductCount(product, qty);
   }
 
   @override
-  String toString() => 'id: $id qty: $qty';
+  String toString() => 'product: $product qty: $qty';
 }
 
 class PostponeProduct extends CartEvent {
-  final id;
+  final Product product;
 
-  PostponeProduct(this.id);
+  PostponeProduct(this.product);
 }
 
 class RemoveFromPostponed extends CartEvent {
-  final id;
+  final Product product;
 
-  RemoveFromPostponed(this.id);
+  RemoveFromPostponed(this.product);
 }
 
 class FromPostponeToCart extends CartEvent {
-  final id;
+  final Product product;
 
-  const FromPostponeToCart(this.id);
+  const FromPostponeToCart(this.product);
 }
 
 class PostponeAll extends CartEvent {}

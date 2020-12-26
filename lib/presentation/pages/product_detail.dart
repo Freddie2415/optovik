@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/counter/counter_cubit.dart';
 import 'package:optovik/domain/bloc/other_products/other_products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/widgets/counter_btn.dart';
 import 'package:optovik/presentation/widgets/my_separator.dart';
@@ -10,8 +12,10 @@ import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
+  CounterCubit _counterCubit;
 
-  const ProductDetailPage(this.product, {Key key}) : super(key: key);
+  ProductDetailPage(this.product, this._counterCubit, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +89,7 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: CounterButton(),
+                    child: CounterButton(this._counterCubit),
                   )
                 ],
               ),
@@ -116,48 +120,32 @@ class ProductDetailPage extends StatelessWidget {
   }
 }
 
-class CounterButton extends StatefulWidget {
-  @override
-  State createState() => _CounterButton();
-}
+class CounterButton extends StatelessWidget {
+  final CounterCubit _counterCubit;
 
-class _CounterButton extends State<CounterButton>
-    with SingleTickerProviderStateMixin {
-  int counter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  const CounterButton(this._counterCubit, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return counter < 1
-        ? FlatButton(
-            height: 35,
-            color: Colors.lightGreen,
-            textColor: Colors.white,
-            onPressed: () {
-              setState(() {
-                counter++;
-              });
-            },
-            child: Text("В корзину"),
-          )
-        : CounterBtn(
-            height: 35,
-            initialIterator: counter,
-            onRemove: () {
-              setState(() {
-                counter--;
-              });
-            },
-            onAdd: () {
-              setState(() {
-                counter++;
-              });
-            },
-          );
+    return BlocBuilder(
+      cubit: _counterCubit,
+      builder: (context, counter) {
+        return counter <= 0
+            ? FlatButton(
+                height: 35,
+                color: Colors.lightGreen,
+                textColor: Colors.white,
+                onPressed: _counterCubit.increment,
+                child: Text("В корзину"),
+              )
+            : CounterBtn(
+                height: 35,
+                counter: counter,
+                onRemove: _counterCubit.decrement,
+                onAdd: _counterCubit.increment,
+              );
+      },
+    );
   }
 }
 

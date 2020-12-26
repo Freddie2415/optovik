@@ -18,12 +18,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
-    if (event is AddToCurrentOrder) {
-      currentOrder.add(event.product.copyWith(qty: 1));
-    }
-
     if (event is RemoveFromCurrentOrder) {
-      currentOrder.removeWhere((p) => p.id == event.id);
+      currentOrder.removeWhere((p) => p.id == event.product.id);
     }
 
     if (event is PostponeAll) {
@@ -32,11 +28,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
 
     if (event is PostponeProduct) {
-      final product =
-          currentOrder.firstWhere((element) => element.id == event.id);
-      if (product != null) {
-        currentOrder.remove(product);
-        pendingOrder.add(product);
+      if (currentOrder.any((element) => element.id == event.product.id)) {
+        currentOrder.remove(event.product);
+        pendingOrder.add(event.product);
       }
     }
 
@@ -46,16 +40,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
 
     if (event is FromPostponeToCart) {
-      final product =
-          pendingOrder.firstWhere((element) => element.id == event.id);
-      if (product != null) {
-        currentOrder.add(product);
-        pendingOrder.remove(product);
+      if (pendingOrder.any((element) => element.id == event.product.id)) {
+        currentOrder.add(event.product);
+        pendingOrder.remove(event.product);
       }
     }
 
     if (event is RemoveFromPostponed) {
-      pendingOrder.removeWhere((element) => element.id == event.id);
+      pendingOrder.removeWhere((element) => element == event.product);
     }
 
     if (event is ClearOrder) {
@@ -67,13 +59,21 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
 
     if (event is ChangeProductCount) {
-      int index = currentOrder.indexWhere((p) => p.id == event.id);
-      currentOrder[index] = currentOrder[index].copyWith(qty: event.qty);
+      int index = currentOrder.indexWhere((p) => p.id == event.product.id);
+      if (index != -1) {
+        currentOrder[index] = currentOrder[index].copyWith(qty: event.qty);
+      } else {
+        pendingOrder.remove(event.product);
+        currentOrder.add(event.product);
+      }
     }
 
     currentOrder = currentOrder.toSet().toList();
     pendingOrder = pendingOrder.toSet().toList();
 
-    yield CartState(currentOrder, pendingOrder);
+    currentOrder.removeWhere((p) => p.qty == 0);
+    pendingOrder.removeWhere((p) => p.qty == 0);
+
+    yield CartState(currentOrder ?? [], pendingOrder ?? []);
   }
 }
