@@ -1,7 +1,7 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/banner.dart' as models;
-
 
 class SliderWidget extends StatefulWidget {
   const SliderWidget({Key key, this.banners}) : super(key: key);
@@ -18,6 +18,10 @@ class _SliderWidgetState extends State<SliderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    widget.list.forEach((url) {
+      precacheImage(NetworkImage(url), context);
+    });
+
     return Container(
       child: Stack(
         children: [
@@ -52,8 +56,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 return Container(
                   width: 6.0,
                   height: 6.0,
-                  margin:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _current == index ? Colors.white : Colors.white24,

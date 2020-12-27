@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../presentation/pages/home.dart';
+import 'package:optovik/presentation/pages/banners.dart';
 
 class Application extends StatelessWidget {
   @override
@@ -41,7 +41,7 @@ class Application extends StatelessWidget {
       localizationsDelegates: [
         CustomLocalizationDelegate(),
       ],
-      home: HomePage(),
+      home: BannersPage(),
     );
   }
 }
