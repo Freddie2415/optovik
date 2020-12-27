@@ -19,7 +19,8 @@ class CounterCubit extends Cubit<int> {
         this.setValue(p.qty);
         print(state.orders);
       }else{
-        setValue(0);
+        _product = _product.copyWith(qty: 0);
+        setValue(_product.qty);
       }
     });
   }

@@ -1,31 +1,38 @@
 import 'package:meta/meta.dart';
 
 class ProductsParams {
-  final String format = 'json';
+  Map<String, dynamic> _params = Map<String, dynamic>();
+  final format = 'json';
   final limit;
   final page;
   final categoryId;
-  final String ordering;
-  final String search;
+  final ordering;
+  final search;
 
   ProductsParams({
     @required this.limit,
     @required this.page,
     this.categoryId,
     this.ordering,
-    this.search=''
+    this.search = '',
   });
 
-  toRequestParams() {
-    Map<String, String> params = Map<String, String>();
-    params.addAll({'ordering': ordering});
-    params.addAll({'format': format});
-    params.addAll({'limit': '$limit'});
-    params.addAll({'page': '$page'});
-    params.addAll({"search": search});
+  List _ids = [];
+
+  void addParameterId(id) => _ids.add(id.toString());
+
+  Map<String, dynamic> toRequestParams() {
+    _params.addAll({'ordering': "$ordering"});
+    _params.addAll({'format': "$format"});
+    _params.addAll({'limit': "$limit"});
+    _params.addAll({'page': "$page"});
+    _params.addAll({"search": search});
     if (categoryId != null) {
-      params.addAll({'cat_one': '$categoryId'});
+      _params.addAll({'cat_one': "$categoryId"});
     }
-    return params;
+    if (_ids.isNotEmpty) {
+      _params.addAll({"id": _ids});
+    }
+    return _params;
   }
 }

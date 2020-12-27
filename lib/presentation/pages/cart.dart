@@ -10,7 +10,6 @@ import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class Cart extends StatelessWidget {
-  final CartBloc _cartBloc = CartModule.cartBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class Cart extends StatelessWidget {
           ),
         ),
         body: BlocBuilder<CartBloc, CartState>(
-          cubit: _cartBloc,
+          cubit: CartModule.cartBloc(),
           builder: (context, state) => TabBarView(children: [
             state.orders.isNotEmpty
                 ? SingleChildScrollView(

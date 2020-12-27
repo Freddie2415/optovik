@@ -7,7 +7,8 @@ import 'package:optovik/data/api/response/products_response.dart';
 import 'package:optovik/data/mapper/product_mapper.dart';
 
 class ProductService {
-  static const _BASE_URL = 'zender.uz';
+  static const _HOST = 'zender.uz';
+  static const _SCHEME = 'http';
 
   final http.Client _client = http.Client();
 
@@ -17,22 +18,23 @@ class ProductService {
   };
 
   Future<ProductsResponse> getProducts(ProductsParams params) async {
-    final url = Uri.http(
-      _BASE_URL,
-      '/api/v1/products/',
-      params.toRequestParams(),
+    final url = Uri(
+      scheme: _SCHEME,
+      host: _HOST,
+      path: '/api/v1/products/',
+      queryParameters: params.toRequestParams(),
     );
 
     final response = await _client.get(url, headers: _headers);
     print(url);
 
-    return _toProductResponse(response);
+    return await _toProductResponse(response);
   }
 
   Future<ProductsResponse> search(String query) async {
     final params = {"search": query};
     final url = Uri.http(
-      _BASE_URL,
+      _HOST,
       'api/v1/products',
       params,
     );
@@ -43,13 +45,14 @@ class ProductService {
     return _toProductResponse(response);
   }
 
-  ProductsResponse _toProductResponse(http.Response response) {
+  Future<ProductsResponse> _toProductResponse(http.Response response) async {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 
       var items = jsonResponse['results'] as List;
 
-      final products = ProductMapper.fromApiList(ApiProduct.fromApi(items));
+      final products =
+          await ProductMapper.fromApiList(ApiProduct.fromApi(items));
 
       return ProductsResponse(
         nextPage: jsonResponse['next_page'],

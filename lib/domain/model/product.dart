@@ -28,6 +28,7 @@ class Product extends Equatable {
   final String promo = "";
 
   final int qty;
+  final bool postponed;
 
   const Product({
     @required this.id,
@@ -52,6 +53,7 @@ class Product extends Equatable {
     @required this.images,
     @required this.unit,
     @required this.categories,
+    this.postponed = false,
     this.qty = 0,
   });
 
@@ -80,7 +82,7 @@ class Product extends Equatable {
         manufacturer
       ];
 
-  Product copyWith({@required int qty}) {
+  Product copyWith({@required int qty, bool postponed}) {
     return Product(
       id: this.id,
       created: this.created,
@@ -104,6 +106,7 @@ class Product extends Equatable {
       images: this.images,
       unit: this.unit,
       categories: this.categories,
+      postponed: postponed ?? this.postponed,
       qty: qty,
     );
   }

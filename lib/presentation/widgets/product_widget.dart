@@ -42,13 +42,17 @@ class _ProductWidgetState extends State<ProductWidget>
   double _height = 0;
 
   @override
+  void initState() {
+    super.initState();
+    _listener(context, this.widget.product.qty);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<CounterCubit, int>(
       cubit: widget._counterCubit,
       listenWhen: (previous, current) => current != previous,
-      listener: (context, state) {
-        state > 0 ? showCounter() : hideCounter();
-      },
+      listener: _listener,
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(5)),
         splashColor: Colors.lightGreen,
@@ -75,6 +79,7 @@ class _ProductWidgetState extends State<ProductWidget>
                       child: FadeInImage.assetNetwork(
                         placeholder: "assets/images/placeholder.jpg",
                         image: "${widget.image}",
+                        imageErrorBuilder: (context, error, stackTrace) => Image.asset("assets/images/placeholder.jpg"),
                       ),
                     ),
                   ),
@@ -212,5 +217,9 @@ class _ProductWidgetState extends State<ProductWidget>
       _height = 35;
       _visible = false;
     });
+  }
+
+  void _listener(BuildContext context, int state) {
+    state > 0 ? showCounter() : hideCounter();
   }
 }

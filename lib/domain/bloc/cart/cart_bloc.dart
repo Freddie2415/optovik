@@ -3,13 +3,16 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/domain/repository/cart_repository.dart';
 
 part 'cart_event.dart';
 
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartState([], []));
+  final CartRepository _cartRepository;
+
+  CartBloc(this._cartRepository) : super(CartState([], []));
 
   List<Product> currentOrder = [];
   List<Product> pendingOrder = [];
@@ -18,6 +21,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
+    if (event is CartInit){
+      currentOrder = await _cartRepository.getOrderItems();
+    }
+
     if (event is RemoveFromCurrentOrder) {
       currentOrder.removeWhere((p) => p.id == event.product.id);
     }
@@ -32,6 +39,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         currentOrder.remove(event.product);
         pendingOrder.add(event.product);
       }
+      pendingOrder.removeWhere((p) => p.qty == 0);
     }
 
     if (event is TransferToOrder) {
@@ -66,13 +74,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         pendingOrder.remove(event.product);
         currentOrder.add(event.product);
       }
+      currentOrder.removeWhere((p) => p.qty == 0);
     }
 
     currentOrder = currentOrder.toSet().toList();
     pendingOrder = pendingOrder.toSet().toList();
 
-    currentOrder.removeWhere((p) => p.qty == 0);
-    pendingOrder.removeWhere((p) => p.qty == 0);
+    await _cartRepository.setOrderItems(currentOrder);
 
     yield CartState(currentOrder ?? [], pendingOrder ?? []);
   }

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/counter/counter_cubit.dart';
 import 'package:optovik/domain/bloc/other_products/other_products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
-import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/widgets/counter_btn.dart';
 import 'package:optovik/presentation/widgets/my_separator.dart';
@@ -12,7 +11,7 @@ import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
-  CounterCubit _counterCubit;
+  final CounterCubit _counterCubit;
 
   ProductDetailPage(this.product, this._counterCubit, {Key key})
       : super(key: key);
