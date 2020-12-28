@@ -14,95 +14,94 @@ class BottomAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       cubit: CartModule.cartBloc(),
-      builder: (context, state) => state.orders.isNotEmpty
-          ? BottomAppBar(
-              child: Container(
-                color: Colors.white,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    !this.isHome
-                        ? FlatButton(
-                            height: 50,
-                            child: Icon(
-                              Icons.home,
-                              color: Colors.lightGreen,
-                            ),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ),
-                              );
-                            },
-                            minWidth: 5,
-                          )
-                        : Container(
-                            width: 0,
-                            height: 0,
-                          ),
-                    Expanded(
-                      child: FlatButton(
-                        onPressed: () => Navigator.push(
+      builder: (context, state) => BottomAppBar(
+        child: Container(
+          color: Colors.white,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              !this.isHome
+                  ? FlatButton(
+                      height: 50,
+                      child: Icon(
+                        Icons.home,
+                        color: Colors.lightGreen,
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) {
-                              return Cart();
-                            },
+                            builder: (context) => HomePage(),
                           ),
+                        );
+                      },
+                      minWidth: 5,
+                    )
+                  : Container(
+                      width: 0,
+                      height: 0,
+                    ),
+              Expanded(
+                child: FlatButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    Cart.route(),
+                  ),
+                  height: 50,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        "КОРЗИНА",
+                        style: TextStyle(
+                          color: Colors.lightGreen,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                        height: 50,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              "КОРЗИНА",
-                              style: TextStyle(
-                                color: Colors.lightGreen,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Spacer(),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(
-                              Icons.shopping_cart,
-                              color: Colors.lightGreen,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 8),
+                      ),
+                      Spacer(),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Stack(
+                        children: <Widget>[
+                           Icon(Icons.shopping_cart_outlined, color: Colors.lightGreen,size: 28,),
+                           Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Container(
+                              padding: EdgeInsets.all(3),
                               decoration: BoxDecoration(
-                                color: Colors.lightGreen,
-                                borderRadius: const BorderRadius.all(
-                                  const Radius.circular(50),
-                                ),
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(6),
                               ),
-                              child: Text(
-                                "${state.orders.length}",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                              constraints: BoxConstraints(
+                                minWidth: 12,
+                                minHeight: 12,
+                              ),
+                              child:  Text(
+                                '${state.orders.length}',
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 10,
+                                  fontSize: 8,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-          : Container(width: 0, height: 0),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
