@@ -176,7 +176,7 @@ class Cart extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Container(
+                /*Container(
                   color: Colors.white,
                   height: 50,
                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -195,7 +195,7 @@ class Cart extends StatelessWidget {
                       )
                     ],
                   ),
-                ),
+                ),*/
                 FlatButton(
                   minWidth: MediaQuery.of(context).size.width,
                   onPressed: () {},
