@@ -10,7 +10,6 @@ import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class Cart extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -20,11 +19,19 @@ class Cart extends StatelessWidget {
           title: Text("Корзина"),
           bottom: TabBar(
             tabs: [
-              Tab(
-                text: "ТЕКУЩИЙ ЗАКАЗ",
+              BlocBuilder<CartBloc, CartState>(
+                cubit: CartModule.cartBloc(),
+                builder: (context, state) => Tab(
+                  text:
+                      "ТЕКУЩИЙ ЗАКАЗ (${state.orders.length})",
+                ),
               ),
-              Tab(
-                text: "ОТЛОЖЕННЫЕ",
+              BlocBuilder<CartBloc, CartState>(
+                cubit: CartModule.cartBloc(),
+                builder: (context, state) => Tab(
+                  text:
+                      "ОТЛОЖЕННЫЕ (${state.postponed.length})",
+                ),
               ),
             ],
             labelColor: Colors.white,
@@ -169,14 +176,33 @@ class Cart extends StatelessWidget {
                   ),
           ]),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.lightGreen,
-          child: Container(
-            height: 100,
+        bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
+          cubit: CartModule.cartBloc(),
+          builder: (context, state) => BottomAppBar(
+            color: state.orders.isNotEmpty
+                ? Colors.lightGreen
+                : Colors.grey.shade400,
+            child: FlatButton(
+              color: Colors.lightGreen,
+              minWidth: MediaQuery.of(context).size.width,
+              height: 45,
+              onPressed: state.orders.isNotEmpty ? () {} : null,
+              child: Text(
+                "ПРОДОЛЖИТЬ",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              textColor: Colors.white,
+            ),
+          ),
+          /*Container(
+            height: 50,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                /*Container(
+                */ /*Container(
                   color: Colors.white,
                   height: 50,
                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -195,7 +221,7 @@ class Cart extends StatelessWidget {
                       )
                     ],
                   ),
-                ),*/
+                ),*/ /*
                 FlatButton(
                   minWidth: MediaQuery.of(context).size.width,
                   onPressed: () {},
@@ -207,9 +233,15 @@ class Cart extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          )*/
         ),
       ),
+    );
+  }
+
+  static Route<Object> route() {
+    return MaterialPageRoute(
+      builder: (context) => Cart(),
     );
   }
 }
