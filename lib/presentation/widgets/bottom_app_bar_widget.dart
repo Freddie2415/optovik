@@ -30,9 +30,7 @@ class BottomAppBarWidget extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
+                          HomePage.route(),
                         );
                       },
                       minWidth: 5,
@@ -68,8 +66,12 @@ class BottomAppBarWidget extends StatelessWidget {
                       ),
                       Stack(
                         children: <Widget>[
-                           Icon(Icons.shopping_cart_outlined, color: Colors.lightGreen,size: 28,),
-                           Positioned(
+                          Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.lightGreen,
+                            size: 28,
+                          ),
+                          Positioned(
                             right: 0,
                             top: 0,
                             child: Container(
@@ -82,7 +84,7 @@ class BottomAppBarWidget extends StatelessWidget {
                                 minWidth: 12,
                                 minHeight: 12,
                               ),
-                              child:  Text(
+                              child: Text(
                                 '${state.orders.length}',
                                 style: TextStyle(
                                   color: Colors.white,

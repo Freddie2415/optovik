@@ -14,6 +14,8 @@ import 'package:optovik/presentation/widgets/product_section_widget.dart';
 import 'package:optovik/presentation/widgets/slider_widget.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,7 @@ class HomePage extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Login(),
+                    builder: (context) => LoginPage(),
                   ),
                 );
               },
@@ -149,4 +151,7 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomAppBarWidget(isHome: true),
     );
   }
+
+  static Route<Object> route() =>
+      MaterialPageRoute(builder: (context) => const HomePage());
 }

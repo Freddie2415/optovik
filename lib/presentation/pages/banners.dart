@@ -104,10 +104,5 @@ class _BannersPageState extends State<BannersPage> {
     );
   }
 
-  void _onSkip() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
-  }
+  void _onSkip() => Navigator.pushReplacement(context, HomePage.route());
 }
