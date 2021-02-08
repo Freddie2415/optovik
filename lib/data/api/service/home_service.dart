@@ -45,9 +45,9 @@ class HomeService {
       return HomeResponse(
         banners: SliderMapper.fromApiList(sliders),
         categories: CategoryMapper.fromApiList(categories),
-        hotDeals: ProductMapper.fromApiList(hotDeals),
-        hotProducts: ProductMapper.fromApiList(hotProducts),
-        lastProducts: ProductMapper.fromApiList(lastProducts),
+        hotDeals: await ProductMapper.fromApiList(hotDeals),
+        hotProducts: await ProductMapper.fromApiList(hotProducts),
+        lastProducts: await ProductMapper.fromApiList(lastProducts),
       );
     } else {
       throw Exception('Ошибка при получении товаров');

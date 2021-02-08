@@ -1,4 +1,12 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
+import 'dart:core';
+import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class Cart extends StatelessWidget {
@@ -11,321 +19,190 @@ class Cart extends StatelessWidget {
           title: Text("Корзина"),
           bottom: TabBar(
             tabs: [
-              Tab(
-                text: "ТУКУЩИЙ ЗАКАЗ (3)",
+              BlocBuilder<CartBloc, CartState>(
+                cubit: CartModule.cartBloc(),
+                builder: (context, state) => Tab(
+                  text:
+                      "ТЕКУЩИЙ ЗАКАЗ (${state.orders.length})",
+                ),
               ),
-              Tab(
-                text: "ОТЛОЖЕННЫЕ (3)",
+              BlocBuilder<CartBloc, CartState>(
+                cubit: CartModule.cartBloc(),
+                builder: (context, state) => Tab(
+                  text:
+                      "ОТЛОЖЕННЫЕ (${state.postponed.length})",
+                ),
               ),
             ],
             labelColor: Colors.white,
           ),
         ),
-        body: TabBarView(children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 10, bottom: 5),
-                  child: Text(
-                    "ТОВАРЫ В КОРЗИНЕ",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductSectionWidget(
-                  title: "Рекомендованные товары",
-                  products: [],
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.refresh),
-                      SizedBox(width: 10),
-                      Text(
-                        "Перенести заказ в отложенные".toUpperCase(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                TextButton(
-                    onPressed: () {},
-                    child: Row(
+        body: BlocBuilder<CartBloc, CartState>(
+          cubit: CartModule.cartBloc(),
+          builder: (context, state) => TabBarView(children: [
+            state.orders.isNotEmpty
+                ? SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.clear),
-                        SizedBox(width: 10),
-                        Text(
-                          "Очистить корзину".toUpperCase(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 15, left: 10, bottom: 5),
+                          child: Text(
+                            "ТОВАРЫ В КОРЗИНЕ",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        ...state.orders
+                            .map(
+                              (Product e) => ProductCartWidget(
+                                product: e,
+                                id: e.id,
+                                title: "${e.title}",
+                                count: "${e.qty}",
+                                price: "",
+                                image: "${e.image}",
+                                isOrder: true,
+                              ),
+                            )
+                            .toList(),
+                        ProductSectionWidget(
+                          title: "Рекомендованные товары",
+                          products: [],
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            CartModule.cartBloc().add(PostponeAll());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.refresh),
+                              SizedBox(width: 10),
+                              Text(
+                                "Перенести заказ в отложенные".toUpperCase(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              CartModule.cartBloc().add(ClearOrder());
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.clear),
+                                SizedBox(width: 10),
+                                Text(
+                                  "Очистить корзину".toUpperCase(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  )
+                : MessageWidget(
+                    title: "Корзина пуста",
+                    message: "Вы можете добавить товары в корзину из каталога.",
+                  ),
+            state.postponed.isNotEmpty
+                ? SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ...state.postponed.map(
+                          (e) => ProductCartWidget(
+                            product: e,
+                            id: e.id,
+                            title: "${e.title}",
+                            count: "${e.qty}",
+                            price: "",
+                            image: "${e.image}",
+                            isOrder: false,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            CartModule.cartBloc().add(TransferToOrder());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.shopping_cart),
+                              SizedBox(width: 10),
+                              Text(
+                                "Перенести товары в заказ".toUpperCase(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            CartModule.cartBloc().add(ClearPendingOrder());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.clear),
+                              SizedBox(width: 10),
+                              Text(
+                                "Удалить список".toUpperCase(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
-                    )),
-              ],
+                    ),
+                  )
+                : MessageWidget(
+                    title: "Отложенных товаров нет",
+                    message: "Пока вы не отложили ни одного товара",
+                  ),
+          ]),
+        ),
+        bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
+          cubit: CartModule.cartBloc(),
+          builder: (context, state) => BottomAppBar(
+            color: state.orders.isNotEmpty
+                ? Colors.lightGreen
+                : Colors.grey.shade400,
+            child: FlatButton(
+              color: Colors.lightGreen,
+              minWidth: MediaQuery.of(context).size.width,
+              height: 45,
+              onPressed: state.orders.isNotEmpty ? () {} : null,
+              child: Text(
+                "ПРОДОЛЖИТЬ",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              textColor: Colors.white,
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title:
-                      "Сахарный песок тростниковый белый Pininpero 1 кг, Италия",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://img.dalimo.ru/1000/products/W2533-0e118021a8cb3a00e39963acdade388c.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                ProductCartWidget(
-                  title: "Банан",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://im0-tub-com.yandex.net/i?id=15cdf3c04392d3d8b7c6c76f9f3e0e89&n=13&exp=1",
-                ),
-                ProductCartWidget(
-                  title: "Яблоки",
-                  count: "1 шт",
-                  price: "5 999 сум",
-                  image:
-                      "https://ceradis.com/wp-content/uploads/2017/09/apples-1024x1024.jpg",
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.shopping_cart),
-                      SizedBox(width: 10),
-                      Text(
-                        "Перенести товары в заказ".toUpperCase(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.clear),
-                      SizedBox(width: 10),
-                      Text(
-                        "Удалить список".toUpperCase(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ]),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.lightGreen,
-          child: Container(
-            height: 100,
+          /*Container(
+            height: 50,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Container(
+                */ /*Container(
                   color: Colors.white,
                   height: 50,
                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -344,7 +221,7 @@ class Cart extends StatelessWidget {
                       )
                     ],
                   ),
-                ),
+                ),*/ /*
                 FlatButton(
                   minWidth: MediaQuery.of(context).size.width,
                   onPressed: () {},
@@ -356,6 +233,60 @@ class Cart extends StatelessWidget {
                 ),
               ],
             ),
+          )*/
+        ),
+      ),
+    );
+  }
+
+  static Route<Object> route() {
+    return MaterialPageRoute(
+      builder: (context) => Cart(),
+    );
+  }
+}
+
+class MessageWidget extends StatelessWidget {
+  final String title;
+  final String message;
+
+  const MessageWidget({Key key, this.title, this.message}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey.shade200,
+      child: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "$title",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                "$message",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              )
+            ],
           ),
         ),
       ),
@@ -364,14 +295,24 @@ class Cart extends StatelessWidget {
 }
 
 class ProductCartWidget extends StatelessWidget {
+  final id;
   final image;
   final title;
   final price;
   final count;
+  final bool isOrder;
+  final Product product;
 
-  const ProductCartWidget(
-      {Key key, this.image, this.title, this.price, this.count})
-      : super(key: key);
+  const ProductCartWidget({
+    Key key,
+    this.product,
+    this.id,
+    this.image,
+    this.title,
+    this.price,
+    this.count,
+    this.isOrder,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -397,7 +338,7 @@ class ProductCartWidget extends StatelessWidget {
                         Text(
                           "$title",
                           style: TextStyle(fontSize: 13),
-                          maxLines: 3,
+                          maxLines: 2,
                         ),
                         SizedBox(
                           height: 5,
@@ -414,7 +355,7 @@ class ProductCartWidget extends StatelessWidget {
                               width: 15,
                             ),
                             Text(
-                              "$count",
+                              "$count шт",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 12,
@@ -432,11 +373,12 @@ class ProductCartWidget extends StatelessWidget {
                 ),
                 PopupMenuButton(
                   tooltip: "Действия",
-                  onSelected: (value) {},
+                  onSelected: (value) => _onSelected(value, context),
                   itemBuilder: (context) {
-                    final List<PopupMenuEntry> sort = [
-                      PopupMenuItem<String>(
-                        value: "A",
+                    final List<PopupMenuEntry<CartEvent>>
+                        currentOrderMenuItems = [
+                      PopupMenuItem<CartEvent>(
+                        value: PostponeProduct(product),
                         child: ListTile(
                           title: Text(
                             "Отложить",
@@ -447,8 +389,8 @@ class ProductCartWidget extends StatelessWidget {
                           trailing: Icon(Icons.refresh),
                         ),
                       ),
-                      PopupMenuItem<String>(
-                        value: "B",
+                      PopupMenuItem<CartEvent>(
+                        value: RemoveFromCurrentOrder(product),
                         child: ListTile(
                           title: Text(
                             "Удалить",
@@ -459,8 +401,8 @@ class ProductCartWidget extends StatelessWidget {
                           trailing: Icon(Icons.delete_forever),
                         ),
                       ),
-                      PopupMenuItem<String>(
-                        value: "C",
+                      PopupMenuItem<CartEvent>(
+                        value: ChangeProductCount(product),
                         child: ListTile(
                           title: Text(
                             "Изменить",
@@ -472,7 +414,39 @@ class ProductCartWidget extends StatelessWidget {
                         ),
                       ),
                     ];
-                    return sort;
+                    final List<PopupMenuEntry<CartEvent>>
+                        postponedOrderMenuItems = [
+                      PopupMenuItem<CartEvent>(
+                        value: FromPostponeToCart(product),
+                        child: ListTile(
+                          title: Text(
+                            "Добавить в корзину",
+                            style: TextStyle(fontSize: 13),
+                          ),
+                          dense: true,
+                          contentPadding: EdgeInsets.symmetric(vertical: 0.0),
+                          trailing: Icon(
+                            Icons.add_shopping_cart_outlined,
+                          ),
+                        ),
+                      ),
+                      PopupMenuItem<CartEvent>(
+                        value: RemoveFromPostponed(product),
+                        child: ListTile(
+                          title: Text(
+                            "Удалить",
+                            style: TextStyle(fontSize: 13),
+                          ),
+                          dense: true,
+                          contentPadding: EdgeInsets.symmetric(vertical: 0.0),
+                          trailing: Icon(Icons.delete_forever),
+                        ),
+                      ),
+                    ];
+
+                    return isOrder
+                        ? currentOrderMenuItems
+                        : postponedOrderMenuItems;
                   },
                   icon: Icon(
                     Icons.more_vert,
@@ -486,5 +460,98 @@ class ProductCartWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _onSelected(CartEvent value, context) async {
+    if (value is ChangeProductCount) {
+      int count = await _show(context);
+      print("COUNT: $count");
+      CartModule.cartBloc().add(value.copyWith(qty: count));
+    } else {
+      CartModule.cartBloc().add(value);
+    }
+  }
+
+  Future<int> _show(context) async {
+    TextEditingController countController =
+        TextEditingController(text: "$count");
+
+    Widget dialog = CupertinoAlertDialog(
+      title: Text(
+        "Введите количество",
+        style: TextStyle(
+            fontSize: 16,
+            // color: kSecondaryColor,
+            fontWeight: FontWeight.bold),
+      ),
+      content: Card(
+        color: Colors.transparent,
+        elevation: 0.0,
+        child: TextField(
+          decoration: InputDecoration(
+            prefixText: "Кол-во: ",
+            prefixStyle: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          maxLines: 1,
+          maxLength: 7,
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          controller: countController,
+        ),
+      ),
+      actions: [
+        CupertinoDialogAction(
+          onPressed: () => Navigator.pop(context),
+          child: Text("ОТМЕНА"),
+          // textStyle: TextStyle(color: kSecondaryColor),
+        ),
+        CupertinoDialogAction(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("OK"),
+          isDefaultAction: true,
+        ),
+      ],
+    );
+
+    if (Platform.isAndroid) {
+      dialog = AlertDialog(
+        titleTextStyle: TextStyle(
+            fontSize: 16,
+            // color: kSecondaryColor,
+            fontWeight: FontWeight.bold),
+        title: Text("Введите количество"),
+        content: Container(
+          child: TextField(
+            decoration: InputDecoration(prefixText: "Кол-во: "),
+            maxLines: 1,
+            maxLength: 7,
+            autofocus: true,
+            keyboardType: TextInputType.number,
+            controller: countController,
+          ),
+        ),
+        actions: [
+          FlatButton(
+              onPressed: () => Navigator.pop(context), child: Text("ОТМЕНА")),
+          FlatButton(
+            onPressed: () {
+              int count = int.tryParse(countController.text) ?? this.count;
+              count = count.abs();
+              Navigator.pop(context);
+            },
+            child: Text("ОК"),
+          ),
+        ],
+      );
+    }
+
+    await showDialog(context: context, builder: (context) => dialog);
+
+    return int.parse(
+      countController.text,
+      onError: (source) => 1,
+    ).abs();
   }
 }

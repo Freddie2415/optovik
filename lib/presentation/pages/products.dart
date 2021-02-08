@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:optovik/domain/bloc/products/products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/domain/model/sort_type.dart';
+import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/pages/filter.dart';
 import 'package:optovik/presentation/pages/search.dart';
@@ -163,6 +164,7 @@ class _ProductsPageState extends State<ProductsPage> {
     final List<ProductWidget> list = products
         .map((product) => ProductWidget(
               product,
+              CounterModule.counterCubit(product),
               id: product.id.toString(),
               image: '${product.image}',
               name: product.title,
