@@ -21,6 +21,9 @@ class ProductDetailPage extends StatelessWidget {
     final categoryId =
         product.categories.isNotEmpty ? product.categories.last : null;
 
+    product.images
+        .forEach((imageUrl) => precacheImage(NetworkImage(imageUrl), context));
+
     return Scaffold(
       appBar: AppBar(title: Text("О товаре")),
       backgroundColor: Colors.white,
@@ -322,16 +325,13 @@ class _InfoSectionState extends State<InfoSection> {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: infoList
-              .map((e) => InfoTile(
-                    option: "${e['option']}",
-                    value: "${e['value']}",
-                  ))
-              .toList(),
+          children: [
+            InfoTile(option: "Бренд", value: "",),
+          ],
         ),
         !readMore
             ? GestureDetector(
@@ -357,15 +357,18 @@ class _InfoSectionState extends State<InfoSection> {
 class InfoTile extends StatelessWidget {
   final String option;
   final String value;
+  final Function onTap;
   final TextStyle textStyle = TextStyle(
     fontSize: 12,
     color: Colors.grey,
   );
 
+
   InfoTile({
     Key key,
     this.option,
     this.value,
+    this.onTap,
   })  : assert(option != null),
         assert(value != null),
         super(key: key);
@@ -374,29 +377,32 @@ class InfoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "$option:",
-              style: textStyle,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Text(
-                "$value",
+        GestureDetector(
+          onTap: onTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "$option:",
                 style: textStyle,
-                textAlign: TextAlign.right,
               ),
-            ),
-          ],
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Text(
+                  "$value",
+                  style: textStyle,
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: 5,
         ),
-        MySeparator(
+        DashSeparator(
           color: Colors.grey,
         ),
         SizedBox(

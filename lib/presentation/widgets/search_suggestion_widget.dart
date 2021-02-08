@@ -42,7 +42,7 @@ class SearchSuggestionsWidget extends StatelessWidget {
               )
             ],
           ),
-          MySeparator(color: Colors.grey),
+          DashSeparator(color: Colors.grey),
           Column(
             children: state.suggestions
                 .map((e) => SuggestionTileWidget(
@@ -86,7 +86,7 @@ class SuggestionTileWidget extends StatelessWidget {
           ),
           dense: true,
         ),
-        MySeparator(
+        DashSeparator(
           color: Colors.grey,
         ),
       ],
