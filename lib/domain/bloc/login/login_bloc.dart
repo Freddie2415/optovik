@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:meta/meta.dart';
-import 'package:optovik/domain/repository/auth_repository.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 
 import '../../model/form/form.dart';
 
@@ -13,13 +12,9 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc({
-    @required AuthRepository authRepository,
-  })  : assert(authRepository != null),
-        _authRepository = authRepository,
-        super(const LoginState());
+  LoginBloc(this._authBloc) : super(const LoginState());
 
-  final AuthRepository _authRepository;
+  final AuthBloc _authBloc;
 
   @override
   Stream<LoginState> mapEventToState(
@@ -63,13 +58,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {
-        print("Что то пошло не так!");
-        throw "Что то пошло не так!";
-        await _authRepository.logIn(
-          username: state.username.value,
-          password: state.password.value,
-        );
-        yield state.copyWith(status: FormzStatus.submissionSuccess);
+        _authBloc.add(LoggedIn(
+            login: state.username.value, password: state.password.value));
       } catch (e) {
         yield state.copyWith(
           status: FormzStatus.submissionFailure,
@@ -79,4 +69,3 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 }
-

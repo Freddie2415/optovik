@@ -27,4 +27,34 @@ class UserDataRepository extends UserRepository {
       ),
     );
   }
+
+  @override
+  Future<void> deleteToken() {
+    // TODO: implement deleteToken
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> hasToken() {
+    // TODO: implement hasToken
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> saveToken({String jwt}) {
+    // TODO: implement saveToken
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> authenticate({String login, String password}) {
+    // TODO: implement authenticate
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<User> updateUser() {
+    // TODO: implement updateUser
+    throw UnimplementedError();
+  }
 }

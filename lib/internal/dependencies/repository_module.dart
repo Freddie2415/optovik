@@ -1,11 +1,9 @@
-import 'package:optovik/data/repository/auth_data_repository.dart';
 import 'package:optovik/data/repository/cart_data_repository.dart';
 import 'package:optovik/data/repository/category_data_repository.dart';
 import 'package:optovik/data/repository/feedback_data_repository.dart';
 import 'package:optovik/data/repository/home_data_repository.dart';
 import 'package:optovik/data/repository/product_data_repository.dart';
 import 'package:optovik/data/repository/user_data_repository.dart';
-import 'package:optovik/domain/repository/auth_repository.dart';
 import 'package:optovik/domain/repository/cart_repository.dart';
 import 'package:optovik/domain/repository/category_repository.dart';
 import 'package:optovik/domain/repository/feedback_repository.dart';
@@ -21,7 +19,6 @@ class RepositoryModule {
   static HomeRepository _homeRepository;
   static FeedbackRepository _feedbackRepository;
   static CartRepository _cartRepository;
-  static AuthRepository _authRepository;
   static UserRepository _userRepository;
 
   static CategoryRepository categoryRepository() {
@@ -65,13 +62,6 @@ class RepositoryModule {
       );
     }
     return _cartRepository;
-  }
-
-  static AuthRepository authRepository() {
-    if (_authRepository == null) {
-      _authRepository = AuthDataRepository();
-    }
-    return _authRepository;
   }
 
   static UserRepository userRepository() {

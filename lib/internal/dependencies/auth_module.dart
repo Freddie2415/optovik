@@ -7,15 +7,10 @@ class AuthModule {
 
   static AuthBloc authBloc() {
     if (_authBloc == null) {
-      _authBloc = AuthBloc(
-        authRepository: RepositoryModule.authRepository(),
-        userRepository: RepositoryModule.userRepository(),
-      );
+      _authBloc = AuthBloc(RepositoryModule.userRepository());
     }
     return _authBloc;
   }
 
-  static LoginBloc loginBloc() => LoginBloc(
-        authRepository: RepositoryModule.authRepository(),
-      );
+  static LoginBloc loginBloc() => LoginBloc(authBloc());
 }

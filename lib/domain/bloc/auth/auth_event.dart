@@ -7,13 +7,36 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthStatusChanged extends AuthEvent {
-  const AuthStatusChanged(this.status);
+class AppStarted extends AuthEvent {}
 
-  final AuthenticationStatus status;
+class LoggedIn extends AuthEvent {
+  final String login;
+  final String password;
+
+  const LoggedIn({
+    @required this.login,
+    @required this.password,
+  }) : assert(login != null);
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [login, password];
+
+  @override
+  String toString() => 'LoggedIn {login: $login, password: $password}';
 }
 
-class AuthLogoutRequested extends AuthEvent {}
+class LoggedOut extends AuthEvent {
+  @override
+  String toString() => 'Log out';
+}
+
+class UpdateUser extends AuthEvent {
+  final User user;
+
+  const UpdateUser(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
+
+class AuthExpired extends AuthEvent {}

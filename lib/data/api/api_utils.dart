@@ -1,4 +1,5 @@
 import 'package:optovik/data/api/request/products_params.dart';
+import 'package:optovik/data/api/response/auth_response.dart';
 import 'package:optovik/data/api/response/feedback_response.dart';
 import 'package:optovik/data/api/response/home_response.dart';
 import 'package:optovik/data/api/response/products_response.dart';
@@ -51,5 +52,10 @@ class ApiUtil {
       fullName: fullName,
       theme: theme,
     );
+  }
+
+
+  Future<AuthResponse> authentificate() {
+
   }
 }
