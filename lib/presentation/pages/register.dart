@@ -1,12 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/register/register_bloc.dart';
+import 'package:optovik/presentation/pages/verification.dart';
 
 class Register extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  final RegisterBloc _registerBloc;
   final _usernameController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  Register(this._registerBloc, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,50 +24,21 @@ class Register extends StatelessWidget {
         alignment: Alignment.center,
         width: double.infinity,
         height: double.infinity,
-        child: SingleChildScrollView(child: buildLoginForm(context)),
+        child: BlocListener(
+          listener: _registerBlogListener,
+          child: SingleChildScrollView(child: buildRegisterForm(context)),
+          cubit: _registerBloc,
+        ),
       ),
     );
   }
 
   Widget buildRegisterBtn(BuildContext context) {
-    if (Platform.isAndroid) {
-      return Container(
-        width: double.infinity,
-//        height: 45.0,
-        child: OutlineButton(
-          onPressed: () {},
-          color: Colors.lightGreen,
-          highlightedBorderColor: Colors.lightGreen,
-          splashColor: Colors.lightGreen,
-          child: Text(
-            "Зарегистрироваться".toUpperCase(),
-            style: TextStyle(
-              fontSize: 16.0,
-              // color: kSecondaryColor,
-            ),
-          ),
-        ),
-      );
-    } else {
-      return CupertinoButton(
-        onPressed: () {},
-        child: Text(
-          "Зарегистрироваться".toUpperCase(),
-          style: TextStyle(
-            fontSize: 16.0,
-            // color: kSecondaryColor,
-          ),
-        ),
-      );
-    }
-  }
-
-  Widget buildLoginBtn(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 45,
       child: CupertinoButton(
-        onPressed: _loginEvent,
+        onPressed: _registerEvent,
         color: Colors.lightGreen,
         child: Text(
           "ЗАРЕГИСТРИРОВАТЬСЯ".toUpperCase(),
@@ -71,67 +48,84 @@ class Register extends StatelessWidget {
     );
   }
 
-  void _loginEvent() async {}
-
-  Widget buildLoginForm(BuildContext context) {
+  Widget buildRegisterForm(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage('assets/images/logo.png'),
-              width: MediaQuery.of(context).size.height * .20,
+            TextFormField(
+              controller: _firstNameController,
+              validator: _inputValidator,
+              decoration: InputDecoration(labelText: "Имя *"),
             ),
-            SizedBox(
-              height: 15.0,
+            TextFormField(
+              controller: _lastNameController,
+              validator: _inputValidator,
+              decoration: InputDecoration(labelText: "Фамилия *"),
             ),
             TextFormField(
               controller: _usernameController,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Заполните поле";
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                labelText: "Имя *",
-              ),
-            ),
-            TextFormField(
-              controller: _usernameController,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Заполните поле";
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                labelText: "Телефон или Email *",
-              ),
+              validator: _inputValidator,
+              decoration: InputDecoration(labelText: "Телефон *"),
             ),
             TextFormField(
               controller: _passwordController,
               obscureText: true,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Заполните поле *";
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                labelText: "Пароль *",
-              ),
+              validator: _inputValidator,
+              decoration: InputDecoration(labelText: "Пароль *"),
             ),
             SizedBox(
               height: 20.0,
             ),
-            buildLoginBtn(context),
+            buildRegisterBtn(context),
           ],
         ),
       ),
     );
+  }
+
+  String _inputValidator(String value) {
+    if (value.isEmpty) {
+      return "Заполните поле";
+    }
+    return null;
+  }
+
+  void _registerEvent() async {
+    bool valid =
+        _formKey.currentState != null && _formKey.currentState.validate();
+    if (valid) {
+      this._registerBloc.add(TryRegisterEvent(
+            firstName: _firstNameController.text,
+            lastName: _lastNameController.text,
+            username: _usernameController.text,
+            password: _passwordController.text,
+          ));
+    }
+  }
+
+  void _registerBlogListener(BuildContext context, state) {
+    if (state is RegisterSMSVerifyState) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VerificationScreen(
+            this._registerBloc,
+            phone: state.phone,
+          ),
+        ),
+      );
+      return;
+    }
+    if (state is RegisterFailureState) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text("${state.message}")));
+      return;
+    }
   }
 }

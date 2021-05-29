@@ -7,8 +7,10 @@ import 'package:formz/formz.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/login/login_bloc.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
+import 'package:optovik/internal/dependencies/register_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
 import 'package:optovik/presentation/pages/register.dart';
+import 'package:optovik/presentation/pages/verification.dart';
 
 class LoginPage extends StatelessWidget {
   static Route route() {
@@ -185,11 +187,13 @@ class _RegisterButton extends StatelessWidget {
       return Container(
         width: double.infinity,
         child: TextButton(
-          onPressed: () {
+          onPressed: () async {
+            // ignore: close_sinks
+            final bloc = await RegisterModule.getRegisterBloc();
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Register(),
+                builder: (context) => Register(bloc),
               ),
             );
           },
@@ -198,11 +202,13 @@ class _RegisterButton extends StatelessWidget {
       );
     } else {
       return CupertinoButton(
-        onPressed: () {
+        onPressed: () async {
+          // ignore: close_sinks
+          final bloc = await RegisterModule.getRegisterBloc();
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Register(),
+              builder: (context) => Register(bloc),
             ),
           );
         },
