@@ -6,5 +6,6 @@ import 'internal/application.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
+
   runApp(Application());
 }

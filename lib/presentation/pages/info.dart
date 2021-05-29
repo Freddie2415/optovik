@@ -9,10 +9,7 @@ class Info extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Placeholder(
-            color: Colors.lightGreen,
-            fallbackHeight: MediaQuery.of(context).size.height * .20,
-          ),
+          Image.asset("assets/images/info-banner.jpg"),
           ListTile(
             title: Text("Оферта", style: TextStyle(fontSize: 14),),
             onTap: () {},
