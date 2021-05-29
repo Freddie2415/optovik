@@ -77,7 +77,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
           ),
         ],
       ),
-      offset: Offset(500.0, 100.0),
+      offset: Offset(0.0, -30.0),
     );
 
     /*return FlatButton(

@@ -165,6 +165,9 @@ class _ProductImagesState extends State<ProductImages> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.images.isEmpty) {
+      return Image.asset("assets/images/banner-placeholder.jpg");
+    }
     if (widget.images.length <= 1) {
       return FadeInImage.assetNetwork(
         placeholder: "assets/images/banner-placeholder.jpg",
@@ -330,7 +333,10 @@ class _InfoSectionState extends State<InfoSection> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InfoTile(option: "Бренд", value: "",),
+            InfoTile(
+              option: "Бренд",
+              value: "",
+            ),
           ],
         ),
         !readMore
@@ -362,7 +368,6 @@ class InfoTile extends StatelessWidget {
     fontSize: 12,
     color: Colors.grey,
   );
-
 
   InfoTile({
     Key key,

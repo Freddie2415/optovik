@@ -10,7 +10,7 @@ import 'package:optovik/data/mapper/product_mapper.dart';
 import 'package:optovik/data/mapper/slider_mapper.dart';
 
 class HomeService {
-  static const _BASE_URL = 'zender.uz';
+  static const _BASE_URL = 'optovikuz.com';
 
   final http.Client _client = http.Client();
 

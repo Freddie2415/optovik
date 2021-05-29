@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:optovik/data/api/model/api_category.dart';
 
 class CategoryService {
-  static const _BASE_URL = 'http://zender.uz/api/v1';
+  static const _BASE_URL = 'http://optovikuz.com/api/v1';
 
   final http.Client _client = http.Client();
 

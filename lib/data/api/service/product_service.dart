@@ -7,7 +7,7 @@ import 'package:optovik/data/api/response/products_response.dart';
 import 'package:optovik/data/mapper/product_mapper.dart';
 
 class ProductService {
-  static const _HOST = 'zender.uz';
+  static const _HOST = 'optovikuz.com';
   static const _SCHEME = 'http';
 
   final http.Client _client = http.Client();

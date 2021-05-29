@@ -4,7 +4,7 @@ import 'package:optovik/data/api/response/feedback_response.dart';
 class FeedbackService {
 
   Future<FeedbackResponse> getFeedback() async {
-    return FeedbackResponse("+998 93 353 24 15", "tel:+998933532415");
+    return FeedbackResponse("+998 99 999 99 99", "tel:+998999999999");
   }
 
   Future<void> sendMessage({

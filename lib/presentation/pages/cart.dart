@@ -452,7 +452,7 @@ class ProductCartWidget extends StatelessWidget {
                     Icons.more_vert,
                     color: Colors.lightGreen,
                   ),
-                  offset: Offset(500.0, 100.0),
+                  offset: Offset(0.0, -30.0),
                 ),
               ],
             ),
