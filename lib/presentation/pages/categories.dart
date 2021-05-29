@@ -93,7 +93,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
           bool parent = showAll != null && showAll == item;
           return ListTile(
             leading: (showAll == null || parent)
-                ? Image.network(item.icon)
+                ? Image.network(
+                    item.icon,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(Icons.widgets_outlined);
+                    },
+                  )
                 : Icon(Icons.keyboard_arrow_right),
             title: Text(
               "${item.name}",
@@ -106,11 +111,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
             onTap: () {
               if (item.children.isEmpty || parent) {
                 Navigator.of(context).push(ProductsPage.route(
-                  title: "${item.name}",
-                  categoryId: item.id,
-                  query: null,
-                  isSearchPage: false
-                ));
+                    title: "${item.name}",
+                    categoryId: item.id,
+                    query: null,
+                    isSearchPage: false));
               } else {
                 setState(() {
                   showAll = item;
