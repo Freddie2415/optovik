@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 abstract class Service {
-  final baseUrl = 'http://optovikuz.com/api/v1';
+  final baseUrl = 'http://optovikuz.com';
 
   final http.Client client = http.Client();
 

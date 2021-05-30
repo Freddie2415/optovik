@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
+import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
 
 class BannersPage extends StatefulWidget {
@@ -104,5 +106,8 @@ class _BannersPageState extends State<BannersPage> {
     );
   }
 
-  void _onSkip() => Navigator.pushReplacement(context, HomePage.route());
+  void _onSkip() {
+    AuthModule.authBloc().add(AppStarted());
+    Navigator.pushReplacement(context, HomePage.route());
+  }
 }

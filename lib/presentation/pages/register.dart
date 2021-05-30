@@ -42,7 +42,11 @@ class Register extends StatelessWidget {
         color: Colors.lightGreen,
         child: Text(
           "ЗАРЕГИСТРИРОВАТЬСЯ".toUpperCase(),
-          style: TextStyle(fontSize: 16.0, color: Colors.white),
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

@@ -24,4 +24,8 @@ class AuthTokenExpired extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
-class AuthFailure extends AuthState {}
+class AuthFailure extends AuthState {
+  final String message;
+
+  AuthFailure(this.message);
+}

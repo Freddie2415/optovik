@@ -59,7 +59,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {
         _authBloc.add(LoggedIn(
-            login: state.username.value, password: state.password.value));
+            username: state.username.value, password: state.password.value));
       } catch (e) {
         yield state.copyWith(
           status: FormzStatus.submissionFailure,

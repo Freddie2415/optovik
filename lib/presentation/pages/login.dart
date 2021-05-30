@@ -10,12 +10,17 @@ import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/register_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
 import 'package:optovik/presentation/pages/register.dart';
-import 'package:optovik/presentation/pages/verification.dart';
 
 class LoginPage extends StatelessWidget {
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => LoginPage());
+  const LoginPage(this._loginBloc, this._authBloc, {Key key}) : super(key: key);
+
+  static Route route({LoginBloc loginBloc, AuthBloc authBloc}) {
+    return MaterialPageRoute<void>(
+        builder: (_) => LoginPage(loginBloc, authBloc));
   }
+
+  final LoginBloc _loginBloc;
+  final AuthBloc _authBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +30,10 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           padding: EdgeInsets.all(15),
           child: BlocListener<AuthBloc, AuthState>(
-            cubit: AuthModule.authBloc(),
+            cubit: _authBloc,
             listener: _authBlocListener,
             child: BlocProvider(
-              create: (_) => AuthModule.loginBloc(),
+              create: (_) => _loginBloc,
               child: LoginForm(),
             ),
           ),
@@ -57,8 +62,14 @@ class LoginPage extends StatelessWidget {
   }
 
   void _authBlocListener(BuildContext context, AuthState state) {
+    print("LOG: $state");
     if (state is AuthAuthenticated) {
       Navigator.pushReplacement(context, HomePage.route());
+    }
+    if (state is AuthFailure) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text("${state.message}")));
     }
   }
 }
@@ -108,7 +119,7 @@ class _UsernameInput extends StatelessWidget {
           onChanged: (username) =>
               context.read<LoginBloc>().add(LoginUsernameChanged(username)),
           decoration: InputDecoration(
-            labelText: 'Email',
+            labelText: 'Телефон',
             errorText:
                 state.username.invalid ? 'Поле не должно быть пустым' : null,
           ),
@@ -143,27 +154,26 @@ class _PasswordInput extends StatelessWidget {
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+    return BlocBuilder<AuthBloc, AuthState>(
+      cubit: AuthModule.authBloc(),
       builder: (context, state) {
-        return state.status.isSubmissionInProgress
+        return state is AuthLoading
             ? const CircularProgressIndicator()
             : Container(
                 width: double.infinity,
                 height: 45,
-                child: RaisedButton(
+                child: CupertinoButton(
                   key: const Key('loginForm_continue_raisedButton'),
-                  onPressed: state.status.isValidated
-                      ? () =>
-                          context.read<LoginBloc>().add(const LoginSubmitted())
-                      : null,
                   color: Colors.lightGreen,
+                  onPressed: () {
+                    context.read<LoginBloc>().add(const LoginSubmitted());
+                  },
                   child: Text(
                     "Войти".toUpperCase(),
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
@@ -180,7 +190,7 @@ class _RegisterButton extends StatelessWidget {
       "Зарегистрироваться".toUpperCase(),
       style: TextStyle(
         fontSize: 16.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
       ),
     );
     if (!Platform.isAndroid) {

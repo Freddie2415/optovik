@@ -3,7 +3,9 @@ import 'package:meta/meta.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:optovik/data/api/service/register_service.dart';
+import 'package:optovik/data/api/service/auth_service.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
+import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'register_event.dart';
@@ -11,7 +13,7 @@ part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  final RegisterService _registerService;
+  final AuthService _registerService;
   final SharedPreferences _prefs;
   static const String REGISTERED_USER_ID = 'registeredUserId';
 
@@ -51,6 +53,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       );
 
       await _prefs.setString(REGISTERED_USER_ID, userId);
+      _prefs.setString('username', event.username);
+      _prefs.setString('password', event.password);
 
       yield RegisterSMSVerifyState(event.username);
     } catch (e) {
@@ -68,6 +72,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           await _registerService.verify(event.smsCode, userId);
       if (successfullyVerified) {
         _prefs.remove(REGISTERED_USER_ID);
+
+        AuthModule.authBloc().add(LoggedIn(
+            username: _prefs.getString('username'),
+            password: _prefs.getString('password')));
+
         yield RegisteredSuccessfullyState();
       } else {
         yield RegisterFailureState('Ваш код не подходит');

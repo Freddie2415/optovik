@@ -10,19 +10,19 @@ abstract class AuthEvent extends Equatable {
 class AppStarted extends AuthEvent {}
 
 class LoggedIn extends AuthEvent {
-  final String login;
+  final String username;
   final String password;
 
   const LoggedIn({
-    @required this.login,
+    @required this.username,
     @required this.password,
-  }) : assert(login != null);
+  }) : assert(username != null);
 
   @override
-  List<Object> get props => [login, password];
+  List<Object> get props => [username, password];
 
   @override
-  String toString() => 'LoggedIn {login: $login, password: $password}';
+  String toString() => 'LoggedIn {login: $username, password: $password}';
 }
 
 class LoggedOut extends AuthEvent {
@@ -38,5 +38,3 @@ class UpdateUser extends AuthEvent {
   @override
   List<Object> get props => [user];
 }
-
-class AuthExpired extends AuthEvent {}

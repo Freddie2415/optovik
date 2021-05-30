@@ -328,10 +328,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   void _registerBlocListener(BuildContext context, state) {
-    if (state is RegisteredSuccessfullyState) {
+/*    if (state is RegisteredSuccessfullyState) {
       Navigator.pushReplacement(context, HomePage.route());
       return;
-    }
+    }*/
     if (state is RegisterFailureState) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()

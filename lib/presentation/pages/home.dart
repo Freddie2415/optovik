@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
+import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/home_module.dart';
 import 'package:optovik/presentation/pages/categories.dart';
 import 'package:optovik/presentation/pages/feedback.dart';
@@ -34,31 +36,52 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Optovik.uz',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.lightGreen,
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.account_circle_sharp,
-                color: Colors.lightGreen,
-              ),
-              title: Text('Вход / Регистрация'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+            BlocBuilder(
+              builder: (context, state) {
+                if (state is AuthAuthenticated) {
+                  return UserAccountsDrawerHeader(
+                    currentAccountPicture: CircleAvatar(
+                      child: Text(
+                        "${state.user.firstName[0].toUpperCase() ?? ''}",
+                        style: TextStyle(fontSize: 40),
+                      ),
+                      backgroundColor: Theme.of(context).primaryColorDark,
+                      foregroundColor: Theme.of(context).canvasColor,
+                    ),
+                    accountName:
+                        Text("${state.user.firstName} ${state.user.lastName}"),
+                    accountEmail: Text("${state.user.username}"),
+                  );
+                }
+                return DrawerHeader(
+                  child: Text(
+                    'Optovik.uz',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
+                  decoration: BoxDecoration(
+                    color: Colors.lightGreen,
+                  ),
+                );
+              },
+              cubit: AuthModule.authBloc(),
+            ),
+            BlocBuilder(
+              cubit: AuthModule.authBloc(),
+              builder: (context, state) {
+                if (state is AuthAuthenticated) {
+                  return SizedBox();
+                }
+                return ListTile(
+                  leading: Icon(
+                    Icons.account_circle_sharp,
+                    color: Colors.lightGreen,
+                  ),
+                  title: Text('Вход / Регистрация'),
+                  onTap: () => _loginRegister(context),
                 );
               },
             ),
@@ -105,6 +128,25 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            BlocBuilder(
+              builder: (context, state) {
+                if (state is AuthAuthenticated) {
+                  return ListTile(
+                    leading: Icon(
+                      Icons.exit_to_app,
+                      color: Colors.lightGreen,
+                    ),
+                    title: Text('Выход'),
+                    onTap: () {
+                      AuthModule.authBloc().add(LoggedOut());
+                      _loginRegister(context);
+                    },
+                  );
+                }
+                return const SizedBox();
+              },
+              cubit: AuthModule.authBloc(),
+            )
           ],
         ),
       ),
@@ -153,5 +195,147 @@ class HomePage extends StatelessWidget {
   }
 
   static Route<Object> route() =>
-      MaterialPageRoute(builder: (context) => const HomePage());
+      MaterialPageRoute(builder: (context) => HomePage());
+
+  void _loginRegister(context) {
+    Navigator.pushReplacement(
+      context,
+      LoginPage.route(
+        loginBloc: AuthModule.loginBloc(),
+        authBloc: AuthModule.authBloc(),
+      ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          BlocBuilder(
+            builder: _authBlocBuilder,
+            cubit: AuthModule.authBloc(),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.account_circle_sharp,
+              color: Colors.lightGreen,
+            ),
+            title: Text('Вход / Регистрация'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                LoginPage.route(
+                  loginBloc: AuthModule.loginBloc(),
+                  authBloc: AuthModule.authBloc(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.widgets,
+              color: Colors.lightGreen,
+            ),
+            title: Text('Каталог и поиск'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, CategoriesPage.route());
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.info,
+              color: Colors.lightGreen,
+            ),
+            title: Text('Информация'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Info(),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.phone,
+              color: Colors.lightGreen,
+            ),
+            title: Text('Обратная связь'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FeedBack(),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+          ),
+          _logout()
+        ],
+      ),
+    );
+  }
+
+  Widget _authBlocBuilder(BuildContext context, state) {
+    if (state is AuthAuthenticated) {
+      return UserAccountsDrawerHeader(
+        currentAccountPicture: CircleAvatar(
+          child: Text(
+            "${state.user.firstName[0].toUpperCase() ?? ''}",
+            style: TextStyle(fontSize: 40),
+          ),
+          backgroundColor: Theme.of(context).primaryColorDark,
+          foregroundColor: Theme.of(context).canvasColor,
+        ),
+        accountName: Text("${state.user.firstName} ${state.user.lastName}"),
+        accountEmail: Text("${state.user.username}"),
+      );
+    }
+    return DrawerHeader(
+      child: Text(
+        'Optovik.uz',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.lightGreen,
+      ),
+    );
+  }
+
+  Widget _logout() {
+    return BlocBuilder(
+      builder: (context, state) {
+        return ListTile(
+          leading: Icon(
+            Icons.exit_to_app,
+            color: Colors.lightGreen,
+          ),
+          title: Text('Выход'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FeedBack(),
+                fullscreenDialog: true,
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 }
