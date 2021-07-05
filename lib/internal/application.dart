@@ -1,8 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:optovik/data/api/service/banner_service.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
+import 'package:optovik/domain/bloc/banner/banner_cubit.dart';
+import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/banners.dart';
+import 'package:optovik/presentation/pages/home.dart';
+import 'package:optovik/presentation/widgets/loading_widget.dart';
 
 class Application extends StatelessWidget {
   @override
@@ -12,6 +19,7 @@ class Application extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    final BannerCubit bannerCubit = BannerCubit(bannerService: BannerService());
 
     return MaterialApp(
       title: 'Optovik.uz',
@@ -41,7 +49,24 @@ class Application extends StatelessWidget {
       localizationsDelegates: [
         CustomLocalizationDelegate(),
       ],
-      home: BannersPage(),
+      home: BlocListener<BannerCubit, BannerState>(
+        cubit: bannerCubit..loadBanners(),
+        listener: (context, state) {
+          if (state is BannerFailure) {
+            AuthModule.authBloc().add(AppStarted());
+            Navigator.pushReplacement(context, HomePage.route());
+          }
+        },
+        child: BlocBuilder<BannerCubit, BannerState>(
+          cubit: bannerCubit,
+          builder: (context, state) {
+            if (state is BannerSuccess) {
+              return BannersPage(imgList: state.banners);
+            }
+            return Scaffold(body: LoadingWidget());
+          },
+        ),
+      ),
     );
   }
 }

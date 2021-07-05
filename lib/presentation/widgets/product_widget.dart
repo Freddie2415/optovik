@@ -83,6 +83,7 @@ class _ProductWidgetState extends State<ProductWidget>
                       ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   Text(
                     "${widget.name}",
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13),

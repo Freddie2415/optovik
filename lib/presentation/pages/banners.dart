@@ -3,25 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
+import 'package:meta/meta.dart';
 
 class BannersPage extends StatefulWidget {
+  final List<String> imgList;
+
+  const BannersPage({Key key, @required this.imgList}) : super(key: key);
+
   @override
   _BannersPageState createState() => _BannersPageState();
 }
 
 class _BannersPageState extends State<BannersPage> {
-  final List<String> imgList = [
-    "https://i.pinimg.com/736x/f3/51/f3/f351f350e2fd4e0bcfa7a927acca1171.jpg",
-    "https://i.pinimg.com/originals/f9/6a/f9/f96af9ed2673866ff79f83c0141505bb.jpg",
-    "https://sveres.ru/upload/medialibrary/f1a/000269-podborka-kreativnoy-reklamy-napitkov_027.jpg",
-    "https://mir-s3-cdn-cf.behance.net/project_modules/disp/d7a46552615585.591606893ef38.jpg",
-    "https://mir-s3-cdn-cf.behance.net/project_modules/1400/5a3c5a10862325.560ec9b5b07cf.jpg",
-  ];
   int _current = 0;
-
   @override
   Widget build(BuildContext context) {
-    imgList.forEach((url) {
+    widget.imgList.forEach((url) {
       precacheImage(NetworkImage(url), context);
     });
 
@@ -39,7 +36,7 @@ class _BannersPageState extends State<BannersPage> {
               }),
               // autoPlay: false,
             ),
-            items: imgList
+            items: widget.imgList
                 .map((item) => Container(
                       child: Center(
                         child: Image.network(
@@ -62,8 +59,8 @@ class _BannersPageState extends State<BannersPage> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: imgList.map((item) {
-                      int index = imgList.indexOf(item);
+                    children: widget.imgList.map((item) {
+                      int index = widget.imgList.indexOf(item);
                       return Container(
                         width: 6.0,
                         height: 6.0,
