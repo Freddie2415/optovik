@@ -8,6 +8,7 @@ import 'package:optovik/presentation/pages/categories.dart';
 import 'package:optovik/presentation/pages/feedback.dart';
 import 'package:optovik/presentation/pages/info.dart';
 import 'package:optovik/presentation/pages/login.dart';
+import 'package:optovik/presentation/pages/my_orders.dart';
 import 'package:optovik/presentation/widgets/bottom_app_bar_widget.dart';
 import 'package:optovik/presentation/widgets/category_section_widget.dart';
 import 'package:optovik/presentation/widgets/fault_widget.dart';
@@ -94,6 +95,29 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, CategoriesPage.route());
+              },
+            ),
+            BlocBuilder(
+              cubit: AuthModule.authBloc(),
+              builder: (context, state) {
+                if (state is AuthAuthenticated) {
+                  return ListTile(
+                    leading: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.lightGreen,
+                    ),
+                    title: Text('Мои заказы'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyOrdersPage(),
+                        ),
+                      );
+                    },
+                  );
+                }
+                return SizedBox();
               },
             ),
             ListTile(
