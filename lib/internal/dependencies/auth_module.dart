@@ -6,13 +6,21 @@ import 'package:optovik/internal/dependencies/storage_module.dart';
 
 class AuthModule {
   static AuthBloc _authBloc;
+  static AuthService _authService;
+
+  static AuthService authService() {
+    if (_authService == null) {
+      _authService = AuthService(
+        RepositoryModule.userRepository(),
+        StorageModule.sharedPrefsInstance(),
+      );
+    }
+    return _authService;
+  }
 
   static AuthBloc authBloc() {
     if (_authBloc == null) {
-      _authBloc = AuthBloc(AuthService(
-        RepositoryModule.userRepository(),
-        StorageModule.sharedPrefsInstance(),
-      ));
+      _authBloc = AuthBloc(authService());
     }
     return _authBloc;
   }

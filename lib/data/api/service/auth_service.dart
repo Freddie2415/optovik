@@ -70,9 +70,9 @@ class AuthService extends Service {
       username: username,
       password: password,
     );
-    await _prefs.then((value) => value.setString(SECRET_KEY, response.key));
+    await _prefs.then((value) => value.setString(SECRET_KEY, response.access));
 
-    final User user = await _authRepository.getUser(response.user);
+    final User user = await _authRepository.getUser(response.access);
     await _prefs.then(
       (value) => value.setString(
         USER_KEY,
@@ -92,14 +92,15 @@ class AuthService extends Service {
     return _prefs.then((value) => value.containsKey(SECRET_KEY));
   }
 
+  Future<String> getToken() async {
+    return _prefs.then((value) => value.getString(SECRET_KEY));
+  }
+
   Future getUser() async {
     if (!await _prefs.then((value) => value.containsKey(SECRET_KEY))) {
       throw 'Пользователь не авторизован!';
     }
-    final stringUser = await _prefs.then((value) => value.getString(USER_KEY));
-    print("STRING: $stringUser");
-    final storageUser = User.fromJson(jsonDecode(stringUser));
 
-    return await _authRepository.getUser(storageUser.id);
+    return await _authRepository.getUser(await getToken());
   }
 }

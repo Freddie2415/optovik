@@ -9,7 +9,7 @@ import 'package:optovik/domain/repository/user_repository.dart';
 class AuthDataRepository extends AuthRepository {
   @override
   Future<LoginResponse> authenticate({String username, String password}) async {
-    final url = "${this.baseUrl}/rest-auth/login/";
+    final url = "${this.baseUrl}/api/token/";
 
     final body = jsonEncode({
       'username': username,
@@ -29,11 +29,7 @@ class AuthDataRepository extends AuthRepository {
     print(jsonResponse);
 
     if (response.statusCode == 200) {
-      return LoginResponse(
-        key: jsonResponse['key'],
-        user: jsonResponse['user'].toString(),
-        userType: jsonResponse['user_type'],
-      );
+      return LoginResponse(access: jsonResponse['access'] ?? '');
     } else {
       throw "Невозможно войти с предоставленными учетными данными.";
     }
@@ -46,16 +42,25 @@ class AuthDataRepository extends AuthRepository {
   }
 
   @override
-  Future<User> getUser(String id) async {
-    final url = "${this.baseUrl}/api/v1/user/$id/";
+  Future<User> getUser(String access) async {
+    final url = "${this.baseUrl}/api/v1/user/";
     print(url);
-    final response = await this.client.get(url, headers: this.headers);
-    var json = jsonDecode(utf8.decode(response.bodyBytes));
+    Map<String, String> header = this.headers;
+    header['Authorization'] = 'Bearer $access';
+    final response = await this.client.get(url, headers: header);
+    var jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 
     print(response.statusCode);
     print(json);
 
     if (response.statusCode == 200) {
+      var userList = jsonResponse['results'] as List;
+
+      if (userList.isEmpty) {
+        throw 'Пользователь не найден!';
+      }
+      var json = userList.first;
+
       return User(
         id: json['id'].toString(),
         firstName: json['first_name'] as String,

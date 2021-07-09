@@ -3,10 +3,15 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/data/api/service/order_service.dart';
 import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
+import 'package:optovik/domain/bloc/order/order_cubit.dart';
+import 'package:optovik/domain/bloc/order_form/order_form_cubit.dart';
 import 'dart:core';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/cart_module.dart';
+import 'package:optovik/presentation/pages/order_form.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
 class Cart extends StatelessWidget {
@@ -22,15 +27,13 @@ class Cart extends StatelessWidget {
               BlocBuilder<CartBloc, CartState>(
                 cubit: CartModule.cartBloc(),
                 builder: (context, state) => Tab(
-                  text:
-                      "ТЕКУЩИЙ ЗАКАЗ (${state.orders.length})",
+                  text: "ТЕКУЩИЙ ЗАКАЗ (${state.orders.length})",
                 ),
               ),
               BlocBuilder<CartBloc, CartState>(
                 cubit: CartModule.cartBloc(),
                 builder: (context, state) => Tab(
-                  text:
-                      "ОТЛОЖЕННЫЕ (${state.postponed.length})",
+                  text: "ОТЛОЖЕННЫЕ (${state.postponed.length})",
                 ),
               ),
             ],
@@ -186,7 +189,22 @@ class Cart extends StatelessWidget {
               color: Colors.lightGreen,
               minWidth: MediaQuery.of(context).size.width,
               height: 45,
-              onPressed: state.orders.isNotEmpty ? () {} : null,
+              onPressed: state.orders.isNotEmpty
+                  ? () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderFormPage(
+                              orderFormCubit:
+                                  OrderFormCubit(initForm: OrderFormState()),
+                              orderCubit: OrderCubit(
+                                authService: AuthModule.authService(),
+                                orderService: OrderService(),
+                              ),
+                            ),
+                          ));
+                    }
+                  : null,
               child: Text(
                 "ПРОДОЛЖИТЬ",
                 style: TextStyle(
