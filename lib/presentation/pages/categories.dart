@@ -98,6 +98,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     errorBuilder: (context, error, stackTrace) {
                       return Icon(Icons.widgets_outlined);
                     },
+                    height: 50,
+                    width: 50,
                   )
                 : Icon(Icons.keyboard_arrow_right),
             title: Text(
