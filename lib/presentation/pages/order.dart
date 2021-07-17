@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:optovik/domain/model/item.dart';
+import 'package:optovik/domain/model/order.dart';
 
 class OrderPage extends StatelessWidget {
-  const OrderPage({Key key}) : super(key: key);
+  final Order order;
+
+  const OrderPage(this.order, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Заказ № 1234"),
+        title: Text("Заказ № ${order.id}"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -41,7 +45,7 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "1234",
+                          "${order.id}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.end,
                         ),
@@ -59,7 +63,7 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "3 июня 2021г. 19:24",
+                          "${order.created}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.end,
                         ),
@@ -77,7 +81,7 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "Фаррух Хамракулов",
+                          "${order.contact}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.end,
                         ),
@@ -95,10 +99,10 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "Доставлено",
+                          "${order.statusTitle}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: order.statusColor,
                           ),
                           textAlign: TextAlign.end,
                         ),
@@ -119,7 +123,7 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "г Самарканд, улица Лахутий дом 38а",
+                          "${order.address}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -139,7 +143,7 @@ class OrderPage extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          "105 000 UZS",
+                          "${order.totalText}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.green,
@@ -153,402 +157,62 @@ class OrderPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Text(
-              "Список товаров",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Список товаров",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
               ),
             ),
             SizedBox(height: 10),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+            ...order.orderItems
+                .map((Item item) => Container(
+                      height: 100,
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.25),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.network(
-                      "https://static9.depositphotos.com/1642482/1149/i/600/depositphotos_11490585-stock-photo-bananas.jpg"),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Банан: желтый вкусный",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("5 шт."),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Image.network("${item.image}"),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "${item.titleRu}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("${item.quantity} шт."),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ))
+                .toList()
           ],
         ),
       ),

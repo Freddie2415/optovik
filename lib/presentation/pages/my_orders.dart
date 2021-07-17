@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/domain/bloc/order_list/order_list_cubit.dart';
+import 'package:optovik/domain/model/order.dart';
+import 'package:optovik/presentation/pages/cart.dart';
 import 'package:optovik/presentation/pages/order.dart';
+import 'package:optovik/presentation/widgets/error_widget.dart';
+import 'package:optovik/presentation/widgets/loading_widget.dart';
 import 'package:optovik/presentation/widgets/order_item_widget.dart';
 
 class MyOrdersPage extends StatelessWidget {
@@ -9,54 +15,60 @@ class MyOrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Мои заказы")),
-      // backgroundColor: Colors.,
-      body: ListView(
-        children: [
-          OrderItem(
-            id: 1234,
-            date: "3 июня 2021 г. 19:24",
-            status: "Заказ создан",
-            address: "Город Самарканд ул Лахутий дом 38 а",
-            client: "Фаррух Хамракулов",
-            statusColor: Colors.amber,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => OrderPage(),
-                ),
+      body: BlocBuilder<OrderListCubit, OrderListState>(
+        cubit: BlocProvider.of<OrderListCubit>(context)..load(),
+        builder: (context, state) {
+          if (state is OrderListFailure) {
+            return FailureWidget(
+              message: state.message,
+              onBtnPressed: () {},
+            );
+          }
+
+          if (state is OrderListSuccess) {
+            if (state.orderList.isEmpty) {
+              return MessageWidget(
+                message: "Список заказов пуст.",
+                title: "Заказы",
               );
-            },
-          ),
-          OrderItem(
-            id: 1234,
-            date: "3 июня 2021 г. 19:24",
-            status: "Оформлено",
-            address: "Город Самарканд ул Лахутий дом 38 а",
-            client: "Фаррух Хамракулов",
-            statusColor: Colors.lightGreen,
-            onTap: () {},
-          ),
-          OrderItem(
-            id: 1234,
-            date: "3 июня 2021 г. 19:24",
-            status: "Доставлено",
-            address: "Город Самарканд ул Лахутий дом 38 а",
-            client: "Фаррух Хамракулов",
-            statusColor: Colors.green,
-            onTap: () {},
-          ),
-          OrderItem(
-            id: 1234,
-            date: "3 июня 2021 г. 19:24",
-            status: "Отменено",
-            address: "Город Самарканд ул Лахутий дом 38 а",
-            client: "Фаррух Хамракулов",
-            statusColor: Colors.redAccent,
-            onTap: () {},
-          ),
-        ],
+            }
+
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                Order order = state.orderList[index];
+
+                return OrderItem(
+                  id: order.id,
+                  date: order.created,
+                  client: order.contact,
+                  status: order.statusTitle,
+                  address: order.address,
+                  statusColor: order.statusColor,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderPage(order),
+                      ),
+                    );
+                  },
+                );
+              },
+              itemCount: state.orderList.length,
+            );
+          }
+
+          return LoadingWidget();
+        },
       ),
     );
   }
+}
+
+enum OrderStatus {
+  created,
+  available,
+  framed,
+  sent,
+  delivered,
 }
