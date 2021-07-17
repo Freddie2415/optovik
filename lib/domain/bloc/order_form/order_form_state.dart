@@ -70,7 +70,12 @@ class OrderFormState extends Equatable {
     }
 
     final List<Product> items = CartModule.cartBloc().state.orders;
-    final List<int> productList = items.map((e) => e.id).toList();
+    final List productList = items
+        .map((e) => {
+              'id': e.id,
+              'quantity': e.qty,
+            })
+        .toList();
 
     return jsonEncode({
       "address": address,

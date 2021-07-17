@@ -14,7 +14,9 @@ import 'package:optovik/presentation/widgets/loading_widget.dart';
 class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Theme
+        .of(context)
+        .textTheme;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -76,7 +78,8 @@ class DummyDelegate extends SearchDelegate<String> {
   List<Widget> buildActions(BuildContext context) => [];
 
   @override
-  Widget buildLeading(BuildContext context) => IconButton(
+  Widget buildLeading(BuildContext context) =>
+      IconButton(
         icon: Icon(Icons.close),
         onPressed: () => Navigator.of(context).pop(),
       );

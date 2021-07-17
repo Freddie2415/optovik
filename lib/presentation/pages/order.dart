@@ -201,6 +201,7 @@ class OrderPage extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  textAlign: TextAlign.end,
                                 ),
                                 SizedBox(
                                   height: 10,
