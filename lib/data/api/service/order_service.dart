@@ -5,7 +5,7 @@ import 'package:optovik/data/api/service/service.dart';
 import 'package:optovik/domain/bloc/order_form/order_form_cubit.dart';
 
 class OrderService extends Service {
-  Future<String> create(String token, OrderFormState orderForm) async {
+  Future<dynamic> create(String token, OrderFormState orderForm) async {
     var headers = this.headers;
 
     headers['Authorization'] = "Bearer $token";

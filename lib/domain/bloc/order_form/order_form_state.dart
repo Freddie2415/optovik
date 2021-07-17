@@ -74,7 +74,7 @@ class OrderFormState extends Equatable {
 
     return jsonEncode({
       "address": address,
-      "contacts": contacts,
+      "contact": contacts,
       "status": "created",
       "products_list": productList,
       "is_paid": false,
