@@ -77,49 +77,8 @@ class _ProductsPageState extends State<ProductsPage> {
                 );
               },
             ),
+            SortPopupButton(onSelect: _onSelect),
           ],
-          bottom: PreferredSize(
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: 40.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: FlatButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            fullscreenDialog: true,
-                            builder: (context) => FilterPage(),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.filter_list,
-                            color: Colors.grey,
-                            size: 20,
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            "Фильтры",
-                            style: TextStyle(fontSize: 13),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(child: SortPopupButton(onSelect: _onSelect)),
-                ],
-              ),
-            ),
-            preferredSize: Size.fromHeight(45.0),
-          ),
         );
 
   @override

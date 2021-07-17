@@ -56,39 +56,8 @@ class _SortPopupButtonState extends State<SortPopupButton> {
         ];
         return sort;
       },
-      // icon: Icon(Icons.sort),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "$currentSortText",
-            style: TextStyle(
-              fontSize: 13,
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Icon(
-            Icons.sort,
-            color: Colors.grey,
-            size: 20,
-          ),
-        ],
-      ),
-      offset: Offset(0.0, -30.0),
+      icon: Icon(Icons.sort_rounded),
     );
-
-    /*return FlatButton(
-      child: Icon(Icons.sort),
-      onPressed: () {
-        showCupertinoModalPopup(
-          context: context,
-          builder: (context) => _cupertinoActionSheet(),
-        );
-      },
-    );*/
   }
 
   Widget _trailing(SortType sortType) {
@@ -99,59 +68,6 @@ class _SortPopupButtonState extends State<SortPopupButton> {
           )
         : Icon(Icons.radio_button_unchecked);
   }
-
-/*  _textStyleBySort(SortType sortType) {
-    return TextStyle(
-        color: sortType == sortValue ? Colors.black : Colors.black54);
-  }*/
-
-  /*Widget _cupertinoActionSheet() {
-    return CupertinoActionSheet(
-      title: Text('Сортировать список товаров'),
-      cancelButton: CupertinoActionSheetAction(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: Text(
-          "Отмена",
-          style: TextStyle(color: Colors.black54),
-        ),
-      ),
-      actions: <Widget>[
-        CupertinoActionSheetAction(
-          onPressed: () {
-            onSelected(SortType.default_sort);
-            Navigator.pop(context);
-          },
-          child: Text(
-            "По умолчанию",
-            style: _textStyleBySort(SortType.default_sort),
-          ),
-        ),
-        CupertinoActionSheetAction(
-          onPressed: () {
-            onSelected(SortType.name_asc);
-            Navigator.pop(context);
-          },
-          child: Text(
-            "По алфавиту",
-            style: _textStyleBySort(SortType.name_asc),
-          ),
-        ),
-        CupertinoActionSheetAction(
-          onPressed: () {
-            onSelected(SortType.name_desc);
-            Navigator.pop(context);
-          },
-          child: Text(
-            "Сначала недорогие",
-            style: _textStyleBySort(SortType.name_desc),
-          ),
-        ),
-      ],
-    );
-  }*/
-
   void onSelected(SortType value) {
     setState(() {
       sortValue = value;

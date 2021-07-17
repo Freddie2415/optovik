@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/data/api/service/order_service.dart';
+import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
 import 'package:optovik/domain/bloc/order/order_cubit.dart';
 import 'package:optovik/domain/bloc/order_form/order_form_cubit.dart';
@@ -185,24 +186,14 @@ class Cart extends StatelessWidget {
             color: state.orders.isNotEmpty
                 ? Colors.lightGreen
                 : Colors.grey.shade400,
-            child: FlatButton(
-              color: Colors.lightGreen,
-              minWidth: MediaQuery.of(context).size.width,
-              height: 45,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen,
+                minimumSize: Size(MediaQuery.of(context).size.width, 45),
+              ),
               onPressed: state.orders.isNotEmpty
                   ? () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderFormPage(
-                              orderFormCubit:
-                                  OrderFormCubit(initForm: OrderFormState()),
-                              orderCubit: OrderCubit(
-                                authService: AuthModule.authService(),
-                                orderService: OrderService(),
-                              ),
-                            ),
-                          ));
+                      toCart(context);
                     }
                   : null,
               child: Text(
@@ -212,46 +203,8 @@ class Cart extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              textColor: Colors.white,
             ),
           ),
-          /*Container(
-            height: 50,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                */ /*Container(
-                  color: Colors.white,
-                  height: 50,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Сумма заказа:",
-                      ),
-                      Text(
-                        "25 000 сум",
-                        style: TextStyle(
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                ),*/ /*
-                FlatButton(
-                  minWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {},
-                  child: Text(
-                    "ПРОДОЛЖИТЬ",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  textColor: Colors.white,
-                ),
-              ],
-            ),
-          )*/
         ),
       ),
     );
@@ -261,6 +214,33 @@ class Cart extends StatelessWidget {
     return MaterialPageRoute(
       builder: (context) => Cart(),
     );
+  }
+
+  void toCart(BuildContext context) {
+    if (AuthModule.authBloc().state is AuthAuthenticated) {
+      AuthAuthenticated state = AuthModule.authBloc().state;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OrderFormPage(
+            orderFormCubit: OrderFormCubit(
+                initForm: OrderFormState(
+                    contacts:
+                        "${state.user.firstName}, ${state.user.username}")),
+            orderCubit: OrderCubit(
+              authService: AuthModule.authService(),
+              orderService: OrderService(),
+            ),
+          ),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content:
+                Text("Пожалуйста авторизуйесь прежде чем отправить заказ!")),
+      );
+    }
   }
 }
 
@@ -470,7 +450,6 @@ class ProductCartWidget extends StatelessWidget {
                     Icons.more_vert,
                     color: Colors.lightGreen,
                   ),
-                  offset: Offset(0.0, -30.0),
                 ),
               ],
             ),

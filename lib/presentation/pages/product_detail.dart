@@ -97,9 +97,9 @@ class ProductDetailPage extends StatelessWidget {
               ),
               Divider(),
               DescriptionText(product.description),
-              Divider(),
-              InfoSection(),
-              Divider(),
+              // Divider(),
+              // InfoSection(),
+              // Divider(),
               BlocBuilder(
                 cubit: ProductsModule.otherProductsBloc()
                   ..add(FetchOtherProducts(categoryId, product.id)),
@@ -132,20 +132,25 @@ class CounterButton extends StatelessWidget {
     return BlocBuilder(
       cubit: _counterCubit,
       builder: (context, counter) {
-        return counter <= 0
-            ? FlatButton(
-                height: 35,
-                color: Colors.lightGreen,
-                textColor: Colors.white,
-                onPressed: _counterCubit.increment,
-                child: Text("В корзину"),
-              )
-            : CounterBtn(
-                height: 35,
-                counter: counter,
-                onRemove: _counterCubit.decrement,
-                onAdd: _counterCubit.increment,
-              );
+        return SizedBox(
+          height: 35,
+          child: counter <= 0
+              ? ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.lightGreen,
+                  ),
+                  onPressed: _counterCubit.increment,
+                  child: Text(
+                    "В корзину",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              : CounterBtn(
+                  counter: counter,
+                  onRemove: _counterCubit.decrement,
+                  onAdd: _counterCubit.increment,
+                ),
+        );
       },
     );
   }
@@ -329,15 +334,6 @@ class _InfoSectionState extends State<InfoSection> {
         ),
         SizedBox(
           height: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InfoTile(
-              option: "Бренд",
-              value: "",
-            ),
-          ],
         ),
         !readMore
             ? GestureDetector(
