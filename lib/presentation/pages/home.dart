@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/data/api/service/order_service.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
+import 'package:optovik/domain/bloc/order_list/order_list_cubit.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/home_module.dart';
 import 'package:optovik/presentation/pages/categories.dart';
@@ -111,7 +113,11 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyOrdersPage(),
+                          builder: (context) => BlocProvider(
+                            create: (context) => OrderListCubit(
+                                OrderService(), AuthModule.authService()),
+                            child: MyOrdersPage(),
+                          ),
                         ),
                       );
                     },
