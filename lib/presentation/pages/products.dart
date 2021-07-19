@@ -6,6 +6,7 @@ import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/domain/model/sort_type.dart';
 import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
+import 'package:optovik/presentation/pages/cart.dart';
 import 'package:optovik/presentation/pages/filter.dart';
 import 'package:optovik/presentation/pages/search.dart';
 import 'package:optovik/presentation/widgets/bottom_app_bar_widget.dart';
@@ -159,11 +160,9 @@ class _ProductsPageState extends State<ProductsPage> {
     }
     if (state is ProductsSuccess) {
       if (state.products.isEmpty) {
-        return Center(
-          child: Text(widget.isSearchPage
-              ? "Товар не найден"
-              : "В этой категории нет товары"),
-        );
+        return MessageWidget(message: widget.isSearchPage
+            ? "Товар не найден"
+            : "В этой категории нет товараров",);
       }
       return _productsBody(state.products, state.hasReachedMax);
     }
