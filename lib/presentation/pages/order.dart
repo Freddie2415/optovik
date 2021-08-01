@@ -12,7 +12,7 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.nOrder + " ${order.id}"),
+        title: Text(S.of(context).nOrder + " ${order.id}"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -40,7 +40,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.orderId,
+                        S.of(context).orderId,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -58,7 +58,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.createdAt,
+                        S.of(context).createdAt,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -76,7 +76,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.client,
+                        S.of(context).client,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -94,7 +94,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.status,
+                        S.of(context).status,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -117,7 +117,7 @@ class OrderPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Text(
-                          S.current.deliveryAddress,
+                          S.of(context).deliveryAddress,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
@@ -138,7 +138,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.total,
+                        S.of(context).total,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -161,7 +161,7 @@ class OrderPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                S.current.productsList,
+                S.of(context).productsList,
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -207,7 +207,7 @@ class OrderPage extends StatelessWidget {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Text("${item.quantity} ${S.current.piece}"),
+                                Text("${item.quantity} ${S.of(context).piece}"),
                               ],
                             ),
                           )

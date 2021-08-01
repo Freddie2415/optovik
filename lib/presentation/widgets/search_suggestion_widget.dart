@@ -31,13 +31,13 @@ class SearchSuggestionsWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                S.current.recentRequests,
+                S.of(context).recentRequests,
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
               TextButton(
                 onPressed: () => _searchSuggestionsBloc.add(CleanSuggestions()),
                 child: Text(
-                  S.current.clear,
+                  S.of(context).clear,
                   style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
               )

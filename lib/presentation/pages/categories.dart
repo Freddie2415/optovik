@@ -30,7 +30,7 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesLoading || state is CategoriesInitial) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(S.current.productCatalog),
+          title: Text(S.of(context).productCatalog),
         ),
         body: LoadingWidget(),
       );
@@ -39,7 +39,7 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesError) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(S.current.productCatalog),
+          title: Text(S.of(context).productCatalog),
         ),
         body: FailureWidget(
             message: state.message,
@@ -70,7 +70,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.productCatalog),
+        title: Text(S.of(context).productCatalog),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: onPressBack,
@@ -129,7 +129,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             },
             trailing: parent
                 ? Text(
-                    S.current.showAll,
+                    S.of(context).showAll,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

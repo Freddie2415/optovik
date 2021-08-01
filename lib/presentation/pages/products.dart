@@ -162,8 +162,8 @@ class _ProductsPageState extends State<ProductsPage> {
       if (state.products.isEmpty) {
         return MessageWidget(
           message: widget.isSearchPage
-              ? S.current.productNotFound
-              : S.current.categoryEmpty,
+              ? S.of(context).productNotFound
+              : S.of(context).categoryEmpty,
         );
       }
       return _productsBody(state.products, state.hasReachedMax);

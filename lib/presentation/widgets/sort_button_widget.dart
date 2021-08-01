@@ -22,14 +22,14 @@ class _SortPopupButtonState extends State<SortPopupButton> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SortType>(
-      tooltip: S.current.sort,
+      tooltip: S.of(context).sort,
       onSelected: onSelected,
       itemBuilder: (context) {
         final List<PopupMenuEntry<SortType>> sort = [
           PopupMenuItem<SortType>(
             value: SortType.default_sort,
             child: ListTile(
-              title: Text(S.current.byPopularity),
+              title: Text(S.of(context).byPopularity),
               dense: true,
               trailing: _trailing(SortType.default_sort),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -38,7 +38,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
           PopupMenuItem<SortType>(
             value: SortType.name_asc,
             child: ListTile(
-              title: Text(S.current.alphaAZ),
+              title: Text(S.of(context).alphaAZ),
               dense: true,
               trailing: _trailing(SortType.name_asc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -48,7 +48,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
             value: SortType.name_desc,
 
             child: ListTile(
-              title: Text(S.current.alphaZA),
+              title: Text(S.of(context).alphaZA),
               dense: true,
               trailing: _trailing(SortType.name_desc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -74,13 +74,13 @@ class _SortPopupButtonState extends State<SortPopupButton> {
       sortValue = value;
       switch(value){
         case SortType.default_sort:
-          currentSortText = S.current.byPopularity;
+          currentSortText = S.of(context).byPopularity;
           break;
         case SortType.name_asc:
-          currentSortText = S.current.alphaAZ;
+          currentSortText = S.of(context).alphaAZ;
           break;
         case SortType.name_desc:
-          currentSortText = S.current.alphaZA;
+          currentSortText = S.of(context).alphaZA;
           break;
       }
     });

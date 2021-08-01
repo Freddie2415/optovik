@@ -16,7 +16,7 @@ class FeedBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.feedback),
+        title: Text(S.of(context).feedback),
       ),
       body: BlocBuilder<FeedbackBloc, FeedbackState>(
         builder: _builder,
@@ -35,7 +35,7 @@ class FeedBack extends StatelessWidget {
               left: 15,
               right: 15,
             ),
-            child: Text(S.current.feedbackText),
+            child: Text(S.of(context).feedbackText),
           ),
           ListTile(
             leading: Icon(
@@ -59,7 +59,7 @@ class FeedBack extends StatelessWidget {
               color: Colors.lightGreen,
             ),
             title: Text(
-              S.current.letterToTechSupport,
+              S.of(context).letterToTechSupport,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.lightGreen,

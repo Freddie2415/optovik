@@ -53,19 +53,19 @@ class HomePage extends StatelessWidget {
                   banners: state.banners,
                 ),
                 ProductSectionWidget(
-                  title: S.current.specialOffers,
+                  title: S.of(context).specialOffers,
                   products: state.hotDeals,
                 ),
                 CategorySectionWidget(
-                  title: S.current.allCollections,
+                  title: S.of(context).allCollections,
                   categories: state.categories,
                 ),
                 ProductSectionWidget(
-                  title: S.current.deliciousPrice,
+                  title: S.of(context).deliciousPrice,
                   products: state.hotProducts,
                 ),
                 ProductSectionWidget(
-                  title: S.current.newProducts,
+                  title: S.of(context).newProducts,
                   products: state.lastProducts,
                 ),
               ],

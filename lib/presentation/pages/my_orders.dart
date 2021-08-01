@@ -15,7 +15,7 @@ class MyOrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(S.current.myOrders)),
+      appBar: AppBar(title: Text(S.of(context).myOrders)),
       body: BlocBuilder<OrderListCubit, OrderListState>(
         cubit: BlocProvider.of<OrderListCubit>(context)..load(),
         builder: (context, state) {
@@ -29,8 +29,8 @@ class MyOrdersPage extends StatelessWidget {
           if (state is OrderListSuccess) {
             if (state.orderList.isEmpty) {
               return MessageWidget(
-                message: S.current.emptyOrders,
-                title: S.current.orders,
+                message: S.of(context).emptyOrders,
+                title: S.of(context).orders,
               );
             }
 

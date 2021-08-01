@@ -19,7 +19,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.registration),
+        title: Text(S.of(context).registration),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -42,7 +42,7 @@ class Register extends StatelessWidget {
         onPressed: _registerEvent,
         color: Colors.lightGreen,
         child: Text(
-          S.current.register.toUpperCase(),
+          S.of(context).register.toUpperCase(),
           style: TextStyle(
             fontSize: 16.0,
             color: Colors.white,
@@ -65,23 +65,23 @@ class Register extends StatelessWidget {
             TextFormField(
               controller: _firstNameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: S.current.name),
+              decoration: InputDecoration(labelText: S.of(context).name),
             ),
             TextFormField(
               controller: _lastNameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: S.current.lastName),
+              decoration: InputDecoration(labelText: S.of(context).lastName),
             ),
             TextFormField(
               controller: _usernameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: S.current.phoneNumber),
+              decoration: InputDecoration(labelText: S.of(context).phoneNumber),
             ),
             TextFormField(
               controller: _passwordController,
               obscureText: true,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: S.current.password),
+              decoration: InputDecoration(labelText: S.of(context).password),
             ),
             SizedBox(
               height: 20.0,

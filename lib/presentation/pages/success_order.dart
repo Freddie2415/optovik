@@ -26,7 +26,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                S.current.thankYouForOrdering,
+                S.of(context).thankYouForOrdering,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.lightGreen,
@@ -37,7 +37,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                S.current.wait,
+                S.of(context).wait,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
                 textAlign: TextAlign.center,
               ),
@@ -45,7 +45,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "${S.current.orderId} ${id.toString()}",
+                "${S.of(context).orderId} ${id.toString()}",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
               SizedBox(
@@ -61,7 +61,7 @@ class SuccessOrder extends StatelessWidget {
                   Navigator.pushReplacement(context, HomePage.route());
                 },
                 label: Text(
-                  S.current.goHome,
+                  S.of(context).goHome,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

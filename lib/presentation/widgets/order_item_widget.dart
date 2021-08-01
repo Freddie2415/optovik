@@ -47,7 +47,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  S.current.nOrder,
+                  S.of(context).nOrder,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -65,7 +65,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  S.current.createdAt,
+                  S.of(context).createdAt,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -83,7 +83,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  S.current.client,
+                  S.of(context).client,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -101,7 +101,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  S.current.client,
+                  S.of(context).client,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -124,7 +124,7 @@ class OrderItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Text(
-                    S.current.deliveryAddress,
+                    S.of(context).deliveryAddress,
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.grey),
                   ),

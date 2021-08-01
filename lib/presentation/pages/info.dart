@@ -6,28 +6,28 @@ class Info extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.info),
+        title: Text(S.of(context).info),
       ),
       body: Column(
         children: [
           Image.asset("assets/images/info-banner.jpg"),
           ListTile(
             title: Text(
-              S.current.offer,
+              S.of(context).offer,
               style: TextStyle(fontSize: 14),
             ),
             onTap: () {},
           ),
           ListTile(
             title: Text(
-              S.current.delivery,
+              S.of(context).delivery,
               style: TextStyle(fontSize: 14),
             ),
             onTap: () {},
           ),
           ListTile(
             title: Text(
-              S.current.privacyPolicy,
+              S.of(context).privacyPolicy,
               style: TextStyle(fontSize: 14),
             ),
             onTap: () {},

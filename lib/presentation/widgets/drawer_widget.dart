@@ -65,7 +65,7 @@ class DrawerWidget extends StatelessWidget {
                   Icons.account_circle_sharp,
                   color: Colors.lightGreen,
                 ),
-                title: Text(S.current.loginRegistration),
+                title: Text(S.of(context).loginRegistration),
                 onTap: () => _loginRegister(context),
               );
             },
@@ -75,7 +75,7 @@ class DrawerWidget extends StatelessWidget {
               Icons.widgets,
               color: Colors.lightGreen,
             ),
-            title: Text(S.current.catalogAndSearch),
+            title: Text(S.of(context).catalogAndSearch),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, CategoriesPage.route());
@@ -90,7 +90,7 @@ class DrawerWidget extends StatelessWidget {
                     Icons.shopping_cart,
                     color: Colors.lightGreen,
                   ),
-                  title: Text(S.current.myOrders),
+                  title: Text(S.of(context).myOrders),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -113,7 +113,7 @@ class DrawerWidget extends StatelessWidget {
               Icons.info,
               color: Colors.lightGreen,
             ),
-            title: Text(S.current.info),
+            title: Text(S.of(context).info),
             onTap: () {
               Navigator.push(
                 context,
@@ -129,7 +129,7 @@ class DrawerWidget extends StatelessWidget {
               Icons.phone,
               color: Colors.lightGreen,
             ),
-            title: Text(S.current.feedback),
+            title: Text(S.of(context).feedback),
             onTap: () {
               Navigator.push(
                 context,
@@ -145,7 +145,7 @@ class DrawerWidget extends StatelessWidget {
               Icons.settings,
               color: Colors.lightGreen,
             ),
-            title: Text(S.current.settings),
+            title: Text(S.of(context).settings),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
@@ -165,7 +165,7 @@ class DrawerWidget extends StatelessWidget {
                     Icons.exit_to_app,
                     color: Colors.lightGreen,
                   ),
-                  title: Text(S.current.logout),
+                  title: Text(S.of(context).logout),
                   onTap: () {
                     AuthModule.authBloc().add(LoggedOut());
                     _loginRegister(context);

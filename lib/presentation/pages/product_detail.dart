@@ -26,7 +26,7 @@ class ProductDetailPage extends StatelessWidget {
         .forEach((imageUrl) => precacheImage(NetworkImage(imageUrl), context));
 
     return Scaffold(
-      appBar: AppBar(title: Text(S.current.aboutProduct)),
+      appBar: AppBar(title: Text(S.of(context).aboutProduct)),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -107,7 +107,7 @@ class ProductDetailPage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is OtherProductsFetched) {
                     return ProductSectionWidget(
-                      title: S.current.nextToShelf,
+                      title: S.of(context).nextToShelf,
                       products: state.products,
                       categoryId: categoryId,
                     );
@@ -142,7 +142,7 @@ class CounterButton extends StatelessWidget {
                   ),
                   onPressed: _counterCubit.increment,
                   child: Text(
-                    S.current.addToCard,
+                    S.of(context).addToCard,
                     style: TextStyle(color: Colors.white),
                   ),
                 )
@@ -248,7 +248,7 @@ class _DescriptionTextState extends State<DescriptionText> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            S.current.description,
+            S.of(context).description,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -275,7 +275,7 @@ class _DescriptionTextState extends State<DescriptionText> {
                     });
                   },
                   child: Text(
-                    " ${S.current.more}",
+                    " ${S.of(context).more}",
                     style: TextStyle(color: Colors.green),
                   ),
                 )
@@ -327,7 +327,7 @@ class _InfoSectionState extends State<InfoSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          S.current.info,
+          S.of(context).info,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -344,7 +344,7 @@ class _InfoSectionState extends State<InfoSection> {
                   });
                 },
                 child: Text(
-                  " ${S.current.more}",
+                  " ${S.of(context).more}",
                   style: TextStyle(color: Colors.green),
                 ),
               )

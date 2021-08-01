@@ -55,7 +55,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   // Return "Verification Code" label
   get _getVerificationCodeLabel {
     return new Text(
-      S.current.codeConfirmation,
+      S.of(context).codeConfirmation,
       textAlign: TextAlign.center,
       style: new TextStyle(
           fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
@@ -65,7 +65,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   // Return "Email" label
   get _getEmailLabel {
     return new Text(
-      S.current.smsSent(widget.phone),
+      S.of(context).smsSent(widget.phone),
       textAlign: TextAlign.center,
       style: new TextStyle(
           fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600),

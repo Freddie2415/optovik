@@ -20,7 +20,7 @@ class FeedbackFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.letterToTechSupport),
+        title: Text(S.of(context).letterToTechSupport),
       ),
       body: BlocListener(
         cubit: _feedbackBloc,
@@ -34,7 +34,7 @@ class FeedbackFormPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        S.current.messageSent.toUpperCase(),
+                        S.of(context).messageSent.toUpperCase(),
                         style: TextStyle(color: Colors.white),
                       ),
                       Icon(Icons.check, color: Colors.white)
@@ -69,7 +69,7 @@ class FeedbackFormPage extends StatelessWidget {
               children: [
                 TextFormField(
                   controller: _fullNameController,
-                  decoration: InputDecoration(labelText: S.current.requiredName),
+                  decoration: InputDecoration(labelText: S.of(context).requiredName),
                   validator: _validateText,
                 ),
                 TextFormField(
@@ -79,13 +79,13 @@ class FeedbackFormPage extends StatelessWidget {
                 ),
                 TextFormField(
                   controller: _themeController,
-                  decoration: InputDecoration(labelText: S.current.requiredSubject),
+                  decoration: InputDecoration(labelText: S.of(context).requiredSubject),
                   validator: _validateText,
                 ),
                 TextFormField(
                   controller: _messageController,
                   decoration: InputDecoration(
-                    labelText: S.current.requiredMessage,
+                    labelText: S.of(context).requiredMessage,
                   ),
                   validator: _validateText,
                   maxLines: 10,
@@ -100,7 +100,7 @@ class FeedbackFormPage extends StatelessWidget {
                       height: 45,
                       minWidth: MediaQuery.of(context).size.width,
                       child: Text(
-                        S.current.submit.toUpperCase(),
+                        S.of(context).submit.toUpperCase(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),

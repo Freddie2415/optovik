@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(S.current.authorization)),
+      appBar: AppBar(title: Text(S.of(context).authorization)),
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(15),
@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
           color: Colors.lightGreen,
           height: 50,
           child: Text(
-            S.current.skip,
+            S.of(context).skip,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -120,9 +120,9 @@ class _UsernameInput extends StatelessWidget {
           onChanged: (username) =>
               context.read<LoginBloc>().add(LoginUsernameChanged(username)),
           decoration: InputDecoration(
-            labelText: S.current.phone,
+            labelText: S.of(context).phone,
             errorText:
-                state.username.invalid ? S.current.fieldRequired : null,
+                state.username.invalid ? S.of(context).fieldRequired : null,
           ),
         );
       },
@@ -142,9 +142,9 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginBloc>().add(LoginPasswordChanged(password)),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: S.current.password,
+            labelText: S.of(context).password,
             errorText:
-                state.password.invalid ? S.current.fieldRequired : null,
+                state.password.invalid ? S.of(context).fieldRequired : null,
           ),
         );
       },
@@ -170,7 +170,7 @@ class _LoginButton extends StatelessWidget {
                     context.read<LoginBloc>().add(const LoginSubmitted());
                   },
                   child: Text(
-                    S.current.login.toUpperCase(),
+                    S.of(context).login.toUpperCase(),
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
@@ -188,7 +188,7 @@ class _RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _text = Text(
-      S.current.register.toUpperCase(),
+      S.of(context).register.toUpperCase(),
       style: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w500,

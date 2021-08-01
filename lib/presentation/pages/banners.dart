@@ -88,7 +88,7 @@ class _BannersPageState extends State<BannersPage> {
                     ),
                     onPressed: _onSkip,
                     child: Text(
-                      S.current.skip,
+                      S.of(context).skip,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

@@ -23,7 +23,7 @@ class OrderFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.makingAnOrder),
+        title: Text(S.of(context).makingAnOrder),
       ),
       body: BlocListener<OrderCubit, OrderState>(
         cubit: orderCubit,
@@ -49,16 +49,16 @@ class OrderFormPage extends StatelessWidget {
               children: [
                 ListTile(
                   leading: Icon(Icons.location_on_outlined),
-                  title: Text(S.current.deliveryAddress),
+                  title: Text(S.of(context).deliveryAddress),
                   subtitle: ListItemSubTitle(
                     text: state.address,
-                    errorText: S.current.enterDeliveryAddress,
+                    errorText: S.of(context).enterDeliveryAddress,
                   ),
                   onTap: () async {
                     final address = await showDialog(
                       context: context,
                       builder: (context) =>
-                          InputDialog(hintText: S.current.enterDeliveryAddress),
+                          InputDialog(hintText: S.of(context).enterDeliveryAddress),
                     );
                     orderFormCubit.changeAddress(address);
                   },
@@ -66,10 +66,10 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.contact_phone_outlined),
-                  title: Text(S.current.yourContacts),
+                  title: Text(S.of(context).yourContacts),
                   subtitle: ListItemSubTitle(
                     text: state.contacts,
-                    errorText: S.current.enterYourContacts,
+                    errorText: S.of(context).enterYourContacts,
                   ),
                   onTap: () async {
                     final contacts = await showDialog(
@@ -82,7 +82,7 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.local_shipping_outlined),
-                  title: Text(S.current.deliveryMethod),
+                  title: Text(S.of(context).deliveryMethod),
                   subtitle: Text(
                     state.method,
                     style: TextStyle(
@@ -95,7 +95,7 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.payment),
-                  title: Text(S.current.paymentMethod),
+                  title: Text(S.of(context).paymentMethod),
                   subtitle: Text(
                     state.paymentText,
                     style: TextStyle(
@@ -116,10 +116,10 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.comment_outlined),
-                  title: Text(S.current.commentOnTheOrder),
+                  title: Text(S.of(context).commentOnTheOrder),
                   subtitle: Text(
                     state.comment.isEmpty
-                        ? S.current.canLeaveComment
+                        ? S.of(context).canLeaveComment
                         : state.comment,
                     style: TextStyle(
                       color: state.comment.isEmpty ? Colors.grey : Colors.green,
@@ -132,7 +132,7 @@ class OrderFormPage extends StatelessWidget {
                     final comment = await showDialog(
                       context: context,
                       builder: (context) =>
-                          InputDialog(hintText: S.current.commentOnTheOrder),
+                          InputDialog(hintText: S.of(context).commentOnTheOrder),
                     );
                     orderFormCubit.changeComment(comment);
                   },
@@ -164,7 +164,7 @@ class OrderFormPage extends StatelessWidget {
                         height: 30,
                       )
                     : Text(
-                        S.current.order,
+                        S.of(context).order,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -231,25 +231,25 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
       child: Wrap(
         children: <Widget>[
           RadioListTile<Payments>(
-            title: Text(S.current.cash),
-            subtitle: Text(S.current.paymentInCash),
+            title: Text(S.of(context).cash),
+            subtitle: Text(S.of(context).paymentInCash),
             value: Payments.CASH,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
           ),
           RadioListTile<Payments>(
-            title: Text(S.current.paymentOnline),
-            subtitle: Text(S.current.paymentViaPaymeClick),
+            title: Text(S.of(context).paymentOnline),
+            subtitle: Text(S.of(context).paymentViaPaymeClick),
             value: Payments.ONLINE,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
           ),
           RadioListTile<Payments>(
             title: Text(
-              S.current.byCard,
+              S.of(context).byCard,
               style: TextStyle(color: Colors.black),
             ),
-            subtitle: Text(S.current.paymentViaCard),
+            subtitle: Text(S.of(context).paymentViaCard),
             value: Payments.CARD,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
@@ -320,7 +320,7 @@ class InputDialog extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       child: Text(
-                        S.current.save,
+                        S.of(context).save,
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
@@ -386,7 +386,7 @@ class ContactDialog extends StatelessWidget {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         isDense: true,
-                        hintText: S.current.fullName,
+                        hintText: S.of(context).fullName,
                       ),
                     ),
                   ),
@@ -399,7 +399,7 @@ class ContactDialog extends StatelessWidget {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         isDense: true,
-                        hintText: S.current.phoneNumber,
+                        hintText: S.of(context).phoneNumber,
                       ),
                     ),
                   ),
@@ -407,7 +407,7 @@ class ContactDialog extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       child: Text(
-                        S.current.save,
+                        S.of(context).save,
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {

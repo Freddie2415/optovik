@@ -23,19 +23,19 @@ class Cart extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(S.current.cart),
+          title: Text(S.of(context).cart),
           bottom: TabBar(
             tabs: [
               BlocBuilder<CartBloc, CartState>(
                 cubit: CartModule.cartBloc(),
                 builder: (context, state) => Tab(
-                  text: S.current.currentOrder + " (${state.orders.length})",
+                  text: S.of(context).currentOrder + " (${state.orders.length})",
                 ),
               ),
               BlocBuilder<CartBloc, CartState>(
                 cubit: CartModule.cartBloc(),
                 builder: (context, state) => Tab(
-                  text: S.current.postponed + " (${state.postponed.length})",
+                  text: S.of(context).postponed + " (${state.postponed.length})",
                 ),
               ),
             ],
@@ -54,7 +54,7 @@ class Cart extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 15, left: 10, bottom: 5),
                           child: Text(
-                            S.current.productsInCart,
+                            S.of(context).productsInCart,
                             style: TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class Cart extends StatelessWidget {
                             )
                             .toList(),
                         ProductSectionWidget(
-                          title: S.current.recommendedProducts,
+                          title: S.of(context).recommendedProducts,
                           products: [],
                         ),
                         TextButton(
@@ -87,7 +87,7 @@ class Cart extends StatelessWidget {
                               Icon(Icons.refresh),
                               SizedBox(width: 10),
                               Text(
-                                S.current.moveOrderToDeferred.toUpperCase(),
+                                S.of(context).moveOrderToDeferred.toUpperCase(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -105,7 +105,7 @@ class Cart extends StatelessWidget {
                                 Icon(Icons.clear),
                                 SizedBox(width: 10),
                                 Text(
-                                  S.current.cleanProductCart.toUpperCase(),
+                                  S.of(context).cleanProductCart.toUpperCase(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
@@ -117,8 +117,8 @@ class Cart extends StatelessWidget {
                     ),
                   )
                 : MessageWidget(
-                    title: S.current.emptyCart,
-                    message: S.current.emptyCartText,
+                    title: S.of(context).emptyCart,
+                    message: S.of(context).emptyCartText,
                   ),
             state.postponed.isNotEmpty
                 ? SingleChildScrollView(
@@ -145,7 +145,7 @@ class Cart extends StatelessWidget {
                               Icon(Icons.shopping_cart),
                               SizedBox(width: 10),
                               Text(
-                                S.current.transferProductsToOrder.toUpperCase(),
+                                S.of(context).transferProductsToOrder.toUpperCase(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -163,7 +163,7 @@ class Cart extends StatelessWidget {
                               Icon(Icons.clear),
                               SizedBox(width: 10),
                               Text(
-                                S.current.deleteList.toUpperCase(),
+                                S.of(context).deleteList.toUpperCase(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -176,8 +176,8 @@ class Cart extends StatelessWidget {
                     ),
                   )
                 : MessageWidget(
-                    title: S.current.noDeferredItems,
-                    message: S.current.noDeferredItemsText,
+                    title: S.of(context).noDeferredItems,
+                    message: S.of(context).noDeferredItemsText,
                   ),
           ]),
         ),
@@ -198,7 +198,7 @@ class Cart extends StatelessWidget {
                     }
                   : null,
               child: Text(
-                S.current.next.toUpperCase(),
+                S.of(context).next.toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -237,7 +237,7 @@ class Cart extends StatelessWidget {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(S.current.pleaseLog)),
+        SnackBar(content: Text(S.of(context).pleaseLog)),
       );
     }
   }

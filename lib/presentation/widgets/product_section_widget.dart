@@ -31,7 +31,7 @@ class ProductSectionWidget extends StatelessWidget {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             trailing: Text(
-              S.current.more.toUpperCase(),
+              S.of(context).more.toUpperCase(),
               style: TextStyle(
                 color: Colors.lightGreen,
                 fontWeight: FontWeight.bold,

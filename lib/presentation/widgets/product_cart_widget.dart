@@ -68,7 +68,7 @@ class ProductCartWidget extends StatelessWidget {
                               width: 15,
                             ),
                             Text(
-                              "$count ${S.current.piece}",
+                              "$count ${S.of(context).piece}",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 12,
@@ -85,7 +85,7 @@ class ProductCartWidget extends StatelessWidget {
                   ),
                 ),
                 PopupMenuButton(
-                  tooltip: S.current.actions,
+                  tooltip: S.of(context).actions,
                   onSelected: (value) => _onSelected(value, context),
                   itemBuilder: (context) {
                     final List<PopupMenuEntry<CartEvent>>
@@ -94,7 +94,7 @@ class ProductCartWidget extends StatelessWidget {
                         value: PostponeProduct(product),
                         child: ListTile(
                           title: Text(
-                            S.current.postpone,
+                            S.of(context).postpone,
                             style: TextStyle(fontSize: 13),
                           ),
                           dense: true,
@@ -106,7 +106,7 @@ class ProductCartWidget extends StatelessWidget {
                         value: RemoveFromCurrentOrder(product),
                         child: ListTile(
                           title: Text(
-                            S.current.delete,
+                            S.of(context).delete,
                             style: TextStyle(fontSize: 13),
                           ),
                           dense: true,
@@ -118,7 +118,7 @@ class ProductCartWidget extends StatelessWidget {
                         value: ChangeProductCount(product),
                         child: ListTile(
                           title: Text(
-                            S.current.edit,
+                            S.of(context).edit,
                             style: TextStyle(fontSize: 13),
                           ),
                           dense: true,
@@ -133,7 +133,7 @@ class ProductCartWidget extends StatelessWidget {
                         value: FromPostponeToCart(product),
                         child: ListTile(
                           title: Text(
-                            S.current.addToCard,
+                            S.of(context).addToCard,
                             style: TextStyle(fontSize: 13),
                           ),
                           dense: true,
@@ -147,7 +147,7 @@ class ProductCartWidget extends StatelessWidget {
                         value: RemoveFromPostponed(product),
                         child: ListTile(
                           title: Text(
-                            S.current.delete,
+                            S.of(context).delete,
                             style: TextStyle(fontSize: 13),
                           ),
                           dense: true,
@@ -190,7 +190,7 @@ class ProductCartWidget extends StatelessWidget {
 
     Widget dialog = CupertinoAlertDialog(
       title: Text(
-        S.current.enterQuantity,
+        S.of(context).enterQuantity,
         style: TextStyle(
             fontSize: 16,
             // color: kSecondaryColor,
@@ -201,7 +201,7 @@ class ProductCartWidget extends StatelessWidget {
         elevation: 0.0,
         child: TextField(
           decoration: InputDecoration(
-            prefixText: S.current.qty,
+            prefixText: S.of(context).qty,
             prefixStyle: TextStyle(fontWeight: FontWeight.bold),
           ),
           maxLines: 1,
@@ -214,7 +214,7 @@ class ProductCartWidget extends StatelessWidget {
       actions: [
         CupertinoDialogAction(
           onPressed: () => Navigator.pop(context),
-          child: Text(S.current.cancel),
+          child: Text(S.of(context).cancel),
           // textStyle: TextStyle(color: kSecondaryColor),
         ),
         CupertinoDialogAction(
@@ -233,10 +233,10 @@ class ProductCartWidget extends StatelessWidget {
             fontSize: 16,
             // color: kSecondaryColor,
             fontWeight: FontWeight.bold),
-        title: Text(S.current.enterQuantity),
+        title: Text(S.of(context).enterQuantity),
         content: Container(
           child: TextField(
-            decoration: InputDecoration(prefixText: S.current.qty),
+            decoration: InputDecoration(prefixText: S.of(context).qty),
             maxLines: 1,
             maxLength: 7,
             autofocus: true,
@@ -246,7 +246,7 @@ class ProductCartWidget extends StatelessWidget {
         ),
         actions: [
           FlatButton(
-              onPressed: () => Navigator.pop(context), child: Text(S.current.cancel)),
+              onPressed: () => Navigator.pop(context), child: Text(S.of(context).cancel)),
           FlatButton(
             onPressed: () {
               int count = int.tryParse(countController.text) ?? this.count;

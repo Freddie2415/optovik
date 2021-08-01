@@ -51,7 +51,7 @@ class BottomAppBarWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        S.current.cart.toUpperCase(),
+                        S.of(context).cart.toUpperCase(),
                         style: TextStyle(
                           color: Colors.lightGreen,
                           fontSize: 16,
