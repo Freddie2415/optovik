@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:optovik/data/api/service/banner_service.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/banner/banner_cubit.dart';
@@ -35,21 +34,6 @@ class Application extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.lightGreen,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
-              headline1: GoogleFonts.comfortaa(textStyle: textTheme.headline1),
-              headline2: GoogleFonts.comfortaa(textStyle: textTheme.headline2),
-              headline3: GoogleFonts.comfortaa(textStyle: textTheme.headline3),
-              headline4: GoogleFonts.comfortaa(textStyle: textTheme.headline4),
-              headline5: GoogleFonts.comfortaa(textStyle: textTheme.headline5),
-              headline6: GoogleFonts.comfortaa(textStyle: textTheme.headline6),
-              subtitle1: GoogleFonts.comfortaa(textStyle: textTheme.subtitle1),
-              subtitle2: GoogleFonts.comfortaa(textStyle: textTheme.subtitle2),
-              bodyText1: GoogleFonts.comfortaa(textStyle: textTheme.bodyText1),
-              bodyText2: GoogleFonts.comfortaa(textStyle: textTheme.bodyText2),
-              button: GoogleFonts.comfortaa(textStyle: textTheme.button),
-              caption: GoogleFonts.comfortaa(textStyle: textTheme.caption),
-              overline: GoogleFonts.comfortaa(textStyle: textTheme.overline),
-            ),
             primaryTextTheme:
                 TextTheme(headline6: TextStyle(color: Colors.white)),
             primaryIconTheme: IconThemeData(
