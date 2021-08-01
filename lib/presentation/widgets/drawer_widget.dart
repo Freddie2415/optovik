@@ -10,6 +10,7 @@ import 'package:optovik/presentation/pages/feedback.dart';
 import 'package:optovik/presentation/pages/info.dart';
 import 'package:optovik/presentation/pages/login.dart';
 import 'package:optovik/presentation/pages/my_orders.dart';
+import 'package:optovik/presentation/pages/settings.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key key}) : super(key: key);
@@ -134,6 +135,23 @@ class DrawerWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => FeedBack(),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.settings,
+              color: Colors.lightGreen,
+            ),
+            title: Text(S.current.settings),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(),
                   fullscreenDialog: true,
                 ),
               );

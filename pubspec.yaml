@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^5.7.10
   formz: ^0.3.2
   intl: ^0.17.0
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:

@@ -105,5 +105,7 @@
   "sort": "Sort",
   "byPopularity": "Popular",
   "alphaAZ": "Alphabetically (A-Z)",
-  "alphaZA": "Alphabetically (Z-A)"
+  "alphaZA": "Alphabetically (Z-A)",
+  "settings": "Settings",
+  "language": "Language"
 }

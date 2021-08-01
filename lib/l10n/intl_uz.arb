@@ -102,5 +102,7 @@
   "sort": "Saralash",
   "byPopularity": "Mashhur",
   "alphaAZ": "Alifbo tartibida (A-Z)",
-  "alphaZA": "Alifbo tartibida (Z-A)"
+  "alphaZA": "Alifbo tartibida (Z-A)",
+  "settings": "Sozlamalar",
+  "language": "Til"
 }
