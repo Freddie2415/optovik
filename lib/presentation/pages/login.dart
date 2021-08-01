@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/login/login_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/register_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
@@ -25,7 +26,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Авторизация')),
+      appBar: AppBar(title: Text(S.current.authorization)),
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(15),
@@ -44,7 +45,7 @@ class LoginPage extends StatelessWidget {
           color: Colors.lightGreen,
           height: 50,
           child: Text(
-            "ПРОПУСТИТЬ",
+            S.current.skip,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -119,9 +120,9 @@ class _UsernameInput extends StatelessWidget {
           onChanged: (username) =>
               context.read<LoginBloc>().add(LoginUsernameChanged(username)),
           decoration: InputDecoration(
-            labelText: 'Телефон',
+            labelText: S.current.phone,
             errorText:
-                state.username.invalid ? 'Поле не должно быть пустым' : null,
+                state.username.invalid ? S.current.fieldRequired : null,
           ),
         );
       },
@@ -141,9 +142,9 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginBloc>().add(LoginPasswordChanged(password)),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'Пароль',
+            labelText: S.current.password,
             errorText:
-                state.password.invalid ? 'Поле не должно быть пустым' : null,
+                state.password.invalid ? S.current.fieldRequired : null,
           ),
         );
       },
@@ -169,7 +170,7 @@ class _LoginButton extends StatelessWidget {
                     context.read<LoginBloc>().add(const LoginSubmitted());
                   },
                   child: Text(
-                    "Войти".toUpperCase(),
+                    S.current.login.toUpperCase(),
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
@@ -187,7 +188,7 @@ class _RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _text = Text(
-      "Зарегистрироваться".toUpperCase(),
+      S.current.register.toUpperCase(),
       style: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w500,

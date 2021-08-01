@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/feedback/feedback_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/feedback_module.dart';
 
 class FeedbackFormPage extends StatelessWidget {
@@ -19,7 +20,7 @@ class FeedbackFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Письмо в тех. поддержку'),
+        title: Text(S.current.letterToTechSupport),
       ),
       body: BlocListener(
         cubit: _feedbackBloc,
@@ -33,7 +34,7 @@ class FeedbackFormPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Ваше сообщение отправлено".toUpperCase(),
+                        S.current.messageSent.toUpperCase(),
                         style: TextStyle(color: Colors.white),
                       ),
                       Icon(Icons.check, color: Colors.white)
@@ -68,7 +69,7 @@ class FeedbackFormPage extends StatelessWidget {
               children: [
                 TextFormField(
                   controller: _fullNameController,
-                  decoration: InputDecoration(labelText: "Имя *"),
+                  decoration: InputDecoration(labelText: S.current.requiredName),
                   validator: _validateText,
                 ),
                 TextFormField(
@@ -78,13 +79,13 @@ class FeedbackFormPage extends StatelessWidget {
                 ),
                 TextFormField(
                   controller: _themeController,
-                  decoration: InputDecoration(labelText: "Тема сообщения *"),
+                  decoration: InputDecoration(labelText: S.current.requiredSubject),
                   validator: _validateText,
                 ),
                 TextFormField(
                   controller: _messageController,
                   decoration: InputDecoration(
-                    labelText: "Текст cообщения *",
+                    labelText: S.current.requiredMessage,
                   ),
                   validator: _validateText,
                   maxLines: 10,
@@ -99,7 +100,7 @@ class FeedbackFormPage extends StatelessWidget {
                       height: 45,
                       minWidth: MediaQuery.of(context).size.width,
                       child: Text(
-                        "ОТПРАВИТЬ",
+                        S.current.submit.toUpperCase(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -121,7 +122,7 @@ class FeedbackFormPage extends StatelessWidget {
     if (value.trim().isNotEmpty) {
       return null;
     }
-    return "Заполните поле";
+    return S.current.fieldRequired;
   }
 
   String _emailValidator(String value) {
@@ -131,7 +132,7 @@ class FeedbackFormPage extends StatelessWidget {
     if (emailValid) {
       return null;
     }
-    return "Не валидный Email";
+    return S.current.emailNotValid;
   }
 
   void _sendMessage() {

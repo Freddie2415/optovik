@@ -4,14 +4,14 @@ import 'package:meta/meta.dart';
 import 'package:optovik/domain/bloc/products/products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/domain/model/sort_type.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
-import 'package:optovik/presentation/pages/cart.dart';
-import 'package:optovik/presentation/pages/filter.dart';
 import 'package:optovik/presentation/pages/search.dart';
 import 'package:optovik/presentation/widgets/bottom_app_bar_widget.dart';
 import 'package:optovik/presentation/widgets/error_widget.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
+import 'package:optovik/presentation/widgets/message_widget.dart';
 import 'package:optovik/presentation/widgets/product_widget.dart';
 import 'package:optovik/presentation/widgets/sort_button_widget.dart';
 
@@ -160,9 +160,11 @@ class _ProductsPageState extends State<ProductsPage> {
     }
     if (state is ProductsSuccess) {
       if (state.products.isEmpty) {
-        return MessageWidget(message: widget.isSearchPage
-            ? "Товар не найден"
-            : "В этой категории нет товараров",);
+        return MessageWidget(
+          message: widget.isSearchPage
+              ? S.current.productNotFound
+              : S.current.categoryEmpty,
+        );
       }
       return _productsBody(state.products, state.hasReachedMax);
     }

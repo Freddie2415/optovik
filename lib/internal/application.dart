@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:optovik/data/api/service/banner_service.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/banner/banner_cubit.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/banners.dart';
 import 'package:optovik/presentation/pages/home.dart';
@@ -24,7 +26,7 @@ class Application extends StatelessWidget {
     final BannerCubit bannerCubit = BannerCubit(bannerService: BannerService());
 
     return MaterialApp(
-      title: 'Optovik.uz',
+      title: 'Optovik',
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -49,8 +51,12 @@ class Application extends StatelessWidget {
         ),
       ),
       localizationsDelegates: [
-        CustomLocalizationDelegate(),
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
+      supportedLocales: S.delegate.supportedLocales,
       home: BlocListener<BannerCubit, BannerState>(
         cubit: bannerCubit..loadBanners(),
         listener: (context, state) {
@@ -71,47 +77,4 @@ class Application extends StatelessWidget {
       ),
     );
   }
-}
-
-class DummyDelegate extends SearchDelegate<String> {
-  @override
-  List<Widget> buildActions(BuildContext context) => [];
-
-  @override
-  Widget buildLeading(BuildContext context) =>
-      IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () => Navigator.of(context).pop(),
-      );
-
-  @override
-  Widget buildResults(BuildContext context) => Text('Result');
-
-  @override
-  Widget buildSuggestions(BuildContext context) => Text('Suggestion');
-}
-
-class CustomLocalizationDelegate
-    extends LocalizationsDelegate<MaterialLocalizations> {
-  const CustomLocalizationDelegate();
-
-  @override
-  bool isSupported(Locale locale) => locale.languageCode == 'en';
-
-  @override
-  Future<MaterialLocalizations> load(Locale locale) =>
-      SynchronousFuture<MaterialLocalizations>(const CustomLocalization());
-
-  @override
-  bool shouldReload(CustomLocalizationDelegate old) => false;
-
-  @override
-  String toString() => 'CustomLocalization.delegate(ru_Ru)';
-}
-
-class CustomLocalization extends DefaultMaterialLocalizations {
-  const CustomLocalization();
-
-  @override
-  String get searchFieldLabel => "Поиск товаров";
 }

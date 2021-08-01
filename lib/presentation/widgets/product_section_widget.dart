@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/counter_module.dart';
 import 'package:optovik/presentation/pages/products.dart';
 
@@ -30,7 +31,7 @@ class ProductSectionWidget extends StatelessWidget {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             trailing: Text(
-              "Еще".toUpperCase(),
+              S.current.more.toUpperCase(),
               style: TextStyle(
                 color: Colors.lightGreen,
                 fontWeight: FontWeight.bold,

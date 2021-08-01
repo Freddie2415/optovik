@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:optovik/generated/l10n.dart';
 
 class OrderItem extends StatelessWidget {
   final num id;
@@ -46,7 +47,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Номер заказа:",
+                  S.current.nOrder,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -64,7 +65,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Создано:",
+                  S.current.createdAt,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -82,7 +83,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Клиент:",
+                  S.current.client,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -100,7 +101,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Статус:",
+                  S.current.client,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.grey),
                 ),
@@ -123,7 +124,7 @@ class OrderItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Text(
-                    "Адресс доставки:",
+                    S.current.deliveryAddress,
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.grey),
                   ),

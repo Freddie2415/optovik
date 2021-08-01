@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/feedback/feedback_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/feedback_module.dart';
 import 'package:optovik/presentation/pages/feedback_form.dart';
 import 'package:optovik/presentation/widgets/error_widget.dart';
@@ -15,7 +16,7 @@ class FeedBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Обратная связь"),
+        title: Text(S.current.feedback),
       ),
       body: BlocBuilder<FeedbackBloc, FeedbackState>(
         builder: _builder,
@@ -34,8 +35,7 @@ class FeedBack extends StatelessWidget {
               left: 15,
               right: 15,
             ),
-            child: Text(
-                "Время работы операторов с 9:00 до 21:00. В другое время Вы можете оставить голосовое сообщение."),
+            child: Text(S.current.feedbackText),
           ),
           ListTile(
             leading: Icon(
@@ -59,7 +59,7 @@ class FeedBack extends StatelessWidget {
               color: Colors.lightGreen,
             ),
             title: Text(
-              "Письмо в тех. поддержку",
+              S.current.letterToTechSupport,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.lightGreen,

@@ -4,6 +4,7 @@ import 'package:optovik/data/api/service/order_service.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
 import 'package:optovik/domain/bloc/order_list/order_list_cubit.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/internal/dependencies/home_module.dart';
 import 'package:optovik/presentation/pages/categories.dart';
@@ -83,7 +84,7 @@ class HomePage extends StatelessWidget {
                     Icons.account_circle_sharp,
                     color: Colors.lightGreen,
                   ),
-                  title: Text('Вход / Регистрация'),
+                  title: Text(S.current.loginRegistration),
                   onTap: () => _loginRegister(context),
                 );
               },
@@ -93,7 +94,7 @@ class HomePage extends StatelessWidget {
                 Icons.widgets,
                 color: Colors.lightGreen,
               ),
-              title: Text('Каталог и поиск'),
+              title: Text(S.current.catalogAndSearch),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, CategoriesPage.route());
@@ -108,7 +109,7 @@ class HomePage extends StatelessWidget {
                       Icons.shopping_cart,
                       color: Colors.lightGreen,
                     ),
-                    title: Text('Мои заказы'),
+                    title: Text(S.current.myOrders),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -131,7 +132,7 @@ class HomePage extends StatelessWidget {
                 Icons.info,
                 color: Colors.lightGreen,
               ),
-              title: Text('Информация'),
+              title: Text(S.current.info),
               onTap: () {
                 Navigator.push(
                   context,
@@ -147,7 +148,7 @@ class HomePage extends StatelessWidget {
                 Icons.phone,
                 color: Colors.lightGreen,
               ),
-              title: Text('Обратная связь'),
+              title: Text(S.current.feedback),
               onTap: () {
                 Navigator.push(
                   context,
@@ -166,7 +167,7 @@ class HomePage extends StatelessWidget {
                       Icons.exit_to_app,
                       color: Colors.lightGreen,
                     ),
-                    title: Text('Выход'),
+                    title: Text(S.current.logout),
                     onTap: () {
                       AuthModule.authBloc().add(LoggedOut());
                       _loginRegister(context);
@@ -197,19 +198,19 @@ class HomePage extends StatelessWidget {
                     banners: state.banners,
                   ),
                   ProductSectionWidget(
-                    title: "Спецпредложения",
+                    title: S.current.specialOffers,
                     products: state.hotDeals,
                   ),
                   CategorySectionWidget(
-                    title: "Все коллекции",
+                    title: S.current.allCollections,
                     categories: state.categories,
                   ),
                   ProductSectionWidget(
-                    title: "Вкусная цена",
+                    title: S.current.deliciousPrice,
                     products: state.hotProducts,
                   ),
                   ProductSectionWidget(
-                    title: "Новинка доставки",
+                    title: S.current.newProducts,
                     products: state.lastProducts,
                   ),
                 ],
@@ -256,7 +257,7 @@ class CustomDrawer extends StatelessWidget {
               Icons.account_circle_sharp,
               color: Colors.lightGreen,
             ),
-            title: Text('Вход / Регистрация'),
+            title: Text(S.current.loginRegistration),
             onTap: () {
               Navigator.pushReplacement(
                 context,
@@ -272,7 +273,7 @@ class CustomDrawer extends StatelessWidget {
               Icons.widgets,
               color: Colors.lightGreen,
             ),
-            title: Text('Каталог и поиск'),
+            title: Text(S.current.catalogAndSearch),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, CategoriesPage.route());
@@ -283,7 +284,7 @@ class CustomDrawer extends StatelessWidget {
               Icons.info,
               color: Colors.lightGreen,
             ),
-            title: Text('Информация'),
+            title: Text(S.current.info),
             onTap: () {
               Navigator.push(
                 context,
@@ -299,7 +300,7 @@ class CustomDrawer extends StatelessWidget {
               Icons.phone,
               color: Colors.lightGreen,
             ),
-            title: Text('Обратная связь'),
+            title: Text(S.current.feedback),
             onTap: () {
               Navigator.push(
                 context,
@@ -354,7 +355,7 @@ class CustomDrawer extends StatelessWidget {
             Icons.exit_to_app,
             color: Colors.lightGreen,
           ),
-          title: Text('Выход'),
+          title: Text(S.current.logout),
           onTap: () {
             Navigator.push(
               context,

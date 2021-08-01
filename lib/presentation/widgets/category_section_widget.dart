@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/category.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/categories.dart';
 
 import 'collection_widget.dart';
@@ -30,7 +31,7 @@ class CategorySectionWidget extends StatelessWidget {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             trailing: Text(
-              "Еще".toUpperCase(),
+              S.current.showMore.toUpperCase(),
               style: TextStyle(
                 color: Colors.lightGreen,
                 fontSize: 14,

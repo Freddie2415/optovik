@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/sort_type.dart';
+import 'package:optovik/generated/l10n.dart';
 
 class SortPopupButton extends StatefulWidget {
   final Function(SortType sortType) onSelect;
@@ -15,20 +16,20 @@ class SortPopupButton extends StatefulWidget {
 class _SortPopupButtonState extends State<SortPopupButton> {
   SortType sortValue = SortType.default_sort;
   final Function(SortType sortType) onSelect;
-  String currentSortText = 'По популярности';
+  String currentSortText = S.current.byPopularity;
   _SortPopupButtonState(this.onSelect);
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SortType>(
-      tooltip: "Сортировка",
+      tooltip: S.current.sort,
       onSelected: onSelected,
       itemBuilder: (context) {
         final List<PopupMenuEntry<SortType>> sort = [
           PopupMenuItem<SortType>(
             value: SortType.default_sort,
             child: ListTile(
-              title: Text("По популярности"),
+              title: Text(S.current.byPopularity),
               dense: true,
               trailing: _trailing(SortType.default_sort),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -37,7 +38,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
           PopupMenuItem<SortType>(
             value: SortType.name_asc,
             child: ListTile(
-              title: Text("По алфавиту (A-Я)"),
+              title: Text(S.current.alphaAZ),
               dense: true,
               trailing: _trailing(SortType.name_asc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -47,7 +48,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
             value: SortType.name_desc,
 
             child: ListTile(
-              title: Text("По алфавиту (Я-А)"),
+              title: Text(S.current.alphaZA),
               dense: true,
               trailing: _trailing(SortType.name_desc),
               contentPadding: EdgeInsets.symmetric(vertical: 0.0),
@@ -73,13 +74,13 @@ class _SortPopupButtonState extends State<SortPopupButton> {
       sortValue = value;
       switch(value){
         case SortType.default_sort:
-          currentSortText = 'По популярности';
+          currentSortText = S.current.byPopularity;
           break;
         case SortType.name_asc:
-          currentSortText = 'По алфавиту (A-Я)';
+          currentSortText = S.current.alphaAZ;
           break;
         case SortType.name_desc:
-          currentSortText = 'По алфавиту (Я-А)';
+          currentSortText = S.current.alphaZA;
           break;
       }
     });

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/register/register_bloc.dart';
-import 'package:optovik/presentation/pages/home.dart';
+import 'package:optovik/generated/l10n.dart';
 
 class VerificationScreen extends StatefulWidget {
   final RegisterBloc _registerBloc;
@@ -55,7 +55,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   // Return "Verification Code" label
   get _getVerificationCodeLabel {
     return new Text(
-      "Подтверждение кода",
+      S.current.codeConfirmation,
       textAlign: TextAlign.center,
       style: new TextStyle(
           fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
@@ -65,7 +65,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   // Return "Email" label
   get _getEmailLabel {
     return new Text(
-      "Мы только что отправили вам SMS с кодом подтверждения на номер ${widget.phone}\n Пожалуйста введите код",
+      S.current.smsSent(widget.phone),
       textAlign: TextAlign.center,
       style: new TextStyle(
           fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600),

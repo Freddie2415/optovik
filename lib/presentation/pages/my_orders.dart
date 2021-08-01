@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/order_list/order_list_cubit.dart';
 import 'package:optovik/domain/model/order.dart';
-import 'package:optovik/presentation/pages/cart.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/order.dart';
 import 'package:optovik/presentation/widgets/error_widget.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
+import 'package:optovik/presentation/widgets/message_widget.dart';
 import 'package:optovik/presentation/widgets/order_item_widget.dart';
 
 class MyOrdersPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class MyOrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Мои заказы")),
+      appBar: AppBar(title: Text(S.current.myOrders)),
       body: BlocBuilder<OrderListCubit, OrderListState>(
         cubit: BlocProvider.of<OrderListCubit>(context)..load(),
         builder: (context, state) {
@@ -28,8 +29,8 @@ class MyOrdersPage extends StatelessWidget {
           if (state is OrderListSuccess) {
             if (state.orderList.isEmpty) {
               return MessageWidget(
-                message: "Список заказов пуст.",
-                title: "Заказы",
+                message: S.current.emptyOrders,
+                title: S.current.orders,
               );
             }
 

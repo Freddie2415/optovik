@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
 import 'package:optovik/domain/bloc/order/order_cubit.dart';
 import 'package:optovik/domain/bloc/order_form/order_form_cubit.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/pages/success_order.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
@@ -22,7 +23,7 @@ class OrderFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Оформление заказа"),
+        title: Text(S.current.makingAnOrder),
       ),
       body: BlocListener<OrderCubit, OrderState>(
         cubit: orderCubit,
@@ -48,16 +49,16 @@ class OrderFormPage extends StatelessWidget {
               children: [
                 ListTile(
                   leading: Icon(Icons.location_on_outlined),
-                  title: Text("Адрес доставки"),
+                  title: Text(S.current.deliveryAddress),
                   subtitle: ListItemSubTitle(
                     text: state.address,
-                    errorText: "Введите адрес доставки",
+                    errorText: S.current.enterDeliveryAddress,
                   ),
                   onTap: () async {
                     final address = await showDialog(
                       context: context,
                       builder: (context) =>
-                          InputDialog(hintText: "Введите адрес доставки"),
+                          InputDialog(hintText: S.current.enterDeliveryAddress),
                     );
                     orderFormCubit.changeAddress(address);
                   },
@@ -65,10 +66,10 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.contact_phone_outlined),
-                  title: Text("Ваши контакты"),
+                  title: Text(S.current.yourContacts),
                   subtitle: ListItemSubTitle(
                     text: state.contacts,
-                    errorText: "Введите ваши контакты",
+                    errorText: S.current.enterYourContacts,
                   ),
                   onTap: () async {
                     final contacts = await showDialog(
@@ -81,7 +82,7 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.local_shipping_outlined),
-                  title: Text("Метод доставки"),
+                  title: Text(S.current.deliveryMethod),
                   subtitle: Text(
                     state.method,
                     style: TextStyle(
@@ -94,7 +95,7 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.payment),
-                  title: Text("Способ оплаты"),
+                  title: Text(S.current.paymentMethod),
                   subtitle: Text(
                     state.paymentText,
                     style: TextStyle(
@@ -115,10 +116,10 @@ class OrderFormPage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   leading: Icon(Icons.comment_outlined),
-                  title: Text("Комментарий к заказу"),
+                  title: Text(S.current.commentOnTheOrder),
                   subtitle: Text(
                     state.comment.isEmpty
-                        ? "Можете оставить комментарий к заказу"
+                        ? S.current.canLeaveComment
                         : state.comment,
                     style: TextStyle(
                       color: state.comment.isEmpty ? Colors.grey : Colors.green,
@@ -131,7 +132,7 @@ class OrderFormPage extends StatelessWidget {
                     final comment = await showDialog(
                       context: context,
                       builder: (context) =>
-                          InputDialog(hintText: "Комментарий к заказу"),
+                          InputDialog(hintText: S.current.commentOnTheOrder),
                     );
                     orderFormCubit.changeComment(comment);
                   },
@@ -163,7 +164,7 @@ class OrderFormPage extends StatelessWidget {
                         height: 30,
                       )
                     : Text(
-                        "ЗАКАЗАТЬ",
+                        S.current.order,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -230,25 +231,25 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
       child: Wrap(
         children: <Widget>[
           RadioListTile<Payments>(
-            title: Text("Наличные"),
-            subtitle: Text("Оплата наличными"),
+            title: Text(S.current.cash),
+            subtitle: Text(S.current.paymentInCash),
             value: Payments.CASH,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
           ),
           RadioListTile<Payments>(
-            title: Text("Онлайн оплата"),
-            subtitle: Text("Оплата через payme, click"),
+            title: Text(S.current.paymentOnline),
+            subtitle: Text(S.current.paymentViaPaymeClick),
             value: Payments.ONLINE,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
           ),
           RadioListTile<Payments>(
             title: Text(
-              'Картой',
+              S.current.byCard,
               style: TextStyle(color: Colors.black),
             ),
-            subtitle: Text("Оплата через карту"),
+            subtitle: Text(S.current.paymentViaCard),
             value: Payments.CARD,
             groupValue: _payment,
             onChanged: _onPaymentChanged,
@@ -319,7 +320,7 @@ class InputDialog extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       child: Text(
-                        "Сохранить",
+                        S.current.save,
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
@@ -340,7 +341,7 @@ class InputDialog extends StatelessWidget {
   }
 
   String _validator(String value) {
-    return value.trim().isEmpty ? 'Поле не должно быть пустым' : null;
+    return value.trim().isEmpty ? S.current.fieldRequired : null;
   }
 }
 
@@ -385,7 +386,7 @@ class ContactDialog extends StatelessWidget {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         isDense: true,
-                        hintText: "Фамилия Имя *",
+                        hintText: S.current.fullName,
                       ),
                     ),
                   ),
@@ -398,7 +399,7 @@ class ContactDialog extends StatelessWidget {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         isDense: true,
-                        hintText: "Номер телефона *",
+                        hintText: S.current.phoneNumber,
                       ),
                     ),
                   ),
@@ -406,7 +407,7 @@ class ContactDialog extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       child: Text(
-                        "Сохранить",
+                        S.current.save,
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
@@ -428,7 +429,7 @@ class ContactDialog extends StatelessWidget {
   }
 
   String _validator(String value) {
-    return value.trim().isEmpty ? 'Поле не должно быть пустым' : null;
+    return value.trim().isEmpty ? S.current.fieldRequired : null;
   }
 }
 

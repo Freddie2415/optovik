@@ -32,7 +32,7 @@ class FailureWidget extends StatelessWidget {
               FlatButton(
                 onPressed: this.onBtnPressed,
                 child: Text(
-                  "ПОВТОРИТЕ СНОВА",
+                  "ПОВТОРИТЬ",
                   style: TextStyle(
                     color: Colors.grey,
                   ),

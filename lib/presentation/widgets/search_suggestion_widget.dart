@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/search_sugesstions/search_suggestions_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/products.dart';
 import 'package:optovik/presentation/widgets/my_separator.dart';
 
@@ -30,13 +31,13 @@ class SearchSuggestionsWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                "Недавние запросы",
+                S.current.recentRequests,
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
               TextButton(
                 onPressed: () => _searchSuggestionsBloc.add(CleanSuggestions()),
                 child: Text(
-                  "Очистить",
+                  S.current.clear,
                   style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
               )

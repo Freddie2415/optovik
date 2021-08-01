@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/bloc/auth/auth_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/home.dart';
 import 'package:meta/meta.dart';
@@ -87,7 +88,7 @@ class _BannersPageState extends State<BannersPage> {
                     ),
                     onPressed: _onSkip,
                     child: Text(
-                      "ПРОПУСТИТЬ",
+                      S.current.skip,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

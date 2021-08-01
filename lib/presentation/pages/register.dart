@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/register/register_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/verification.dart';
 
 class Register extends StatelessWidget {
@@ -18,7 +19,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Регистрация"),
+        title: Text(S.current.registration),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -41,7 +42,7 @@ class Register extends StatelessWidget {
         onPressed: _registerEvent,
         color: Colors.lightGreen,
         child: Text(
-          "ЗАРЕГИСТРИРОВАТЬСЯ".toUpperCase(),
+          S.current.register.toUpperCase(),
           style: TextStyle(
             fontSize: 16.0,
             color: Colors.white,
@@ -64,23 +65,23 @@ class Register extends StatelessWidget {
             TextFormField(
               controller: _firstNameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: "Имя *"),
+              decoration: InputDecoration(labelText: S.current.name),
             ),
             TextFormField(
               controller: _lastNameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: "Фамилия *"),
+              decoration: InputDecoration(labelText: S.current.lastName),
             ),
             TextFormField(
               controller: _usernameController,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: "Телефон *"),
+              decoration: InputDecoration(labelText: S.current.phoneNumber),
             ),
             TextFormField(
               controller: _passwordController,
               obscureText: true,
               validator: _inputValidator,
-              decoration: InputDecoration(labelText: "Пароль *"),
+              decoration: InputDecoration(labelText: S.current.password),
             ),
             SizedBox(
               height: 20.0,
@@ -94,7 +95,7 @@ class Register extends StatelessWidget {
 
   String _inputValidator(String value) {
     if (value.isEmpty) {
-      return "Заполните поле";
+      return S.current.fieldRequired;
     }
     return null;
   }

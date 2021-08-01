@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/counter/counter_cubit.dart';
 import 'package:optovik/domain/bloc/other_products/other_products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
 import 'package:optovik/presentation/widgets/counter_btn.dart';
 import 'package:optovik/presentation/widgets/my_separator.dart';
@@ -25,7 +26,7 @@ class ProductDetailPage extends StatelessWidget {
         .forEach((imageUrl) => precacheImage(NetworkImage(imageUrl), context));
 
     return Scaffold(
-      appBar: AppBar(title: Text("О товаре")),
+      appBar: AppBar(title: Text(S.current.aboutProduct)),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -106,7 +107,7 @@ class ProductDetailPage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is OtherProductsFetched) {
                     return ProductSectionWidget(
-                      title: "Рядом на полке",
+                      title: S.current.nextToShelf,
                       products: state.products,
                       categoryId: categoryId,
                     );
@@ -141,7 +142,7 @@ class CounterButton extends StatelessWidget {
                   ),
                   onPressed: _counterCubit.increment,
                   child: Text(
-                    "В корзину",
+                    S.current.addToCard,
                     style: TextStyle(color: Colors.white),
                   ),
                 )
@@ -247,7 +248,7 @@ class _DescriptionTextState extends State<DescriptionText> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Описание",
+            S.current.description,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -274,7 +275,7 @@ class _DescriptionTextState extends State<DescriptionText> {
                     });
                   },
                   child: Text(
-                    " Подробнее",
+                    " ${S.current.more}",
                     style: TextStyle(color: Colors.green),
                   ),
                 )
@@ -326,7 +327,7 @@ class _InfoSectionState extends State<InfoSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Информация",
+          S.current.info,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -343,7 +344,7 @@ class _InfoSectionState extends State<InfoSection> {
                   });
                 },
                 child: Text(
-                  " Подробнее",
+                  " ${S.current.more}",
                   style: TextStyle(color: Colors.green),
                 ),
               )

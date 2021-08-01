@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/cart/cart_bloc.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/cart_module.dart';
 import 'package:optovik/presentation/pages/cart.dart';
 import 'package:optovik/presentation/pages/home.dart';
@@ -50,7 +51,7 @@ class BottomAppBarWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        "КОРЗИНА",
+                        S.current.cart.toUpperCase(),
                         style: TextStyle(
                           color: Colors.lightGreen,
                           fontSize: 16,

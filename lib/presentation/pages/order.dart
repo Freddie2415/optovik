@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optovik/domain/model/item.dart';
 import 'package:optovik/domain/model/order.dart';
+import 'package:optovik/generated/l10n.dart';
 
 class OrderPage extends StatelessWidget {
   final Order order;
@@ -11,7 +12,7 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Заказ № ${order.id}"),
+        title: Text(S.current.nOrder + " ${order.id}"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -39,7 +40,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Номер заказа:",
+                        S.current.orderId,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -57,7 +58,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Создано:",
+                        S.current.createdAt,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -75,7 +76,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Клиент:",
+                        S.current.client,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -93,7 +94,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Статус:",
+                        S.current.status,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -116,7 +117,7 @@ class OrderPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Text(
-                          "Адресс доставки:",
+                          S.current.deliveryAddress,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
@@ -137,7 +138,7 @@ class OrderPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Итого:",
+                        S.current.total,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
@@ -160,7 +161,7 @@ class OrderPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Список товаров",
+                S.current.productsList,
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -206,7 +207,7 @@ class OrderPage extends StatelessWidget {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Text("${item.quantity} шт."),
+                                Text("${item.quantity} ${S.current.piece}"),
                               ],
                             ),
                           )

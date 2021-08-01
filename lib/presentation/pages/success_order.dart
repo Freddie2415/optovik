@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/home.dart';
 
 class SuccessOrder extends StatelessWidget {
@@ -25,7 +26,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "Спасибо за заказ!",
+                S.current.thankYouForOrdering,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.lightGreen,
@@ -36,7 +37,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "Ожидайте, в скорем времени наш менеджер свяжется с вами.",
+                S.current.wait,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
                 textAlign: TextAlign.center,
               ),
@@ -44,7 +45,7 @@ class SuccessOrder extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "Номер вашего заказа: ${id.toString()}",
+                "${S.current.orderId} ${id.toString()}",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
               SizedBox(
@@ -60,7 +61,7 @@ class SuccessOrder extends StatelessWidget {
                   Navigator.pushReplacement(context, HomePage.route());
                 },
                 label: Text(
-                  "Вернуться на главную",
+                  S.current.goHome,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

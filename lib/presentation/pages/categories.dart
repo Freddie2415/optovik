@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
 import 'package:optovik/domain/model/category.dart';
+import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/categories_module.dart';
 import 'package:optovik/presentation/pages/products.dart';
 import 'package:optovik/presentation/pages/search.dart';
@@ -29,7 +30,7 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesLoading || state is CategoriesInitial) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Каталог товаров'),
+          title: Text(S.current.productCatalog),
         ),
         body: LoadingWidget(),
       );
@@ -38,7 +39,7 @@ class CategoriesPage extends StatefulWidget {
     if (state is CategoriesError) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Каталог товаров'),
+          title: Text(S.current.productCatalog),
         ),
         body: FailureWidget(
             message: state.message,
@@ -69,7 +70,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Каталог товаров"),
+        title: Text(S.current.productCatalog),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: onPressBack,
@@ -128,7 +129,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             },
             trailing: parent
                 ? Text(
-                    "Показать все",
+                    S.current.showAll,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
