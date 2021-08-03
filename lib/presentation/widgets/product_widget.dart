@@ -79,14 +79,19 @@ class _ProductWidgetState extends State<ProductWidget>
                       child: FadeInImage.assetNetwork(
                         placeholder: "assets/images/placeholder.jpg",
                         image: "${widget.image}",
-                        imageErrorBuilder: (context, error, stackTrace) => Image.asset("assets/images/placeholder.jpg"),
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Image.asset("assets/images/placeholder.jpg"),
                       ),
                     ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     "${widget.name}",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 13,
+                      color: Colors.black87,
+                    ),
                     textAlign: TextAlign.left,
                     maxLines: 3,
                   ),
