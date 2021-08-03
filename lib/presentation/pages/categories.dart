@@ -103,14 +103,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     width: 50,
                   )
                 : Icon(Icons.keyboard_arrow_right),
-            title: Text(
-              "${item.name}",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight:
-                    (parent || item.isMain) ? FontWeight.bold : FontWeight.w500,
-              ),
-            ),
+            title: Text("${item.name}"),
             onTap: () {
               if (item.children.isEmpty || parent) {
                 Navigator.of(context).push(ProductsPage.route(
