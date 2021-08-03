@@ -56,9 +56,9 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  Category showAll;
-
+  Category selectedCategory;
   List<Category> items = [];
+  List<Category> tree = [];
 
   @override
   void initState() {
@@ -91,17 +91,17 @@ class _CategoriesPageState extends State<CategoriesPage> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           var item = items[index];
-          bool parent = showAll != null && showAll == item;
+          bool parent = selectedCategory != null && selectedCategory == item;
           return ListTile(
-            leading: (showAll == null || parent)
+            leading: (selectedCategory == null || parent)
                 ? Image.network(
-                    item.icon,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Icon(Icons.widgets_outlined);
-                    },
-                    height: 50,
-                    width: 50,
-                  )
+              item.icon,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(Icons.widgets_outlined);
+              },
+              height: 50,
+              width: 50,
+            )
                 : Icon(Icons.keyboard_arrow_right),
             title: Text("${item.name}"),
             onTap: () {
@@ -113,22 +113,24 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     isSearchPage: false));
               } else {
                 setState(() {
-                  showAll = item;
-                  item.children.remove(showAll);
-                  item.children.insert(0, showAll);
+                  selectedCategory = item;
+                  item.children.remove(selectedCategory);
+                  item.children.insert(0, selectedCategory);
                   items = item.children;
+                  tree.add(item);
+                  tree = tree.toSet().toList();
                 });
               }
             },
             trailing: parent
                 ? Text(
-                    S.of(context).showAll,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.lightGreen,
-                    ),
-                  )
+              S.of(context).showAll,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.lightGreen,
+              ),
+            )
                 : null,
             dense: true,
           );
@@ -138,12 +140,23 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   void onPressBack() {
-    if (showAll == null) {
+    if (tree.isEmpty) {
       Navigator.pop(context);
     } else {
       setState(() {
-        items = widget.categories;
-        showAll = null;
+        tree.removeLast();
+
+        if (tree.isEmpty) {
+          selectedCategory = null;
+          items = widget.categories;
+          return;
+        }
+
+        Category category = tree.last;
+        category.children.remove(category);
+        category.children.insert(0, category);
+        selectedCategory = category;
+        items = selectedCategory.children;
       });
     }
   }
