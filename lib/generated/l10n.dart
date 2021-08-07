@@ -1124,6 +1124,16 @@ class S {
       args: [],
     );
   }
+
+  /// `show less`
+  String get less {
+    return Intl.message(
+      'show less',
+      name: 'less',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

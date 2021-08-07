@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goHome" : MessageLookupByLibrary.simpleMessage("Asosiy sahifaga o\'tish"),
     "info" : MessageLookupByLibrary.simpleMessage("Ma\'lumot"),
     "language" : MessageLookupByLibrary.simpleMessage("Til"),
+    "less" : MessageLookupByLibrary.simpleMessage("Yashirish"),
     "letterToTechSupport" : MessageLookupByLibrary.simpleMessage("Texnik sizmatga yozish"),
     "login" : MessageLookupByLibrary.simpleMessage("Kirish"),
     "loginRegistration" : MessageLookupByLibrary.simpleMessage("Kirish / Ro\'yxatdan O\'tish"),

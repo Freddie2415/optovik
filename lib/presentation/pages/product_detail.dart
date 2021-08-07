@@ -5,9 +5,11 @@ import 'package:optovik/domain/bloc/other_products/other_products_bloc.dart';
 import 'package:optovik/domain/model/product.dart';
 import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/products_module.dart';
+import 'package:optovik/presentation/pages/products.dart';
 import 'package:optovik/presentation/widgets/counter_button_widget.dart';
 import 'package:optovik/presentation/widgets/description_text_widget.dart';
 import 'package:optovik/presentation/widgets/info_section_widget.dart';
+import 'package:optovik/presentation/widgets/product_category_widget.dart';
 import 'package:optovik/presentation/widgets/product_images_widget.dart';
 import 'package:optovik/presentation/widgets/product_section_widget.dart';
 
@@ -76,33 +78,20 @@ class ProductDetailPage extends StatelessWidget {
                 ],
               ),
               Divider(),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.widgets_outlined,
-                      color: Colors.lightGreen,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      "ПОДАРКИ",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Spacer(),
-                    Text(
-                      "ID-${product.id}",
-                      style: TextStyle(color: Colors.grey),
-                    )
-                  ],
+              ProductCategoryWidget(
+                id: product.id,
+                title: product.categories.first.name ?? null,
+                onTap: () => Navigator.push(
+                  context,
+                  ProductsPage.route(
+                    title: product.categories.first.name,
+                    categoryId: categoryId,
+                  ),
                 ),
               ),
               InfoSection(list: []),
               Divider(),
-              DescriptionTextWidget(product.description),
+              DescriptionTextWidget(text: product.description),
               Divider(),
               BlocBuilder(
                 cubit: ProductsModule.otherProductsBloc()

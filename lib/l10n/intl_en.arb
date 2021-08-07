@@ -107,5 +107,6 @@
   "alphaAZ": "Alphabetically (A-Z)",
   "alphaZA": "Alphabetically (Z-A)",
   "settings": "Settings",
-  "language": "Language"
+  "language": "Language",
+  "less": "show less"
 }

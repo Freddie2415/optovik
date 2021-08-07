@@ -4,64 +4,66 @@ import 'package:optovik/generated/l10n.dart';
 class DescriptionTextWidget extends StatefulWidget {
   final String text;
 
-  const DescriptionTextWidget(this.text, {Key key}) : super(key: key);
+  DescriptionTextWidget({@required this.text});
 
   @override
   _DescriptionTextWidgetState createState() => _DescriptionTextWidgetState();
 }
 
 class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
-  int maxLines = 3;
+  String firstHalf;
+  String secondHalf;
+
+  bool flag = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.text.length > 300) {
+      firstHalf = widget.text.substring(0, 300);
+      secondHalf = widget.text.substring(300, widget.text.length);
+    } else {
+      firstHalf = widget.text;
+      secondHalf = "";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.text == null || widget.text.isEmpty) {
-      return Container(width: 0.0, height: 0.0);
-    }
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            S.of(context).description,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      child: secondHalf.isEmpty
+          ? Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                firstHalf,
+                textAlign: TextAlign.start,
+              ),
+            )
+          : Column(
+              children: <Widget>[
+                Text(flag ? (firstHalf + "...") : (firstHalf + secondHalf)),
+                InkWell(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        flag
+                            ? S.current.more.toLowerCase()
+                            : S.current.less.toLowerCase(),
+                        style: TextStyle(color: Colors.lightGreen),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    setState(() {
+                      flag = !flag;
+                    });
+                  },
+                ),
+              ],
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            widget.text,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-            ),
-            textAlign: TextAlign.justify,
-            maxLines: maxLines,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          maxLines <= 3
-              ? GestureDetector(
-            onTap: () {
-              setState(() {
-                maxLines = 1000;
-              });
-            },
-            child: Text(
-              " ${S.of(context).more}",
-              style: TextStyle(color: Colors.green),
-            ),
-          )
-              : Container(
-            height: 0,
-            width: 0,
-          ),
-        ],
-      ),
     );
   }
 }

@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goHome" : MessageLookupByLibrary.simpleMessage("Вернуться на главную"),
     "info" : MessageLookupByLibrary.simpleMessage("Информация"),
     "language" : MessageLookupByLibrary.simpleMessage("Язык"),
+    "less" : MessageLookupByLibrary.simpleMessage("скрыть"),
     "letterToTechSupport" : MessageLookupByLibrary.simpleMessage("Письмо в техподдержку"),
     "login" : MessageLookupByLibrary.simpleMessage("Войти"),
     "loginRegistration" : MessageLookupByLibrary.simpleMessage("Вход / Регистрация"),
