@@ -62,7 +62,7 @@ class ApiProduct {
           article: p['article'],
           count: p['count'],
           created: p['created'],
-          description: p['description'],
+          description: p['description_ru'],
           discount: p['discount'],
           discountType: p['discount_type'],
           guaranty: p['guaranty'],
