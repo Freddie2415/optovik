@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:optovik/domain/bloc/localalization/localization_cubit.dart';
 import 'package:optovik/generated/l10n.dart';
@@ -17,7 +18,14 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).language),
             leading: Icon(Icons.translate),
-            subtitle: Text("English"),
+            subtitle: BlocBuilder<LocalizationCubit, Locale>(
+              cubit: GetIt.instance.get<LocalizationCubit>(),
+              builder: (context, state) => Text(
+                GetIt.instance
+                    .get<LocalizationCubit>()
+                    .getCurrentLocaleTitle(state),
+              ),
+            ),
             onTap: () {
               showModalBottomSheet(
                 context: context,
