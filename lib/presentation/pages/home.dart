@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
 import 'package:optovik/generated/l10n.dart';
-import 'package:optovik/internal/dependencies/home_module.dart';
 import 'package:optovik/presentation/pages/categories.dart';
 import 'package:optovik/presentation/widgets/bottom_app_bar_widget.dart';
 import 'package:optovik/presentation/widgets/category_section_widget.dart';
@@ -13,7 +13,9 @@ import 'package:optovik/presentation/widgets/product_section_widget.dart';
 import 'package:optovik/presentation/widgets/slider_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage();
+  const HomePage(this.homeBloc);
+
+  final HomeBloc homeBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +32,17 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: DrawerWidget(),
-      body: _body(),
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: _body(),
+      ),
       bottomNavigationBar: BottomAppBarWidget(isHome: true),
     );
   }
 
   _body() {
     return BlocBuilder<HomeBloc, HomeState>(
-      cubit: HomeModule.homeBloc(),
+      cubit: homeBloc,
       builder: (context, state) {
         if (state is HomeLoading) {
           return LoadingWidget();
@@ -78,6 +83,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  static Route<Object> route() =>
-      MaterialPageRoute(builder: (context) => HomePage());
+  static Route<Object> route() => MaterialPageRoute(
+        builder: (context) =>
+            HomePage(GetIt.instance.get<HomeBloc>()..add(HomeStart())),
+      );
+
+  Future<void> _refreshData() async {
+    homeBloc.add(HomeEventRefresh());
+
+    return homeBloc.firstWhere((e) => e is! HomeEventRefresh);
+  }
 }
