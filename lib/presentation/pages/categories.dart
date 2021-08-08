@@ -1,69 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
+import 'package:optovik/domain/bloc/tree/tree_cubit.dart';
 import 'package:optovik/domain/model/category.dart';
 import 'package:optovik/generated/l10n.dart';
-import 'package:optovik/internal/dependencies/categories_module.dart';
 import 'package:optovik/presentation/pages/products.dart';
 import 'package:optovik/presentation/pages/search.dart';
 import 'package:optovik/presentation/widgets/error_widget.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
 
-class CategoriesPage extends StatefulWidget {
-  final List<Category> categories;
+class CategoriesPage extends StatelessWidget {
+  final CategoriesBloc categoriesBloc;
+  final TreeCubit treeCubit = TreeCubit();
 
-  const CategoriesPage({Key key, this.categories}) : super(key: key);
+  CategoriesPage({Key key, this.categoriesBloc}) : super(key: key);
 
-  @override
-  _CategoriesPageState createState() => _CategoriesPageState();
-
-  static Route<MaterialPageRoute> route() {
+  static Route<MaterialPageRoute> route(CategoriesBloc categoriesBloc) {
     return MaterialPageRoute(
-      builder: (context) => BlocBuilder(
-        cubit: CategoriesModule.categoriesBloc(),
-        builder: _builder,
-      ),
+      builder: (context) => CategoriesPage(categoriesBloc: categoriesBloc),
     );
-  }
-
-  static Widget _builder(BuildContext context, state) {
-    if (state is CategoriesLoading || state is CategoriesInitial) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(S.of(context).productCatalog),
-        ),
-        body: LoadingWidget(),
-      );
-    }
-
-    if (state is CategoriesError) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(S.of(context).productCatalog),
-        ),
-        body: FailureWidget(
-            message: state.message,
-            onBtnPressed: () {
-              CategoriesModule.categoriesBloc().add(LoadCategories());
-            }),
-      );
-    }
-
-    final categories = (state as CategoriesReady).categories ?? [];
-
-    return CategoriesPage(categories: categories);
-  }
-}
-
-class _CategoriesPageState extends State<CategoriesPage> {
-  Category selectedCategory;
-  List<Category> items = [];
-  List<Category> tree = [];
-
-  @override
-  void initState() {
-    super.initState();
-    items = widget.categories;
   }
 
   @override
@@ -73,7 +28,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
         title: Text(S.of(context).productCatalog),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          onPressed: onPressBack,
+          onPressed: () => onPressBack(context),
         ),
         actions: [
           IconButton(
@@ -87,50 +42,94 @@ class _CategoriesPageState extends State<CategoriesPage> {
           )
         ],
       ),
-      body: ListView.builder(
+      body: _body(),
+    );
+  }
+
+  Widget _body() {
+    return BlocBuilder<CategoriesBloc, CategoriesState>(
+      cubit: categoriesBloc,
+      builder: (context, state) {
+        if (state is CategoriesReady) {
+          treeCubit.setCategories(state.categories);
+          return RefreshIndicator(
+            child: CategoriesTreeList(treeCubit),
+            onRefresh: () {
+              treeCubit.resetData();
+              categoriesBloc.add(RefreshCategories());
+              return categoriesBloc.firstWhere((e) => e is! RefreshCategories);
+            },
+          );
+        }
+
+        if (state is CategoriesLoading) {
+          return LoadingWidget();
+        }
+
+        if (state is CategoriesError) {
+          return FailureWidget(
+            message: state.message,
+            onBtnPressed: _tryReload,
+          );
+        }
+
+        return Container();
+      },
+    );
+  }
+
+  void onPressBack(context) {
+    treeCubit.back(() {
+      Navigator.pop(context);
+    });
+  }
+
+  void _tryReload() {
+    this.categoriesBloc.add(LoadCategories());
+  }
+}
+
+class CategoriesTreeList extends StatelessWidget {
+  final TreeCubit treeCubit;
+
+  const CategoriesTreeList(this.treeCubit, {Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TreeCubit, List<Category>>(
+      cubit: treeCubit,
+      builder: (context, items) => ListView.builder(
         itemCount: items.length,
         itemBuilder: (context, index) {
           var item = items[index];
-          bool parent = selectedCategory != null && selectedCategory == item;
+          bool parent = treeCubit.isParent(item);
           return ListTile(
-            leading: (selectedCategory == null || parent)
+            leading: (treeCubit.selectedCategory == null || parent)
                 ? Image.network(
-              item.icon,
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(Icons.widgets_outlined);
-              },
-              height: 50,
-              width: 50,
-            )
+                    item.icon,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(Icons.widgets_outlined);
+                    },
+                    height: 50,
+                    width: 50,
+                  )
                 : Icon(Icons.keyboard_arrow_right),
             title: Text("${item.name}"),
             onTap: () {
-              if (item.children.isEmpty || parent) {
-                Navigator.of(context).push(ProductsPage.route(
-                    title: "${item.name}",
-                    categoryId: item.id,
-                    query: null,
-                    isSearchPage: false));
-              } else {
-                setState(() {
-                  selectedCategory = item;
-                  item.children.remove(selectedCategory);
-                  item.children.insert(0, selectedCategory);
-                  items = item.children;
-                  tree.add(item);
-                  tree = tree.toSet().toList();
-                });
-              }
+              treeCubit.selectItem(
+                item,
+                () => navigateToCategory(context, item),
+              );
             },
             trailing: parent
                 ? Text(
-              S.of(context).showAll,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.lightGreen,
-              ),
-            )
+                    S.of(context).showAll,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightGreen,
+                    ),
+                  )
                 : null,
             dense: true,
           );
@@ -139,25 +138,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
     );
   }
 
-  void onPressBack() {
-    if (tree.isEmpty) {
-      Navigator.pop(context);
-    } else {
-      setState(() {
-        tree.removeLast();
-
-        if (tree.isEmpty) {
-          selectedCategory = null;
-          items = widget.categories;
-          return;
-        }
-
-        Category category = tree.last;
-        category.children.remove(category);
-        category.children.insert(0, category);
-        selectedCategory = category;
-        items = selectedCategory.children;
-      });
-    }
+  void navigateToCategory(BuildContext context, Category item) {
+    Navigator.of(context).push(
+      ProductsPage.route(
+          title: "${item.name}",
+          categoryId: item.id,
+          query: null,
+          isSearchPage: false),
+    );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
 import 'package:optovik/domain/model/category.dart';
 import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/presentation/pages/categories.dart';
@@ -41,7 +43,7 @@ class CategorySectionWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                CategoriesPage.route(),
+                CategoriesPage.route(GetIt.instance.get<CategoriesBloc>()),
               );
             },
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:optovik/data/api/service/category_service.dart';
 import 'package:optovik/data/api/service/home_service.dart';
+import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
 import 'package:optovik/domain/bloc/home/home_bloc.dart';
 import 'package:optovik/domain/bloc/localalization/localization_cubit.dart';
 import 'package:optovik/domain/bloc/simple_bloc_observer.dart';
@@ -19,7 +21,9 @@ setup() async {
   final String languageCode = 'ru';
   final Locale appLocale = Locale(languageCode);
   final HomeService homeService = HomeService();
+  CategoryService categoryService = CategoryService();
 
   getIt.registerSingleton<LocalizationCubit>(LocalizationCubit(appLocale));
   getIt.registerSingleton<HomeBloc>(HomeBloc(homeService));
+  getIt.registerSingleton<CategoriesBloc>(CategoriesBloc(categoryService));
 }
