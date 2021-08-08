@@ -44,7 +44,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       final bool orderingChanged =
           event.sort != null && event.ordering != this.ordering;
       try {
-        if (orderingChanged) {
+        if (orderingChanged || event.refresh) {
           yield* _initialFetch(event);
           return;
         }

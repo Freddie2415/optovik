@@ -166,7 +166,19 @@ class _ProductsPageState extends State<ProductsPage> {
               : S.of(context).categoryEmpty,
         );
       }
-      return _productsBody(state.products, state.hasReachedMax);
+      return RefreshIndicator(
+        child: _productsBody(state.products, state.hasReachedMax),
+        onRefresh: () {
+          _productsBloc.add(ProductsFetched(
+            categoryId: widget.categoryId,
+            sort: _sort,
+            query: widget.query,
+            refresh: true,
+          ));
+          return _productsBloc
+              .firstWhere((element) => element is! ProductsFetched);
+        },
+      );
     }
     if (state is ProductsFailure) {
       return FailureWidget(

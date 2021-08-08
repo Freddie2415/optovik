@@ -11,11 +11,13 @@ class ProductsFetched extends ProductsEvent {
   final Sort sort;
   final categoryId;
   final String query;
+  final bool refresh;
 
   ProductsFetched({
     @required this.categoryId,
     @required this.sort,
     @required this.query,
+    this.refresh = false,
   });
 
   @override
@@ -23,3 +25,5 @@ class ProductsFetched extends ProductsEvent {
 
   get ordering => sort.toString();
 }
+
+class ProductsRefreshEvent extends ProductsEvent {}
