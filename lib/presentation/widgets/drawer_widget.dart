@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:optovik/data/api/service/order_service.dart';
 import 'package:optovik/domain/bloc/categories/categories_bloc.dart';
+import 'package:optovik/domain/bloc/info/info_cubit.dart';
 import 'package:optovik/domain/bloc/order_list/order_list_cubit.dart';
 import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
@@ -80,7 +81,8 @@ class DrawerWidget extends StatelessWidget {
             title: Text(S.of(context).catalogAndSearch),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, CategoriesPage.route(GetIt.instance.get<CategoriesBloc>()));
+              Navigator.push(context,
+                  CategoriesPage.route(GetIt.instance.get<CategoriesBloc>()));
             },
           ),
           BlocBuilder(
@@ -120,7 +122,8 @@ class DrawerWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Info(),
+                  builder: (context) =>
+                      Info(infoCubit: GetIt.instance.get<InfoCubit>()),
                   fullscreenDialog: true,
                 ),
               );
