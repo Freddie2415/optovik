@@ -35,20 +35,6 @@ class ApiUtil {
     return await _productService.search(query);
   }
 
-  Future<void> sendFeedbackMessage({
-    String theme,
-    String email,
-    String fullName,
-    String message,
-  }) async {
-    await _feedbackService.sendMessage(
-      message: message,
-      email: email,
-      fullName: fullName,
-      theme: theme,
-    );
-  }
-
 
   Future<AuthResponse> authentificate() {
 

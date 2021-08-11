@@ -52,10 +52,12 @@ class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
         message: event.message,
         email: event.email,
       );
-      // throw "Что то пошло не так";
+
+      await Future.delayed(Duration(milliseconds: 500));
+
       yield FeedbackMessageSent();
 
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(milliseconds: 700));
 
       yield FeedbackInitial();
     } catch (e) {

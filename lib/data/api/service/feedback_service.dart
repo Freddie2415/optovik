@@ -30,6 +30,28 @@ class FeedbackService {
     @required String message,
     @required String fullName,
   }) async {
-    await Future.delayed(Duration(seconds: 1));
+    var body = jsonEncode(<String, String>{
+      "name": fullName,
+      "email": email,
+      "theme": theme,
+      "text": message,
+    });
+
+    final response = await http.post(
+      "http://optovikuz.com/api/v1/feedback/",
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: body,
+    );
+
+    if (response.statusCode >= 400) {
+      throw 'Что то пошло не так, проверьте подключение к интернету!';
+    }
+
+    if (response.statusCode == 201) {
+      print(jsonDecode(utf8.decode(response.bodyBytes)));
+    }
   }
 }

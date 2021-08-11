@@ -80,6 +80,7 @@ class FeedbackFormPage extends StatelessWidget {
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(labelText: "Email *"),
+                  keyboardType: TextInputType.emailAddress,
                   validator: _emailValidator,
                 ),
                 TextFormField(
@@ -101,21 +102,22 @@ class FeedbackFormPage extends StatelessWidget {
                 BlocBuilder<FeedbackBloc, FeedbackState>(
                   cubit: feedbackBloc,
                   builder: (context, state) {
-                    return FlatButton(
-                      onPressed:
-                          (state is FeedbackInitial || state is FeedbackFailure)
-                              ? _sendMessage
-                              : null,
-                      height: 45,
-                      minWidth: MediaQuery.of(context).size.width,
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.lightGreen,
+                        minimumSize: Size.fromHeight(45),
+                        elevation: 0,
+                      ),
+                      onPressed: (state is FeedbackSendingMessage)
+                          ? null
+                          : _sendMessage,
                       child: Text(
                         S.of(context).submit.toUpperCase(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                      color: Colors.lightGreen,
-                      textColor: Colors.white,
                     );
                   },
                 ),
