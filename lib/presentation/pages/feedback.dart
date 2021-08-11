@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/feedback/feedback_bloc.dart';
 import 'package:optovik/generated/l10n.dart';
-import 'package:optovik/internal/dependencies/feedback_module.dart';
 import 'package:optovik/presentation/pages/feedback_form.dart';
 import 'package:optovik/presentation/widgets/error_widget.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FeedBack extends StatelessWidget {
-  // ignore: close_sinks
-  final FeedbackBloc _feedbackBloc = FeedbackModule.feedbackBloc();
+  final FeedbackBloc feedbackBloc;
+
+  const FeedBack({Key key, @required this.feedbackBloc})
+      : assert(feedbackBloc != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class FeedBack extends StatelessWidget {
       ),
       body: BlocBuilder<FeedbackBloc, FeedbackState>(
         builder: _builder,
-        cubit: _feedbackBloc..add(FetchFeedback()),
+        cubit: feedbackBloc..add(FetchFeedback()),
       ),
     );
   }
@@ -37,22 +39,26 @@ class FeedBack extends StatelessWidget {
             ),
             child: Text(S.of(context).feedbackText),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.phone,
-              color: Colors.lightGreen,
-            ),
-            title: Text(
-              "${state.phone}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.lightGreen,
-              ),
-            ),
-            onTap: () {
-              launch(state.tel);
-            },
-          ),
+          ...state.supportNumbers
+              .map(
+                (e) => ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.lightGreen,
+                  ),
+                  title: Text(
+                    "${e.phone}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightGreen,
+                    ),
+                  ),
+                  onTap: () {
+                    launch(e.tel);
+                  },
+                ),
+              )
+              .toList(),
           ListTile(
             leading: Icon(
               Icons.email,
@@ -66,7 +72,7 @@ class FeedBack extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(context, FeedbackFormPage.route());
+              Navigator.push(context, FeedbackFormPage.route(feedbackBloc));
             },
           ),
         ],

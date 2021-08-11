@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optovik/domain/bloc/feedback/feedback_bloc.dart';
 import 'package:optovik/generated/l10n.dart';
-import 'package:optovik/internal/dependencies/feedback_module.dart';
 
 class FeedbackFormPage extends StatelessWidget {
-  static Route<Object> route() {
-    return MaterialPageRoute(builder: (context) => FeedbackFormPage());
+  FeedbackFormPage({Key key, this.feedbackBloc}) : super(key: key);
+
+  static Route<Object> route(FeedbackBloc feedbackBloc) {
+    return MaterialPageRoute(
+        builder: (context) => FeedbackFormPage(
+              feedbackBloc: feedbackBloc,
+            ));
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -14,7 +18,7 @@ class FeedbackFormPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _themeController = TextEditingController();
   final TextEditingController _messageController = TextEditingController();
-  final FeedbackBloc _feedbackBloc = FeedbackModule.feedbackBloc();
+  final FeedbackBloc feedbackBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +27,10 @@ class FeedbackFormPage extends StatelessWidget {
         title: Text(S.of(context).letterToTechSupport),
       ),
       body: BlocListener(
-        cubit: _feedbackBloc,
+        cubit: feedbackBloc,
         listener: (context, state) {
           if (state is FeedbackMessageSent) {
-            Scaffold.of(context)
+            ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(SnackBar(
                   backgroundColor: Colors.lightGreen,
@@ -43,7 +47,7 @@ class FeedbackFormPage extends StatelessWidget {
             _formKey.currentState.reset();
           }
           if (state is FeedbackFailure) {
-            Scaffold.of(context)
+            ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(SnackBar(
                   content: Row(
@@ -55,7 +59,7 @@ class FeedbackFormPage extends StatelessWidget {
               )));
           }
           if (state is FeedbackInitial) {
-            Scaffold.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
           }
         },
         child: SingleChildScrollView(
@@ -69,17 +73,20 @@ class FeedbackFormPage extends StatelessWidget {
               children: [
                 TextFormField(
                   controller: _fullNameController,
-                  decoration: InputDecoration(labelText: S.of(context).requiredName),
+                  decoration:
+                      InputDecoration(labelText: S.of(context).requiredName),
                   validator: _validateText,
                 ),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(labelText: "Email *"),
+                  keyboardType: TextInputType.emailAddress,
                   validator: _emailValidator,
                 ),
                 TextFormField(
                   controller: _themeController,
-                  decoration: InputDecoration(labelText: S.of(context).requiredSubject),
+                  decoration:
+                      InputDecoration(labelText: S.of(context).requiredSubject),
                   validator: _validateText,
                 ),
                 TextFormField(
@@ -93,20 +100,24 @@ class FeedbackFormPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 BlocBuilder<FeedbackBloc, FeedbackState>(
-                  cubit: _feedbackBloc,
+                  cubit: feedbackBloc,
                   builder: (context, state) {
-                    return FlatButton(
-                      onPressed: (state is FeedbackInitial || state is FeedbackFailure) ? _sendMessage : null ,
-                      height: 45,
-                      minWidth: MediaQuery.of(context).size.width,
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.lightGreen,
+                        minimumSize: Size.fromHeight(45),
+                        elevation: 0,
+                      ),
+                      onPressed: (state is FeedbackSendingMessage)
+                          ? null
+                          : _sendMessage,
                       child: Text(
                         S.of(context).submit.toUpperCase(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                      color: Colors.lightGreen,
-                      textColor: Colors.white,
                     );
                   },
                 ),
@@ -137,7 +148,7 @@ class FeedbackFormPage extends StatelessWidget {
 
   void _sendMessage() {
     if (_formKey.currentState.validate()) {
-      _feedbackBloc.add(SendMessageFeedback(
+      feedbackBloc.add(SendMessageFeedback(
         fullName: _fullNameController.text,
         email: _emailController.text,
         message: _messageController.text,

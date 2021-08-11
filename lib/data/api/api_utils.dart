@@ -1,6 +1,5 @@
 import 'package:optovik/data/api/request/products_params.dart';
 import 'package:optovik/data/api/response/auth_response.dart';
-import 'package:optovik/data/api/response/feedback_response.dart';
 import 'package:optovik/data/api/response/home_response.dart';
 import 'package:optovik/data/api/response/products_response.dart';
 import 'package:optovik/data/api/service/category_service.dart';
@@ -34,24 +33,6 @@ class ApiUtil {
 
   Future<ProductsResponse> searchProducts(String query) async {
     return await _productService.search(query);
-  }
-
-  Future<FeedbackResponse> getFeedback() async {
-    return await _feedbackService.getFeedback();
-  }
-
-  Future<void> sendFeedbackMessage({
-    String theme,
-    String email,
-    String fullName,
-    String message,
-  }) async {
-    await _feedbackService.sendMessage(
-      message: message,
-      email: email,
-      fullName: fullName,
-      theme: theme,
-    );
   }
 
 

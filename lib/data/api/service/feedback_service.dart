@@ -1,10 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
-import 'package:optovik/data/api/response/feedback_response.dart';
+import 'package:http/http.dart' as http;
+import 'package:optovik/data/api/model/api_support_number.dart';
 
 class FeedbackService {
+  Future<List<SupportNumber>> getFeedback() async {
+    final response =
+        await http.get("http://optovikuz.com/api/v1/support_number");
 
-  Future<FeedbackResponse> getFeedback() async {
-    return FeedbackResponse("+998 99 999 99 99", "tel:+998999999999");
+    if (response.statusCode >= 400) {
+      throw "Что то пошло не так!";
+    }
+
+    var jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+    final list = jsonResponse['results'] as List;
+
+    return List.of(list)
+        .map((e) => SupportNumber(
+              id: e['id'],
+              phone: e['phone'],
+            ))
+        .toList();
   }
 
   Future<void> sendMessage({
@@ -13,6 +30,28 @@ class FeedbackService {
     @required String message,
     @required String fullName,
   }) async {
-    await Future.delayed(Duration(seconds: 1));
+    var body = jsonEncode(<String, String>{
+      "name": fullName,
+      "email": email,
+      "theme": theme,
+      "text": message,
+    });
+
+    final response = await http.post(
+      "http://optovikuz.com/api/v1/feedback/",
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: body,
+    );
+
+    if (response.statusCode >= 400) {
+      throw 'Что то пошло не так, проверьте подключение к интернету!';
+    }
+
+    if (response.statusCode == 201) {
+      print(jsonDecode(utf8.decode(response.bodyBytes)));
+    }
   }
 }
