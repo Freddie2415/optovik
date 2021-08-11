@@ -10,13 +10,12 @@ abstract class FeedbackState extends Equatable {
 class FeedbackInitial extends FeedbackState {}
 
 class FeedbackSuccess extends FeedbackState {
-  final String phone;
-  final String tel;
+  final List<SupportNumber> supportNumbers;
 
-  const FeedbackSuccess({this.phone, this.tel});
+  const FeedbackSuccess({this.supportNumbers});
 
   @override
-  List<Object> get props => [phone, tel];
+  List<Object> get props => [supportNumbers];
 }
 
 class FeedbackFailure extends FeedbackState {
@@ -30,6 +29,4 @@ class FeedbackFailure extends FeedbackState {
 
 class FeedbackSendingMessage extends FeedbackState {}
 
-class FeedbackMessageSent extends FeedbackState {
-
-}
+class FeedbackMessageSent extends FeedbackState {}
