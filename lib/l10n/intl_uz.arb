@@ -83,6 +83,8 @@
   "more": "Batafsil",
   "productNotFound": "Mahsulot topilmadi",
   "categoryEmpty": "Ushbu turkumdan hozircha mahsulotlar yo'q",
+  "name": "Ism *",
+  "lastName": "Familiya *",
   "registration": "Ro'yxatdan o'tish",
   "thankYouForOrdering": "Buyurtma uchun rahmat!",
   "wait": "Tez orada bizning menejerimiz siz bilan aloqa qilishini kuting.",
