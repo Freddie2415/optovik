@@ -74,7 +74,10 @@ class FilterPage extends StatelessWidget {
       ),
       bottomNavigationBar: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 0,
+          shadowColor: Colors.transparent,
           primary: Colors.indigo,
+          splashFactory: NoSplash.splashFactory,
           minimumSize: Size.fromHeight(50),
         ),
         onPressed: () {

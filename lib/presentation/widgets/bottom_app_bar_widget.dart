@@ -44,9 +44,13 @@ class BottomAppBarWidget extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    shadowColor: Colors.white.withOpacity(0),
                     primary: Colors.white,
+                    splashFactory: NoSplash.splashFactory,
                     minimumSize: Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                   ),
                   onPressed: () => Navigator.push(
                     context,

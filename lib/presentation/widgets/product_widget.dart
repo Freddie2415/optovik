@@ -131,7 +131,9 @@ class _ProductWidgetState extends State<ProductWidget>
                         duration: Duration(milliseconds: 100),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            splashFactory: NoSplash.splashFactory,
                             padding: EdgeInsets.all(0),
+                            shadowColor: Colors.transparent,
                             elevation: 0,
                           ),
                           onPressed: onCartPress,

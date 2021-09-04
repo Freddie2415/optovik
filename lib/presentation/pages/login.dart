@@ -43,6 +43,9 @@ class LoginPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
+            elevation: 0,
+            shadowColor: Colors.white.withOpacity(0),
+            splashFactory: NoSplash.splashFactory,
             minimumSize: Size.fromHeight(50),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
           ),

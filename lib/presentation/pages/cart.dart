@@ -189,6 +189,9 @@ class Cart extends StatelessWidget {
                 : Colors.grey.shade400,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
+                elevation: 0,
+                splashFactory: NoSplash.splashFactory,
+                shadowColor: Colors.white.withOpacity(0),
                 primary: Colors.indigo,
                 minimumSize: Size(MediaQuery.of(context).size.width, 45),
               ),

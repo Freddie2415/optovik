@@ -78,8 +78,10 @@ class _BannersPageState extends State<BannersPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      splashFactory: NoSplash.splashFactory,
                       primary: Colors.white.withOpacity(0.45),
-                      shadowColor: Colors.white.withOpacity(0),
+                      shadowColor: Colors.transparent,
                       minimumSize: Size(200, 45),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),

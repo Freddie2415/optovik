@@ -19,6 +19,9 @@ class CounterButtonWidget extends StatelessWidget {
           child: counter <= 0
               ? ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    splashFactory: NoSplash.splashFactory,
+                    shadowColor: Colors.transparent,
                     primary: Colors.indigo,
                   ),
                   onPressed: _counterCubit.increment,

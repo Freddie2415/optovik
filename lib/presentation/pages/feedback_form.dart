@@ -105,6 +105,8 @@ class FeedbackFormPage extends StatelessWidget {
                     return ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.indigo,
+                        shadowColor: Colors.white.withOpacity(0),
+                        splashFactory: NoSplash.splashFactory,
                         minimumSize: Size.fromHeight(45),
                         elevation: 0,
                       ),

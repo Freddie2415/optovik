@@ -30,6 +30,7 @@ class Application extends StatelessWidget {
         return MaterialApp(
           title: 'Optovik',
           locale: localizationCubit.currentLocale,
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.indigo,
             visualDensity: VisualDensity.adaptivePlatformDensity,

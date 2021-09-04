@@ -154,6 +154,8 @@ class OrderFormPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 40),
                     elevation: 0,
+                    shadowColor: Colors.white.withOpacity(0),
+                    splashFactory: NoSplash.splashFactory,
                     padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.zero)),
