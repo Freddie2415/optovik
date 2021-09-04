@@ -21,10 +21,18 @@ class StorageUtils {
   }
 
   Future<List> getCartItems() async {
-    return await _cartService.getOrders();
+    return await _cartService.getOrders(CartService.KEY_ORDERS);
+  }
+
+  Future<List> getPostponedItems() async {
+    return await _cartService.getOrders(CartService.KEY_POSTPONED);
   }
 
   Future<void> setCartItems(List<Product> currentOrder) async {
-     await _cartService.setCartItems(currentOrder);
+    await _cartService.setCartItems(currentOrder, CartService.KEY_ORDERS);
+  }
+
+  Future<void> setPostponedItems(List<Product> currentOrder) async {
+    await _cartService.setCartItems(currentOrder, CartService.KEY_POSTPONED);
   }
 }

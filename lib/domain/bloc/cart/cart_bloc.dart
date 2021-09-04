@@ -21,8 +21,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
-    if (event is CartInit){
+    if (event is CartInit) {
       currentOrder = await _cartRepository.getOrderItems();
+      pendingOrder = await _cartRepository.getPostponedItems();
     }
 
     if (event is RemoveFromCurrentOrder) {
@@ -81,6 +82,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     pendingOrder = pendingOrder.toSet().toList();
 
     await _cartRepository.setOrderItems(currentOrder);
+
+    await _cartRepository.setPostponedItems(pendingOrder);
 
     yield CartState(currentOrder ?? [], pendingOrder ?? []);
   }

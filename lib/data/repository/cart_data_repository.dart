@@ -28,7 +28,33 @@ class CartDataRepository extends CartRepository {
   }
 
   @override
+  Future<List<Product>> getPostponedItems() async {
+    final List orders = await _storageUtils.getPostponedItems();
+    if (orders.isEmpty) {
+      print("orders.isEmpty");
+      return [];
+    }
+    print("orders length: ${orders.length}");
+
+    ProductsParams requestParams = ProductsParams(limit: 100, page: 1);
+    orders.forEach((element) => requestParams.addParameterId(element['id']));
+    final ProductsResponse res = await _apiUtil.getProducts(requestParams);
+
+    return res.products.map((e) {
+      if (e.qty == 0) {
+        return e.copyWith(qty: 1);
+      }
+      return e;
+    }).toList();
+  }
+
+  @override
   Future<void> setOrderItems(List<Product> currentOrder) async {
     await _storageUtils.setCartItems(currentOrder);
+  }
+
+  @override
+  Future<void> setPostponedItems(List<Product> currentOrder) async {
+    await _storageUtils.setPostponedItems(currentOrder);
   }
 }
