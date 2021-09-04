@@ -29,7 +29,7 @@ class FailureWidget extends StatelessWidget {
                 ),
               ),
               Divider(),
-              FlatButton(
+              ElevatedButton(
                 onPressed: this.onBtnPressed,
                 child: Text(
                   "ПОВТОРИТЬ",

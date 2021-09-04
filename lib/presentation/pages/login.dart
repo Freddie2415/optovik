@@ -41,9 +41,11 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: FlatButton(
-          color: Colors.indigo,
-          height: 50,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size.fromHeight(50),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+          ),
           child: Text(
             S.of(context).skip,
             style: TextStyle(
@@ -100,7 +102,7 @@ class LoginForm extends StatelessWidget {
 
   void _loginBlocListener(BuildContext context, LoginState state) {
     if (state.status.isSubmissionFailure) {
-      Scaffold.of(context)
+      ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(content: Text('${state.failureMessage}')),
@@ -116,6 +118,7 @@ class _UsernameInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
         return TextField(
+          keyboardType: TextInputType.phone,
           key: const Key('loginForm_usernameInput_textField'),
           onChanged: (username) =>
               context.read<LoginBloc>().add(LoginUsernameChanged(username)),

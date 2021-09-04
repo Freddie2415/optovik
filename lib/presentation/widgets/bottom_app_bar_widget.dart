@@ -22,8 +22,10 @@ class BottomAppBarWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               !this.isHome
-                  ? FlatButton(
-                      height: 50,
+                  ? TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: Size(5, 50),
+                      ),
                       child: Icon(
                         Icons.home,
                         color: Colors.indigo,
@@ -34,19 +36,22 @@ class BottomAppBarWidget extends StatelessWidget {
                           HomePage.route(),
                         );
                       },
-                      minWidth: 5,
                     )
                   : Container(
                       width: 0,
                       height: 0,
                     ),
               Expanded(
-                child: FlatButton(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    minimumSize: Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  ),
                   onPressed: () => Navigator.push(
                     context,
                     Cart.route(),
                   ),
-                  height: 50,
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [

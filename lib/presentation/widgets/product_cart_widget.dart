@@ -89,7 +89,7 @@ class ProductCartWidget extends StatelessWidget {
                   onSelected: (value) => _onSelected(value, context),
                   itemBuilder: (context) {
                     final List<PopupMenuEntry<CartEvent>>
-                    currentOrderMenuItems = [
+                        currentOrderMenuItems = [
                       PopupMenuItem<CartEvent>(
                         value: PostponeProduct(product),
                         child: ListTile(
@@ -128,7 +128,7 @@ class ProductCartWidget extends StatelessWidget {
                       ),
                     ];
                     final List<PopupMenuEntry<CartEvent>>
-                    postponedOrderMenuItems = [
+                        postponedOrderMenuItems = [
                       PopupMenuItem<CartEvent>(
                         value: FromPostponeToCart(product),
                         child: ListTile(
@@ -186,7 +186,7 @@ class ProductCartWidget extends StatelessWidget {
 
   Future<int> _show(context) async {
     TextEditingController countController =
-    TextEditingController(text: "$count");
+        TextEditingController(text: "$count");
 
     Widget dialog = CupertinoAlertDialog(
       title: Text(
@@ -245,9 +245,10 @@ class ProductCartWidget extends StatelessWidget {
           ),
         ),
         actions: [
-          FlatButton(
-              onPressed: () => Navigator.pop(context), child: Text(S.of(context).cancel)),
-          FlatButton(
+          ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(S.of(context).cancel)),
+          ElevatedButton(
             onPressed: () {
               int count = int.tryParse(countController.text) ?? this.count;
               count = count.abs();
@@ -261,9 +262,10 @@ class ProductCartWidget extends StatelessWidget {
 
     await showDialog(context: context, builder: (context) => dialog);
 
-    return int.parse(
-      countController.text,
-      onError: (source) => 1,
-    ).abs();
+    try {
+      return int.parse(countController.text).abs();
+    } catch (e) {
+      return 1;
+    }
   }
 }

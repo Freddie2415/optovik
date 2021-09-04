@@ -12,12 +12,10 @@ import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/banners.dart';
 import 'package:optovik/presentation/pages/home.dart';
 import 'package:optovik/presentation/pages/splash.dart';
-import 'package:optovik/presentation/widgets/loading_widget.dart';
 
 class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

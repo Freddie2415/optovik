@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
 
-import 'package:http/http.dart';
 import 'package:optovik/data/api/response/login_response.dart';
 import 'package:optovik/domain/model/user.dart';
 import 'package:optovik/domain/repository/user_repository.dart';

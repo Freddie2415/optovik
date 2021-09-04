@@ -17,6 +17,7 @@ class BannersPage extends StatefulWidget {
 
 class _BannersPageState extends State<BannersPage> {
   int _current = 0;
+
   @override
   Widget build(BuildContext context) {
     widget.imgList.forEach((url) {
@@ -75,16 +76,14 @@ class _BannersPageState extends State<BannersPage> {
                       );
                     }).toList(),
                   ),
-                  FlatButton(
-                    color: Colors.white.withOpacity(0.35),
-                    textColor: Colors.white,
-                    height: 45,
-                    minWidth: 200,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      // side: BorderSide(
-                      //   color: Colors.white.withOpacity(0.15),
-                      // ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white.withOpacity(0.45),
+                      shadowColor: Colors.white.withOpacity(0),
+                      minimumSize: Size(200, 45),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
                     ),
                     onPressed: _onSkip,
                     child: Text(
@@ -92,6 +91,7 @@ class _BannersPageState extends State<BannersPage> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),

@@ -8,7 +8,7 @@ class FilterPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Фильтр"),
         actions: [
-          FlatButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
@@ -72,17 +72,18 @@ class FilterPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: FlatButton(
-        height: 50,
+      bottomNavigationBar: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.indigo,
+          minimumSize: Size.fromHeight(50),
+        ),
         onPressed: () {
           Navigator.pop(context);
         },
         child: Text(
           "ПРИМЕНИТЬ",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        color: Colors.indigo,
-        textColor: Colors.white,
       ),
     );
   }

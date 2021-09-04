@@ -16,12 +16,17 @@ class _FilterItemsPageState extends State<FilterItemsPage> {
       appBar: AppBar(
         title: Text("${widget.title}"),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("готово",style: TextStyle(fontWeight: FontWeight.bold),),
-            textColor: Colors.white,
+            child: Text(
+              "готово",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
           )
         ],
       ),
@@ -60,7 +65,10 @@ class _FilterItemsPageState extends State<FilterItemsPage> {
               "КАЗАХСТАН",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            trailing: Icon(Icons.check_box,color: Colors.indigo,),
+            trailing: Icon(
+              Icons.check_box,
+              color: Colors.indigo,
+            ),
             onTap: () {},
           ),
           ListTile(

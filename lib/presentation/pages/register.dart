@@ -65,15 +65,18 @@ class Register extends StatelessWidget {
             TextFormField(
               controller: _firstNameController,
               validator: _inputValidator,
+              textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(labelText: S.of(context).name),
             ),
             TextFormField(
               controller: _lastNameController,
               validator: _inputValidator,
+              textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(labelText: S.of(context).lastName),
             ),
             TextFormField(
               controller: _usernameController,
+              keyboardType: TextInputType.phone,
               validator: _inputValidator,
               decoration: InputDecoration(labelText: S.of(context).phoneNumber),
             ),

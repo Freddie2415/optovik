@@ -129,10 +129,11 @@ class _ProductWidgetState extends State<ProductWidget>
                       AnimatedOpacity(
                         opacity: _visible ? 1.0 : 0.0,
                         duration: Duration(milliseconds: 100),
-                        child: FlatButton(
-                          minWidth: 40,
-                          padding: EdgeInsets.all(0),
-                          color: Colors.indigo,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(0),
+                            elevation: 0,
+                          ),
                           onPressed: onCartPress,
                           child: Icon(
                             Icons.shopping_cart_outlined,
