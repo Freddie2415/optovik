@@ -26,7 +26,7 @@ class BottomAppBarWidget extends StatelessWidget {
                       height: 50,
                       child: Icon(
                         Icons.home,
-                        color: Colors.lightGreen,
+                        color: Colors.indigo,
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(
@@ -53,7 +53,7 @@ class BottomAppBarWidget extends StatelessWidget {
                       Text(
                         S.of(context).cart.toUpperCase(),
                         style: TextStyle(
-                          color: Colors.lightGreen,
+                          color: Colors.indigo,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -69,7 +69,7 @@ class BottomAppBarWidget extends StatelessWidget {
                         children: <Widget>[
                           Icon(
                             Icons.shopping_cart_outlined,
-                            color: Colors.lightGreen,
+                            color: Colors.indigo,
                             size: 28,
                           ),
                           Positioned(

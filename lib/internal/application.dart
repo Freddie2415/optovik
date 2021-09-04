@@ -11,6 +11,7 @@ import 'package:optovik/generated/l10n.dart';
 import 'package:optovik/internal/dependencies/auth_module.dart';
 import 'package:optovik/presentation/pages/banners.dart';
 import 'package:optovik/presentation/pages/home.dart';
+import 'package:optovik/presentation/pages/splash.dart';
 import 'package:optovik/presentation/widgets/loading_widget.dart';
 
 class Application extends StatelessWidget {
@@ -32,7 +33,7 @@ class Application extends StatelessWidget {
           title: 'Optovik',
           locale: localizationCubit.currentLocale,
           theme: ThemeData(
-            primarySwatch: Colors.lightGreen,
+            primarySwatch: Colors.indigo,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             primaryTextTheme:
                 TextTheme(headline6: TextStyle(color: Colors.white)),
@@ -61,7 +62,7 @@ class Application extends StatelessWidget {
                 if (state is BannerSuccess) {
                   return BannersPage(imgList: state.banners);
                 }
-                return Scaffold(body: LoadingWidget());
+                return SplashPage();
               },
             ),
           ),

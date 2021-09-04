@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         child: FlatButton(
-          color: Colors.lightGreen,
+          color: Colors.indigo,
           height: 50,
           child: Text(
             S.of(context).skip,
@@ -165,7 +165,7 @@ class _LoginButton extends StatelessWidget {
                 height: 45,
                 child: CupertinoButton(
                   key: const Key('loginForm_continue_raisedButton'),
-                  color: Colors.lightGreen,
+                  color: Colors.indigo,
                   onPressed: () {
                     context.read<LoginBloc>().add(const LoginSubmitted());
                   },

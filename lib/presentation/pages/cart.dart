@@ -185,11 +185,11 @@ class Cart extends StatelessWidget {
           cubit: CartModule.cartBloc(),
           builder: (context, state) => BottomAppBar(
             color: state.orders.isNotEmpty
-                ? Colors.lightGreen
+                ? Colors.indigo
                 : Colors.grey.shade400,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.lightGreen,
+                primary: Colors.indigo,
                 minimumSize: Size(MediaQuery.of(context).size.width, 45),
               ),
               onPressed: state.orders.isNotEmpty

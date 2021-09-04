@@ -65,7 +65,7 @@ class _SortPopupButtonState extends State<SortPopupButton> {
     return sortValue == sortType
         ? Icon(
             Icons.radio_button_checked,
-            color: Colors.lightGreen,
+            color: Colors.indigo,
           )
         : Icon(Icons.radio_button_unchecked);
   }

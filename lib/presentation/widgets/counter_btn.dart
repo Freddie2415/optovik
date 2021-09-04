@@ -41,7 +41,7 @@ class CounterBtn extends StatelessWidget {
                   onPressed: onRemove,
                   padding: EdgeInsets.zero,
                 ),
-                color: Colors.lightGreen,
+                color: Colors.indigo,
                 borderRadius: BorderRadius.horizontal(left: Radius.circular(5)),
               ),
             ),
@@ -77,7 +77,7 @@ class CounterBtn extends StatelessWidget {
                   onPressed: onAdd,
                   padding: EdgeInsets.zero,
                 ),
-                color: Colors.lightGreen,
+                color: Colors.indigo,
                 borderRadius:
                 BorderRadius.horizontal(right: Radius.circular(5)),
               ),

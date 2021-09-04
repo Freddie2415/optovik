@@ -163,7 +163,7 @@ class ProductCartWidget extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.more_vert,
-                    color: Colors.lightGreen,
+                    color: Colors.indigo,
                   ),
                 ),
               ],

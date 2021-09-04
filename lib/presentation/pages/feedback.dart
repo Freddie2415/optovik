@@ -44,13 +44,13 @@ class FeedBack extends StatelessWidget {
                 (e) => ListTile(
                   leading: Icon(
                     Icons.phone,
-                    color: Colors.lightGreen,
+                    color: Colors.indigo,
                   ),
                   title: Text(
                     "${e.phone}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.lightGreen,
+                      color: Colors.indigo,
                     ),
                   ),
                   onTap: () {
@@ -62,13 +62,13 @@ class FeedBack extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.email,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             title: Text(
               S.of(context).letterToTechSupport,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.lightGreen,
+                color: Colors.indigo,
               ),
             ),
             onTap: () {

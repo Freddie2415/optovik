@@ -40,7 +40,7 @@ class Register extends StatelessWidget {
       height: 45,
       child: CupertinoButton(
         onPressed: _registerEvent,
-        color: Colors.lightGreen,
+        color: Colors.indigo,
         child: Text(
           S.of(context).register.toUpperCase(),
           style: TextStyle(

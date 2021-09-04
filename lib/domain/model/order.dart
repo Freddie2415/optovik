@@ -38,7 +38,7 @@ class Order {
         color = Colors.amber;
         break;
       case 'available':
-        color = Colors.lightGreen;
+        color = Colors.indigo;
         break;
       case 'framed':
         color = Colors.indigoAccent;

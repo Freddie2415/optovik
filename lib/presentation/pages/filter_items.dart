@@ -60,7 +60,7 @@ class _FilterItemsPageState extends State<FilterItemsPage> {
               "КАЗАХСТАН",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            trailing: Icon(Icons.check_box,color: Colors.lightGreen,),
+            trailing: Icon(Icons.check_box,color: Colors.indigo,),
             onTap: () {},
           ),
           ListTile(

@@ -33,7 +33,7 @@ class FeedbackFormPage extends StatelessWidget {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(SnackBar(
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: Colors.indigo,
                   content: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -104,7 +104,7 @@ class FeedbackFormPage extends StatelessWidget {
                   builder: (context, state) {
                     return ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.lightGreen,
+                        primary: Colors.indigo,
                         minimumSize: Size.fromHeight(45),
                         elevation: 0,
                       ),

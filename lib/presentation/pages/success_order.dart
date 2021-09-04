@@ -20,7 +20,7 @@ class SuccessOrder extends StatelessWidget {
               Icon(
                 Icons.check_circle,
                 size: 100,
-                color: Colors.lightGreen,
+                color: Colors.indigo,
               ),
               SizedBox(
                 height: 15,
@@ -29,7 +29,7 @@ class SuccessOrder extends StatelessWidget {
                 S.of(context).thankYouForOrdering,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.lightGreen,
+                  color: Colors.indigo,
                   fontSize: 22,
                 ),
               ),

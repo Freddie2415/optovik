@@ -52,7 +52,7 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.lightGreen,
+                  color: Colors.indigo,
                 ),
               );
             },
@@ -67,7 +67,7 @@ class DrawerWidget extends StatelessWidget {
               return ListTile(
                 leading: Icon(
                   Icons.account_circle_sharp,
-                  color: Colors.lightGreen,
+                  color: Colors.indigo,
                 ),
                 title: Text(S.of(context).loginRegistration),
                 onTap: () => _loginRegister(context),
@@ -77,7 +77,7 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.widgets,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             title: Text(S.of(context).catalogAndSearch),
             onTap: () {
@@ -93,7 +93,7 @@ class DrawerWidget extends StatelessWidget {
                 return ListTile(
                   leading: Icon(
                     Icons.shopping_cart,
-                    color: Colors.lightGreen,
+                    color: Colors.indigo,
                   ),
                   title: Text(S.of(context).myOrders),
                   onTap: () {
@@ -116,7 +116,7 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.info,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             title: Text(S.of(context).info),
             onTap: () {
@@ -133,7 +133,7 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.phone,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             title: Text(S.of(context).feedback),
             onTap: () {
@@ -151,7 +151,7 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.settings,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             title: Text(S.of(context).settings),
             onTap: () {
@@ -171,7 +171,7 @@ class DrawerWidget extends StatelessWidget {
                 return ListTile(
                   leading: Icon(
                     Icons.exit_to_app,
-                    color: Colors.lightGreen,
+                    color: Colors.indigo,
                   ),
                   title: Text(S.of(context).logout),
                   onTap: () {

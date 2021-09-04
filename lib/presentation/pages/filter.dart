@@ -81,7 +81,7 @@ class FilterPage extends StatelessWidget {
           "ПРИМЕНИТЬ",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        color: Colors.lightGreen,
+        color: Colors.indigo,
         textColor: Colors.white,
       ),
     );

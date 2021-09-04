@@ -62,7 +62,7 @@ class SearchSuggestionsWidget extends StatelessWidget {
         ],
       );
     } else {
-      return Container(color: Colors.lightGreen);
+      return Container(color: Colors.indigo);
     }
   }
 }

@@ -33,7 +33,7 @@ class ProductSectionWidget extends StatelessWidget {
             trailing: Text(
               S.of(context).more.toUpperCase(),
               style: TextStyle(
-                color: Colors.lightGreen,
+                color: Colors.indigo,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -66,7 +66,7 @@ class ProductSectionWidget extends StatelessWidget {
                             oldPrice: "",
                             unit: "${product.unit}",
                             promo: "${product.promo}",
-                            promoColor: Colors.lightGreen,
+                            promoColor: Colors.indigo,
                           ))
                       .toList(),
                 ),

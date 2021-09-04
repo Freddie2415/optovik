@@ -52,7 +52,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                         flag
                             ? S.current.more.toLowerCase()
                             : S.current.less.toLowerCase(),
-                        style: TextStyle(color: Colors.lightGreen),
+                        style: TextStyle(color: Colors.indigo),
                       ),
                     ],
                   ),

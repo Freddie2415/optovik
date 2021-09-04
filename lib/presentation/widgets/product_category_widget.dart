@@ -26,7 +26,7 @@ class ProductCategoryWidget extends StatelessWidget {
           children: [
             Icon(
               Icons.widgets_outlined,
-              color: Colors.lightGreen,
+              color: Colors.indigo,
             ),
             SizedBox(width: 10),
             Text(

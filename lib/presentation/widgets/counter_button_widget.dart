@@ -19,7 +19,7 @@ class CounterButtonWidget extends StatelessWidget {
           child: counter <= 0
               ? ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.lightGreen,
+                    primary: Colors.indigo,
                   ),
                   onPressed: _counterCubit.increment,
                   child: Text(

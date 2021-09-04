@@ -35,7 +35,7 @@ class CategorySectionWidget extends StatelessWidget {
             trailing: Text(
               S.of(context).showMore.toUpperCase(),
               style: TextStyle(
-                color: Colors.lightGreen,
+                color: Colors.indigo,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),

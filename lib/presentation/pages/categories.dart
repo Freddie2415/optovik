@@ -127,7 +127,7 @@ class CategoriesTreeList extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: Colors.lightGreen,
+                      color: Colors.indigo,
                     ),
                   )
                 : null,

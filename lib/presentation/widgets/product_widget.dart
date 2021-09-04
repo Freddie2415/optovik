@@ -55,7 +55,7 @@ class _ProductWidgetState extends State<ProductWidget>
       listener: _listener,
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(5)),
-        splashColor: Colors.lightGreen,
+        splashColor: Colors.indigo,
         onTap: onClick,
         child: Container(
           width: MediaQuery.of(context).size.width * 0.45,
@@ -114,7 +114,7 @@ class _ProductWidgetState extends State<ProductWidget>
                             Text(
                               "${widget.price}",
                               style: TextStyle(
-                                  color: Colors.lightGreen,
+                                  color: Colors.indigo,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
@@ -132,7 +132,7 @@ class _ProductWidgetState extends State<ProductWidget>
                         child: FlatButton(
                           minWidth: 40,
                           padding: EdgeInsets.all(0),
-                          color: Colors.lightGreen,
+                          color: Colors.indigo,
                           onPressed: onCartPress,
                           child: Icon(
                             Icons.shopping_cart_outlined,
